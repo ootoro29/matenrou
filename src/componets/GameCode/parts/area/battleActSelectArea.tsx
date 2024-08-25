@@ -10,7 +10,7 @@ export class BattleActSelectArea extends Area{
     index = 0;
     constructor(scene:Phaser.Scene){
         super(scene);
-        this.load();
+        this.create();
     }
     initialize(): void {
         for(let i = 0; i < 5; i++){

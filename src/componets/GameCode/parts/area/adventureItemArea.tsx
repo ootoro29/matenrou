@@ -19,7 +19,7 @@ export class AdventureItemArea extends Area{
         if(this.adventure && this.adventure.player && this.adventure.player.Item){
             this.itemList = this.adventure.player?.Item.genItemList();
         }
-        this.load();
+        this.create();
     }
     currentCommand():Command{
         return this.itemList[this.index].itemCommand();

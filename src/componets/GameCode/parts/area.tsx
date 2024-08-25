@@ -15,7 +15,7 @@ export abstract class Area extends Phaser.GameObjects.Container {
         this.areaBoard.setFillStyle(0xaaaaaa).setStrokeStyle(10,0x000000);
 
     }
-    load(){
+    create(){
         if(!this.areaBoard)return;
         this.initialize();
         if(!this.contents){
@@ -65,17 +65,10 @@ export abstract class EventArea extends Area{
             this.contents.add(this.scene.add.rectangle(50,50,this.width-100,this.width-100,0x5E7D76).setOrigin(0,0));
         }
     }
-    override load(): void {
+    load(): void {
         if(this.path != ""){
             this.scene.load.image(this.key,this.path);
         }
-        if(!this.areaBoard)return;
-        this.initialize();
-        if(!this.contents){
-            console.log("contents error [Area class]");
-            return;
-        }
-        this.add([this.areaBoard,this.contents])
     }
     abstract genSelections(): string[];
     abstract opeClick(click:number): void;

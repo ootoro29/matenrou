@@ -53,6 +53,7 @@ export default class BattleEventAction extends BattleActionScene {
             ];
             for(let i = 0; i < this.Areas.length; i++){
                 this.Areas[i].load();
+                this.Areas[i].create();
             }
             this.AM = new BattleEventAreaManager(this.Areas); 
         }else if(this.Parents.enemy.HP <= 0){
@@ -63,6 +64,7 @@ export default class BattleEventAction extends BattleActionScene {
             ];
             for(let i = 0; i < this.Areas.length; i++){
                 this.Areas[i].load();
+                this.Areas[i].create();
             }
             this.AM = new BattleEventAreaManager(this.Areas);
         }else{
@@ -91,7 +93,7 @@ export default class BattleEventAction extends BattleActionScene {
     create(){
         if(!this.Areas)return;
         for(let i = 0; i < this.Areas.length; i++){
-            this.Areas[i].load();
+            this.Areas[i].create();
         }
         this.AM = new BattleEventAreaManager(this.Areas);
         this.changeBMText();

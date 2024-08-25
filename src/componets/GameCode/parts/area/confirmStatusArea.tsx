@@ -8,7 +8,7 @@ export class confirmStatusArea extends Area{
     constructor(scene:Phaser.Scene,data:Status){
         super(scene);
         this.status = data;
-        this.load();
+        this.create();
     }
     initialize(): void {
         if(!this.status)return;
@@ -31,7 +31,7 @@ export class confirmBattleStatusArea extends Area{
     constructor(scene:Phaser.Scene,data:BattleStatus){
         super(scene);
         this.status = data;
-        this.load();
+        this.create();
     }
     initialize(): void {
         if(!this.status)return;

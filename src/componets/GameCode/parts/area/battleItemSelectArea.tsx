@@ -17,7 +17,7 @@ export class BattleItemSelectArea extends Area{
         super(scene);
         this.battle = scene.Parents;
         this.setItemList();
-        this.load();
+        this.create();
     }
     setItemList(){
         if(this.battle && this.battle.player && this.battle.player.Item){

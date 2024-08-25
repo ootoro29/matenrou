@@ -38,7 +38,7 @@ export default class searchAction extends AdventureActionScene {
     create(){
         if(!this.Areas)return;
         for(let i = 0; i < this.Areas.length; i++){
-            this.Areas[i].load();
+            this.Areas[i].create();
         }
         this.AM = new searchAreaManager(this.Areas);
         this.changeBMText();

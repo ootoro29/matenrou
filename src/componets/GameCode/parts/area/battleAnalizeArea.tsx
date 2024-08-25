@@ -20,7 +20,7 @@ export class BattleAnalizeArea extends Area{
     constructor(scene:BattleAnalizeSelect){
         super(scene);
         this.parents = scene;
-        this.load();
+        this.create();
         console.log(this.parents.actionOrder);
     }
     initialize(): void {

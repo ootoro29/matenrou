@@ -50,7 +50,7 @@ export default class AdventureEventAction extends AdventureActionScene {
     create(){
         if(!this.Areas)return;
         for(let i = 0; i < this.Areas.length; i++){
-            this.Areas[i].load();
+            this.Areas[i].create();
         }
         this.AM = new AdventureEventAreaManager(this.Areas);
         this.changeBMText();

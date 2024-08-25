@@ -16,7 +16,7 @@ export class advanceRoom extends Area{
     constructor(scene:Phaser.Scene,room:Room){
         super(scene);
         this.room = room;
-        this.load();
+        this.create();
     }
     initialize(): void {
         if(!this.room)return;

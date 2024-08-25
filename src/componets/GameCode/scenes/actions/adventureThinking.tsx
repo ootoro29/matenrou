@@ -43,7 +43,7 @@ export default class AdventureThinking extends AdventureActionScene {
         }else{
             if(!this.Areas)return;
             for(let i = 0; i < this.Areas.length; i++){
-                this.Areas[i].load();
+                this.Areas[i].create();
             }
             this.AM = new advanceRoomAreaManager(this.Areas);
             this.changeBMText();
