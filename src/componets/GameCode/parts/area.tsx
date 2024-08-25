@@ -8,7 +8,7 @@ export abstract class Area extends Phaser.GameObjects.Container {
     constructor(scene: Phaser.Scene) { 
         super(scene,75,350)
         this.scene = scene
-
+        this.setVisible(false);
     }
     create(){
         this.scene.add.existing(this);
