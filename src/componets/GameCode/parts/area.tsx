@@ -7,9 +7,9 @@ export abstract class Area extends Phaser.GameObjects.Container {
     contents?:Phaser.GameObjects.Container;
     constructor(scene: Phaser.Scene) { 
         super(scene,75,350)
+        this.scene = scene
     }
     create(){
-        this.setVisible(false);
         this.scene.add.existing(this);
         this.setSize(this.scene.scale.width-150, 950).setInteractive();
         this.areaBoard = this.scene.add.rectangle(0,0,this.scene.scale.width-150, 950).setOrigin(0,0); 
