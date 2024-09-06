@@ -1,10 +1,10 @@
 import { Shield } from "./shield";
-import { BarrierShield } from "./shields";
+import { NormalShield } from "./shields";
 
 export class ShieldList {
     constructor(){
         this.shieldList = [
-            new BarrierShield()
+            new NormalShield()
         ]
     }
     capacity:number = 1;

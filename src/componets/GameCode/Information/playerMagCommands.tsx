@@ -18,7 +18,7 @@ export class IceWorld extends PlayerMagicalAttack{
         this.mp = 30;
         this.mei = 100;
         this.power = 60;
-        this.description = "空間を凍り付かせる。確率で魔法の攻撃力低下";
+        this.description = "空間を凍てつかせる。確率で魔法の攻撃力低下";
     }
 }
 
