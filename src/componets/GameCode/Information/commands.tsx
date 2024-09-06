@@ -1,6 +1,6 @@
 import { calDamage, calHit } from "../functions/damage";
 import { AdventureEventArea, CancelTransformAdventureEventArea, HPHeelAdventureEventArea, NormalAdventureEventArea, TransformAdventureEventArea, UseItemAdventureEventArea } from "../parts/area/adventureEventArea";
-import { BattleEventArea, CancelTransformBattleEventArea, EPABattleEventArea, HPHeelBattleEventArea, MPHeelBattleEventArea, NormalBattleEventArea, PPABattleEventArea, TransformBattleEventArea, UseItemBattleEventArea } from "../parts/area/battleEventArea";
+import { BattleEventArea, CancelTransformBattleEventArea, EPABattleEventArea, HPHeelBattleEventArea, MPHeelBattleEventArea, NormalBattleEventArea, PMABattleEventArea, PPABattleEventArea, TransformBattleEventArea, UseItemBattleEventArea } from "../parts/area/battleEventArea";
 import AdventureEventAction from "../scenes/actions/adventureEventAction";
 import BattleEventAction from "../scenes/actions/battleEventAction";
 import AdventureScene from "../scenes/adventure";
@@ -91,8 +91,12 @@ export abstract class PlayerMagicalAttack extends Command {
         ans.push(new NormalBattleEventArea(scene,`プレイヤーの${this.name}!`));
         const status = battle.player.getBattleStatus();
         const damage:number = calDamage(status.status.MAT,battle.enemy.MDF,this.power);
-        if(calHit(status.status.SP,battle.enemy.SP,this.mei)){
-            ans.push(new PPABattleEventArea(scene,battle.enemy,damage));
+        if(this.mp > status.MP){
+            ans.push(new NormalBattleEventArea(scene,`しかしMPが足りなかった！`));
+        }else if(!battle.player.isTransform()){
+            ans.push(new NormalBattleEventArea(scene,`しかしあなたは魔法少女ではないので魔法が発動できなかった！`));
+        }else if(calHit(status.status.SP,battle.enemy.SP,this.mei)){
+            ans.push(new PMABattleEventArea(scene,battle.player,battle.enemy,damage,this.mp));
         }else{
             ans.push(new NormalBattleEventArea(scene,`${battle.enemy.name}は回避した!`));
         }

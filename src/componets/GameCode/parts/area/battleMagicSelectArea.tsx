@@ -1,7 +1,7 @@
 import { Area } from "../area";
 import { Room } from "../../Information/room/room";
 import { Button } from "../button";
-import { PlayserMagCommands } from "../../Information/playerMagCommands";
+import { PlayerMagCommands } from "../../Information/playerMagCommands";
 import { Command } from "../../Information/commands";
 
 
@@ -18,9 +18,9 @@ export class BattleMagicSelectArea extends Area{
             const idx = this.index - 1 + i
             let label = "";
             let visible = false;
-            if(idx >= PlayserMagCommands.length || idx < 0){
+            if(idx >= PlayerMagCommands.length || idx < 0){
             }else{
-                label = `${PlayserMagCommands[idx].name}`;
+                label = `${PlayerMagCommands[idx].name}`;
                 visible = true;
             }
             const button = new Button(this.scene,45,350+110*i,label,{
@@ -47,18 +47,18 @@ export class BattleMagicSelectArea extends Area{
         this.contents.add(this.scene.add.text(50,50,`行動選択`,textStyle))
     }
     currentCommand():Command{
-        return PlayserMagCommands[this.index];
+        return PlayerMagCommands[this.index];
     }
     setIndex(index:number){
-        if(index <= -1 || index >= PlayserMagCommands.length)return;
+        if(index <= -1 || index >= PlayerMagCommands.length)return;
         this.index = index;
         for(let i = 0; i < 5; i++){
             const idx = this.index - 1 + i
             let label = "";
             let visible = false;
-            if(idx >= PlayserMagCommands.length || idx < 0){
+            if(idx >= PlayerMagCommands.length || idx < 0){
             }else{
-                label = `${PlayserMagCommands[idx].name}`;
+                label = `${PlayerMagCommands[idx].name}`;
                 visible = true;
             }
             this.actSelections[i].setVisible(visible).setText(label)?.setFunction(
@@ -86,10 +86,10 @@ export class BattleMagicSelectArea extends Area{
         }
     }
     rightIndex(){
-        if(this.index+5 < PlayserMagCommands.length){
+        if(this.index+5 < PlayerMagCommands.length){
             this.setIndex(this.index+5);
         }else{
-            this.setIndex(PlayserMagCommands.length-1);
+            this.setIndex(PlayerMagCommands.length-1);
         }
     }
     downStyle(){

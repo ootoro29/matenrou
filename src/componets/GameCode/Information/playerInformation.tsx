@@ -3,6 +3,7 @@ import { calCP, calEXP, calHP, calMP, calNormalMAT, calNormalMDF, calNormalPAT, 
 import { ItemList } from "./item/itemList";
 import { Command } from "./commands";
 import { CancelTransformMagicalGirl, TransformMagicalGirl } from "./playerActCommands";
+import { ShieldList } from "./shield/shieldList";
 
 export default class PlayerINFO {
   lv = 0;
@@ -30,12 +31,14 @@ export default class PlayerINFO {
   CP_MAX = 0
   transform = false;
   Item?:ItemList;
+  Shield?:ShieldList
   constructor(lv:number){
     this.lv = lv;
     this.HP = calHP(this.lv);
     this.MP = calMP(this.lv);
     this.CP = 0;
     this.Item = new ItemList();
+    this.Shield = new ShieldList();
   }
   getConfirmStatus():Status{
     const data:Status = {

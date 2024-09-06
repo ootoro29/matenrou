@@ -141,6 +141,41 @@ export class PPABattleEventArea extends BattleEventArea {
     }
 }
 
+export class PMABattleEventArea extends BattleEventArea {
+    damage:number = 0;
+    enemy?:Enemy;
+    player?:PlayerINFO;
+    mp:number = 0;
+    constructor(scene:BattleEventAction,player:PlayerINFO,enemy:Enemy,damage:number,mp:number,{key="",image = ""} = {}){
+        const discription = `${enemy.name}は${damage}のダメージ！`;
+        super(scene,discription,{key:key,image:image});
+        this.damage = damage;
+        this.enemy = enemy;
+        this.mp = mp;
+        this.player = player;
+    }
+    genSelections(): string[] {
+        return ["OK","X","X","X","X","X"];
+    }
+    opeClick(click: number): void {
+        if(!this.parents)return;
+        if(click == 0){
+            if(this.parents.AM?.isLast()){
+                this.parents.nextEventTurn();
+            }else{
+                this.parents.AM?.nextArea();
+                this.parents.changeBMText();
+            }
+        }
+    }
+    appearance(AM:BattleEventAreaManager): void {
+        if(!this.enemy)return;
+        if(!this.player)return;
+        this.player.MP -= this.mp;
+        this.enemy.HP -= this.damage;
+    }
+}
+
 export class EPABattleEventArea extends BattleEventArea {
     damage:number = 0;
     player?:PlayerINFO;

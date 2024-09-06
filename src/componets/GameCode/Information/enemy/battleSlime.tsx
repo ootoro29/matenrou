@@ -55,7 +55,7 @@ export class BattleSlime extends Enemy{
         this.scene.load.image(this.key,"/assets/enemy/battleSlime/戦闘.png");
     }
     genPComand(): ProbCommand {
-        return this.candidatePCommands[Math.floor(Math.random()*3)];
+        return this.candidatePCommands[Math.floor(Math.random()*this.candidatePCommands.length)];
     }
 }
 
