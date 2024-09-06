@@ -6,6 +6,7 @@ import BattleEventAction from "../../scenes/actions/battleEventAction";
 import { Enemy } from "../../Information/enemy/enemy";
 import PlayerINFO from "../../Information/playerInformation";
 import { Item } from "../../Information/item/item";
+import { Shield } from "../../Information/shield/shield";
 
 export class BattleEventAreaManager extends areaManager{
     AreaList?:BattleEventArea[];
@@ -384,5 +385,37 @@ export class UseItemBattleEventArea extends BattleEventArea {
     appearance(AM:BattleEventAreaManager): void { 
         if(!this.item)return;
         this.item.count--;
+    }
+}
+
+export class ShieldBattleEventArea extends BattleEventArea {
+    player?:PlayerINFO;
+    mp = 0;
+    shield:Shield;
+    constructor(scene:BattleEventAction,player:PlayerINFO,mp:number,shield:Shield,{key="",image = ""} = {}){
+        const discription = `プレイヤーは${shield.name}を展開する！`;
+        super(scene,discription,{key:key,image:image});
+        this.player = player;
+        this.mp = mp;
+        this.shield = shield;
+    }
+    genSelections(): string[] {
+        return ["OK","X","X","X","X","X"];
+    }
+    opeClick(click: number): void {
+        if(!this.parents)return;
+        if(click == 0){
+            if(this.parents.AM?.isLast()){
+                this.parents.nextEventTurn();
+            }else{
+                this.parents.AM?.nextArea();
+                this.parents.changeBMText();
+            }
+        }
+    }
+    appearance(AM:BattleEventAreaManager): void {  
+        if(!this.player)return;
+        this.player.MP -= this.mp;
+        this.player.Shield?.setShield(this.shield);      
     }
 }

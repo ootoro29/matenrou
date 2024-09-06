@@ -1,44 +1,44 @@
 import { Shield } from "./shield";
 
-export class BarrierShield extends Shield{
+export class NormalShield extends Shield{
     constructor(){
         super()
         this.HP = this.HP_MAX = 50;
-        this.name = "バリア"
+        this.name = "シールド"
     }
 }
-export class FireBarrierShield extends Shield{
+export class FireShield extends Shield{
     constructor(){
         super()
         this.HP = this.HP_MAX = 20;
-        this.name = "ファイアバリア"
+        this.name = "ファイアシールド"
     }
 }
-export class IceBarrierShield extends Shield{
+export class IceShield extends Shield{
     constructor(){
         super()
         this.HP = this.HP_MAX = 20;
-        this.name = "アイスバリア"
+        this.name = "アイスシールド"
     }
 }
-export class ThunderBarrierShield extends Shield{
+export class ThunderShield extends Shield{
     constructor(){
         super()
         this.HP = this.HP_MAX = 20;
-        this.name = "サンダーバリア"
+        this.name = "サンダーシールド"
     }
 }
-export class WindBarrierShield extends Shield{
+export class WindShield extends Shield{
     constructor(){
         super()
         this.HP = this.HP_MAX = 20;
-        this.name = "ウィンドバリア"
+        this.name = "ウィンドシールド"
     }
 }
-export class GroundBarrierShield extends Shield{
+export class GroundShield extends Shield{
     constructor(){
         super()
         this.HP = this.HP_MAX = 20;
-        this.name = "グランドバリア"
+        this.name = "グランドシールド"
     }
 }

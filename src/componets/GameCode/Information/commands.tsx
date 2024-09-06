@@ -1,10 +1,11 @@
 import { calDamage, calHit } from "../functions/damage";
 import { AdventureEventArea, CancelTransformAdventureEventArea, HPHeelAdventureEventArea, NormalAdventureEventArea, TransformAdventureEventArea, UseItemAdventureEventArea } from "../parts/area/adventureEventArea";
-import { BattleEventArea, CancelTransformBattleEventArea, EPABattleEventArea, HPHeelBattleEventArea, MPHeelBattleEventArea, NormalBattleEventArea, PMABattleEventArea, PPABattleEventArea, TransformBattleEventArea, UseItemBattleEventArea } from "../parts/area/battleEventArea";
+import { BattleEventArea, CancelTransformBattleEventArea, EPABattleEventArea, HPHeelBattleEventArea, MPHeelBattleEventArea, NormalBattleEventArea, PMABattleEventArea, PPABattleEventArea, ShieldBattleEventArea, TransformBattleEventArea, UseItemBattleEventArea } from "../parts/area/battleEventArea";
 import AdventureEventAction from "../scenes/actions/adventureEventAction";
 import BattleEventAction from "../scenes/actions/battleEventAction";
 import AdventureScene from "../scenes/adventure";
 import BattleScene from "../scenes/battle";
+import { Shield } from "./shield/shield";
 
 export abstract class Command{
     name = "";
@@ -250,6 +251,30 @@ export abstract class PlayerItemMPHeel extends Command {
         }else{
             ans.push(new NormalBattleEventArea(scene,`プレイヤーは${this.name}を使用した!`));
             ans.push(new NormalBattleEventArea(scene,`…しかしもう${this.name}を持っていなかった！`));
+        }
+        return ans;
+    }
+    doAdventureCommand(battle: AdventureScene, scene: AdventureEventAction): AdventureEventArea[] {
+        return []
+    }
+}
+
+export abstract class PlayerMagicalShield extends Command {
+    shield?:Shield;
+    doBattleCommand(battle:BattleScene,scene:BattleEventAction): BattleEventArea[] {
+        if(!battle.player)return[];
+        if(!this.shield)return[];
+        let ans:BattleEventArea[] = []
+        ans.push(new NormalBattleEventArea(scene,`プレイヤーの${this.name}!`));
+        const status = battle.player.getBattleStatus();
+        if(this.mp > status.MP){
+            ans.push(new NormalBattleEventArea(scene,`しかしMPが足りなかった！`));
+        }else if(!battle.player.isTransform()){
+            ans.push(new NormalBattleEventArea(scene,`しかしあなたは魔法少女ではないので魔法が発動できなかった！`));
+        }else if(!battle.player.Shield?.canSetShield()){
+            ans.push(new NormalBattleEventArea(scene,`しかしシールドはこれ以上展開できない！`));
+        }else{
+            ans.push(new ShieldBattleEventArea(scene,battle.player,this.mp,this.shield))
         }
         return ans;
     }
