@@ -8,7 +8,7 @@ import BattleScene from "../scenes/battle";
 
 export abstract class Command{
     name = "";
-    discription = "";
+    description = "";
     power = 0;
     mei = 0;
     key = "";

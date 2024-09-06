@@ -5,7 +5,7 @@ import { Command} from "../commands";
 
 export abstract class Item{
     name = "";
-    discription = "";
+    description = "";
     image?:Phaser.GameObjects.Image;
     key = "";
     path = "";
@@ -28,7 +28,7 @@ export abstract class Item{
         this.command.power = this.power;
         this.command.name = this.name;
         this.command.initialize();
-        this.discription = this.discription;
+        this.description = this.description;
         return this.command;
     }
     abstract genCommand():Command;
