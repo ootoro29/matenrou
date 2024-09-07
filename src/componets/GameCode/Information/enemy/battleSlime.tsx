@@ -38,7 +38,7 @@ export class BattleSlime extends Enemy{
         this.PAT = 12;
         this.MAT = 4;
         this.PDF = 18;
-        this.MDF = 15;
+        this.MDF = 8;
         this.SP = 9;
         this.exp = 2;
         this.name = "バトルスライム";

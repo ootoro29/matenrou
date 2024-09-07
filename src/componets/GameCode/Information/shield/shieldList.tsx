@@ -7,7 +7,7 @@ export class ShieldList {
             new NormalShield()
         ]
     }
-    capacity:number = 1;
+    capacity:number = 2;
     shieldList:Shield[] = []
     setShield(s:Shield):void{
         this.shieldList.push(s)  
