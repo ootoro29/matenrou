@@ -206,6 +206,63 @@ export class EPABattleEventArea extends BattleEventArea {
     }
 }
 
+export class EPAShieldBattleEventArea extends BattleEventArea {
+    damage:number = 0;
+    shield?:Shield;
+    constructor(scene:BattleEventAction,shield:Shield,damage:number,{key="",image = ""} = {}){
+        const discription = `${shield.name}で防いだ。${shield.name}に${damage}の損傷！`;
+        super(scene,discription,{key:key,image:image});
+        this.damage = damage;
+        this.shield = shield;
+    }
+    genSelections(): string[] {
+        return ["OK","X","X","X","X","X"];
+    }
+    opeClick(click: number): void {
+        if(!this.parents)return;
+        if(click == 0){
+            if(this.parents.AM?.isLast()){
+                this.parents.nextEventTurn();
+            }else{
+                this.parents.AM?.nextArea();
+                this.parents.changeBMText();
+            }
+        }
+    }
+    appearance(AM:BattleEventAreaManager): void {
+        if(!this.shield)return;
+        this.shield.HP -= this.damage;
+    }
+}
+export class ShieldBreakBattleEventArea extends BattleEventArea {
+    shields?:Shield[];
+    index:number = 0;
+    constructor(scene:BattleEventAction,shields:Shield[],index:number,{key="",image = ""} = {}){
+        const discription = `${shields[index].name}は崩壊した。`;
+        super(scene,discription,{key:key,image:image});
+        this.shields = shields;
+        this.index = index;
+    }
+    genSelections(): string[] {
+        return ["OK","X","X","X","X","X"];
+    }
+    opeClick(click: number): void {
+        if(!this.parents)return;
+        if(click == 0){
+            if(this.parents.AM?.isLast()){
+                this.parents.nextEventTurn();
+            }else{
+                this.parents.AM?.nextArea();
+                this.parents.changeBMText();
+            }
+        }
+    }
+    appearance(AM:BattleEventAreaManager): void {
+        if(!this.shields)return;
+        this.shields = [... this.shields.slice(0,this.index),... this.shields.slice(this.index+1,this.shields.length) ]
+    }
+}
+
 export class GetEXPBattleEventArea extends BattleEventArea {
     exp:number = 0;
     player?:PlayerINFO;

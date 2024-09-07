@@ -1,6 +1,6 @@
 import { calDamage, calHit } from "../functions/damage";
 import { AdventureEventArea, CancelTransformAdventureEventArea, HPHeelAdventureEventArea, NormalAdventureEventArea, TransformAdventureEventArea, UseItemAdventureEventArea } from "../parts/area/adventureEventArea";
-import { BattleEventArea, CancelTransformBattleEventArea, EPABattleEventArea, HPHeelBattleEventArea, MPHeelBattleEventArea, NormalBattleEventArea, PMABattleEventArea, PPABattleEventArea, ShieldBattleEventArea, TransformBattleEventArea, UseItemBattleEventArea } from "../parts/area/battleEventArea";
+import { BattleEventArea, CancelTransformBattleEventArea, EPABattleEventArea, EPAShieldBattleEventArea, HPHeelBattleEventArea, MPHeelBattleEventArea, NormalBattleEventArea, PMABattleEventArea, PPABattleEventArea, ShieldBattleEventArea, ShieldBreakBattleEventArea, TransformBattleEventArea, UseItemBattleEventArea } from "../parts/area/battleEventArea";
 import AdventureEventAction from "../scenes/actions/adventureEventAction";
 import BattleEventAction from "../scenes/actions/battleEventAction";
 import AdventureScene from "../scenes/adventure";
@@ -64,11 +64,18 @@ export abstract class EnemyPhysicalAttack extends Command {
     doBattleCommand(battle:BattleScene,scene:BattleEventAction): BattleEventArea[] {
         if(!battle.player)return[];
         if(!battle.enemy)return[];
+        if(!battle.player.Shield)return[];
         let ans:BattleEventArea[] = []
         ans.push(new NormalBattleEventArea(scene,`${battle.enemy.name}の${this.name}!`,{key:this.key,image:this.path}));
         const status = battle.player.getBattleStatus();
         const damage:number = calDamage(battle.enemy.PAT,status.status.PDF,this.power);
-        if(calHit(battle.enemy.SP,status.status.SP,this.mei)){
+        const hitShield = battle.player.Shield?.selectShield();
+        if(hitShield){
+            ans.push(new EPAShieldBattleEventArea(scene,hitShield,damage));
+            if(hitShield.HP <= damage){
+                ans.push(new NormalBattleEventArea(scene,`${hitShield.name}は崩壊した`));
+            }
+        }else if(calHit(battle.enemy.SP,status.status.SP,this.mei)){
             let imageInfo = {key:"playerdamage",image:"/assets/player/被弾.png"};
             if(battle.player.transform){
                 imageInfo = {key:"playerdamagetransform",image:"/assets/player/被弾(魔法少女).png"};

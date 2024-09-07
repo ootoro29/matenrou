@@ -90,6 +90,7 @@ export default class PlayerINFO {
     this.MP_MAX = calMP(lv);
     this.CP_MAX = calCP(lv);
     this.exp_MAX = calEXP(lv);
+    this.Shield?.update();
   }
 
   getExp(plus:number):string{

@@ -30,4 +30,11 @@ export class ShieldList {
             return ans;
         }
     } 
+    update(){
+        this.shieldList.map((shield,i) => {
+            if(shield.HP <= 0){
+                this.shieldList = [...this.shieldList.slice(0,i),...this.shieldList.slice(i+1,this.shieldList.length)]
+            }
+        })
+    }
 }

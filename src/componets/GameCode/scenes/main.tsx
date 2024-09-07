@@ -10,6 +10,7 @@ import PlayerINFO from "../Information/playerInformation";
 import { Room } from "../Information/room/room";
 import * as R from "../Information/room/index";
 import { Enemy } from "../Information/enemy/enemy";
+import { Shield } from "../Information/shield/shield";
 
 export default class main extends Phaser.Scene {
   button?: Button;
@@ -26,6 +27,7 @@ export default class main extends Phaser.Scene {
   HP_BAR?:PlayerStatusBar;
   MP_BAR?:PlayerStatusBar;
   CP_BAR?:PlayerStatusBar;
+  ShieldSlots:ShieldSlot[] = [];
   normal_player?:Phaser.GameObjects.Image;
   transform_player?:Phaser.GameObjects.Image;
   room_text?:Phaser.GameObjects.Text;
@@ -64,11 +66,15 @@ export default class main extends Phaser.Scene {
     graphics.fillStyle(0xaaaaaa, 1.0);
     graphics.fillRect(0, 0,this.scale.width, 300);
 
-    this.HP_BAR = new PlayerStatusBar(this,640,250,0x00ff00,0x00aa00,"HP");
-    this.MP_BAR = new PlayerStatusBar(this,460,250,0x00ffff,0x00aaaa,"MP");
-    this.CP_BAR = new PlayerStatusBar(this,280,250,0xff0000,0xaa0000,"CP");
+    this.HP_BAR = new PlayerStatusBar(this,50,250,0x00ff00,0x00aa00,"HP");
+    this.MP_BAR = new PlayerStatusBar(this,230,250,0x00ffff,0x00aaaa,"MP");
+    this.CP_BAR = new PlayerStatusBar(this,410,250,0xff0000,0xaa0000,"CP");
+    this.ShieldSlots = [];
+    this.ShieldSlots.push(new ShieldSlot(this,50,1370));
+    this.ShieldSlots.push(new ShieldSlot(this,230,1370));
+    this.ShieldSlots.push(new ShieldSlot(this,410,1370));
 
-    this.room_text = this.add.text(40,120,"room",{fontSize:120});
+    //this.room_text = this.add.text(40,120,"room",{fontSize:120});
     
     this.BM = new ButtonManager(this);
 
@@ -95,11 +101,16 @@ export default class main extends Phaser.Scene {
 
   update(): void {
     if(!this.PINF)return;
+    if(!this.PINF.Shield)return;
     this.PINF.updateStatus();
     this.HP_BAR?.setP(this.PINF.HP,this.PINF.HP_MAX)
     this.MP_BAR?.setP(this.PINF.MP,this.PINF.MP_MAX)
     this.CP_BAR?.setP(this.PINF.CP,this.PINF.CP_MAX)
-
+    this.ShieldSlots.map((slot) => slot.setVisible(false));
+    this.PINF.Shield.shieldList.map((shield,i) => {
+      this.ShieldSlots[i].setP(shield)
+      
+    })
     this.normal_player?.setVisible(!this.PINF?.isTransform());
     this.transform_player?.setVisible(this.PINF?.isTransform());
     this.room_text?.setText(this.Room?.name || " ");
@@ -143,6 +154,34 @@ class PlayerStatusBar extends Phaser.GameObjects.Container{
     if(rate < 0)rate = 0;
     this.P_Rect?.setSize(160,-140*rate);
   }
+}
 
-
+class ShieldSlot extends Phaser.GameObjects.Container{
+  P:number = 0;
+  P_MAX:number = 10;
+  P_Rect?: Phaser.GameObjects.Rectangle;
+  PMAX_Rect?: Phaser.GameObjects.Rectangle;
+  constructor(scene: Phaser.Scene,x:number,y:number){
+    super(scene,x,y);
+    this.scene = scene
+    this.scene.add.existing(this);
+    this.x += 80;
+    this.y -= 70;
+    this.setSize(160,140);
+    this.PMAX_Rect = scene.add.rectangle(0,0,160,45).setOrigin(0.5,0.5);
+    this.PMAX_Rect.setFillStyle(0xdd9900).setStrokeStyle(9,0x000000)
+    this.P_Rect = scene.add.rectangle(-80,0,160,45).setOrigin(0,0.5);
+    this.P_Rect.setFillStyle(0xFFdd00).setStrokeStyle(9,0x000000)
+    this.add([this.PMAX_Rect,this.P_Rect]);
+  }
+  setP(S:Shield){
+    if(!S)return;
+    this.P = S.HP;
+    this.P_MAX = S.HP_MAX;
+    let rate = (this.P/this.P_MAX);
+    if(rate > 1)rate = 1;
+    if(rate < 0)rate = 0;
+    this.P_Rect?.setSize(160*rate,45);
+    this.setVisible(true);
+  }
 }
