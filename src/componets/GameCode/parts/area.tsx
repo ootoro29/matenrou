@@ -67,7 +67,8 @@ export abstract class EventArea extends Area{
             const D = new Date();
             console.log(this.key,"START",D.getTime());
             this.scene.load.image(this.key,this.path);
-            console.log(this.key,"DONE",D.getTime());
+            const S = new Date();
+            console.log(this.key,"DONE",S.getTime());
         }
     }
     abstract genSelections(): string[];
