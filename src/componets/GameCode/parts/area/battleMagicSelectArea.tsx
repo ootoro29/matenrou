@@ -74,7 +74,7 @@ export class BattleMagicSelectArea extends Area{
         }
     }
     downIndex(){
-        if(this.index+1 < this.actSelections.length){
+        if(this.index+1 < PlayerMagCommands.length){
             this.setIndex(this.index+1);
         }
     }
