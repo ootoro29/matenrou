@@ -57,12 +57,15 @@ export abstract class EventArea extends Area{
             this.text
         );
         if(this.key != ""){
+            const D = new Date();
+            console.log(this.key,"START",D.getTime());
             this.contents.add(this.scene.add.image(50,50,this.key).setOrigin(0,0))
+            console.log(this.key,"DONE",D.getTime());
         }else{
             this.contents.add(this.scene.add.rectangle(50,50,this.width-100,this.width-100,0x5E7D76).setOrigin(0,0));
         }
     }
-    load(): void {
+    async load(): Promise<void> {
         if(this.path != ""){
             this.scene.load.image(this.key,this.path);
         }
