@@ -1,9 +1,11 @@
-import { PartScene } from "../parts/scene";
+import { BattleActionScene, PartScene } from "../parts/scene";
 import {Enemy } from "../Information/enemy/enemy";
 import PlayerINFO from "../Information/playerInformation";
 import { BattleSlime } from "../Information/enemy/battleSlime";
 import { ProbCommand } from "../Information/prob_commands";
 import main from "./main";
+import { BattleEventArea } from "../parts/area/battleEventArea";
+import BattleEventAction from "./actions/battleEventAction";
 
 export default class BattleScene extends PartScene{
     first_turn = 0;
@@ -13,6 +15,8 @@ export default class BattleScene extends PartScene{
     actions:(ProbCommand|null)[] = [];
     enemy?:Enemy;
     player?:PlayerINFO;
+    Areas?:BattleEventArea[]
+    battleAction?:BattleEventAction;
     constructor() {
         super("battle");
         
@@ -33,10 +37,22 @@ export default class BattleScene extends PartScene{
             this.turn = 0;
             this.scene.stop("battleEvent");
             this.scene.launch("battleThinking",{main:this.MAIN,battle:this});
-            this.battleInitialize();
+            //this.battleInitialize();
         }else{
             this.scene.stop("battleEvent");
             this.scene.launch("battleEvent",{main:this.MAIN,battle:this});
+            this.battleAction = this.scene.get<BattleEventAction>("battleEvent");
+            const act = this.actions[this.event_turn-1];
+            if(!act){
+                alert("error");
+                return;
+            }
+            if(!this.battleAction)return;
+            const command = act.sample();
+            this.Areas = [
+                ...command.doBattleCommand(this,this.battleAction)
+            ];
+            this.battleAction.setAreas(this.Areas);
         }
     }
     battleFinish(){
@@ -65,9 +81,8 @@ export default class BattleScene extends PartScene{
         }
         if(this.turn > 6){
             this.nextEventTurn();
-            this.scene.stop("battleThinking");
-            this.scene.launch("battleEvent",{main:this.MAIN,battle:this});
-            //戦闘描写
+            //this.scene.stop("battleThinking");
+            //this.scene.launch("battleEvent",{main:this.MAIN,battle:this});
         }else{
             this.scene.launch("battleThinking",{main:this.MAIN,battle:this});
         }
@@ -83,6 +98,7 @@ export default class BattleScene extends PartScene{
     }
     preload() {
         this.enemy?.load(this);
+        this.battleInitialize();
     }
     initialize(): void {
         this.player = this.MAIN?.PINF;//init()後でないとMAINが入らない
@@ -145,7 +161,6 @@ export default class BattleScene extends PartScene{
         graphics.fillRect(0, 0,this.scale.width, this.scale.height);
         const A = this.scene.launch('battleThinking',{main:this.MAIN,battle:this});
         this.enemy?.create();
-        this.battleInitialize();
     }
     update(time: number, delta: number): void {
         this.enemy?.update();

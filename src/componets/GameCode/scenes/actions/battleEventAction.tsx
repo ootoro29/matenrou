@@ -27,19 +27,14 @@ export default class BattleEventAction extends BattleActionScene {
         if(!this.MAIN)return;
         if(!this.MAIN.Room)return;
         if(!this.MAIN.PINF)return;
-        if(!this.Parents)return;
-        const act = this.Parents.actions[this.Parents.event_turn-1];
-        if(!act){
-            alert("error");
-            return;
-        }
-        const command = act.sample();
-        this.Areas = [
-            ...command.doBattleCommand(this.Parents,this)
-        ];
+        if(!this.Areas)return;
+        
         for(let i = 0; i < this.Areas.length; i++){
             this.Areas[i].load();
         }
+    }
+    setAreas(Areas:BattleEventArea[]){
+        this.Areas = Areas;
     }
     nextEventTurn(){
         if(!this.Areas)return;
