@@ -5,7 +5,7 @@ import searchAction from "../../scenes/actions/searchAction";
 import { A11Room, A12Room, A14Room, A5Room, A7Room, A9Room } from "./Arooms";
 import { C11Room, C12Room, C5Room, C6Room, C8Room } from "./Crooms";
 import { D7Room, D9Room } from "./Drooms";
-import * as AdvanceEvent  from "../../parts/area/advanceRoom";
+import * as AdvanceEvent  from "@/componets/GameCode/functions/advanceRoomEvent";
 import * as SearchEvent from "@/componets/GameCode/functions/searchEvent"
 import { Room } from "./room";
 import { BattleSlime } from "../enemy/battleSlime";
@@ -77,7 +77,12 @@ export class B4Room extends Room {
 
 export class B5Room extends Room {
     genAdvanceRoomEvent(scene: AdventureThinking): advanceRoomEventArea[] {
-        return[];
+        const rnd = Math.random()*100;
+        if(rnd < 60){
+            return AdvanceEvent.FireSlimeEvent(scene);
+        }else{
+            return AdvanceEvent.BattleSlimeEvent(scene);
+        }
     }
     initialize(): void {
         this.name = "B-5";
@@ -87,12 +92,26 @@ export class B5Room extends Room {
     genSearchEvent(scene:searchAction){
         const ans = this.findRoomKeyEvent(scene,10);
         if(ans)return ans;
+        let rnd = Math.random()*100;
+        if(rnd < 10){
+            let rndBattle = Math.random()*100;
+            if(rndBattle < 80){
+                return SearchEvent.FireSlimeEvent(scene);
+            }else{
+                return SearchEvent.BattleSlimeEvent(scene);
+            }
+        }
         return SearchEvent.SearchNoneEvent(scene)
     }
 }
 export class B6Room extends Room {
     genAdvanceRoomEvent(scene: AdventureThinking): advanceRoomEventArea[] {
-        return[];
+        const rnd = Math.random()*100;
+        if(rnd < 80){
+            return AdvanceEvent.BattleSlimeEvent(scene);
+        }else{
+            return AdvanceEvent.IceSlimeEvent(scene);
+        }
     }
     initialize(): void {
         this.name = "B-6";
@@ -102,14 +121,21 @@ export class B6Room extends Room {
     genSearchEvent(scene:searchAction){
         const ans = this.findRoomKeyEvent(scene,10);
         if(ans)return ans;
+        let rnd = Math.random()*100;
+        if(rnd < 10){
+            let rndBattle = Math.random()*100;
+            if(rndBattle < 80){
+                return SearchEvent.BattleSlimeEvent(scene);
+            }else{
+                return SearchEvent.IceSlimeEvent(scene);
+            }
+        }
         return SearchEvent.SearchNoneEvent(scene)
     }
 }
 export class B7Room extends Room {
     genAdvanceRoomEvent(scene: AdventureThinking): advanceRoomEventArea[] {
-        return[
-            new AdvanceEvent.BattleAdvanceRoomArea(scene,new BattleSlime(),{key:"battleSlime_appear",image:"/assets/enemy/battleSlime/出現イベント.png"}),
-        ];
+        return AdvanceEvent.BattleSlimeEvent(scene);
     }
     initialize(): void {
         this.name = "B-7";
@@ -121,14 +147,19 @@ export class B7Room extends Room {
         if(ans)return ans;
         let rnd = Math.random()*100;
         if(rnd < 10){
-            return SearchEvent.SearchBattleSlimeEvent(scene);
+            return SearchEvent.BattleSlimeEvent(scene);
         }
         return SearchEvent.SearchNoneEvent(scene)
     }
 }
 export class B8Room extends Room {
     genAdvanceRoomEvent(scene: AdventureThinking): advanceRoomEventArea[] {
-        return[];
+        const rnd = Math.random()*100;
+        if(rnd < 80){
+            return AdvanceEvent.BattleSlimeEvent(scene);
+        }else{
+            return AdvanceEvent.FireSlimeEvent(scene);
+        }
     }
     initialize(): void {
         this.name = "B-8"
@@ -138,12 +169,26 @@ export class B8Room extends Room {
     genSearchEvent(scene:searchAction){
         const ans = this.findRoomKeyEvent(scene,10);
         if(ans)return ans;
+        let rnd = Math.random()*100;
+        if(rnd < 10){
+            let rndBattle = Math.random()*100;
+            if(rndBattle < 80){
+                return SearchEvent.BattleSlimeEvent(scene);
+            }else{
+                return SearchEvent.FireSlimeEvent(scene);
+            }
+        }
         return SearchEvent.SearchNoneEvent(scene)
     }
 }
 export class B9Room extends Room {
     genAdvanceRoomEvent(scene: AdventureThinking): advanceRoomEventArea[] {
-        return[];
+        const rnd = Math.random()*100;
+        if(rnd < 80){
+            return AdvanceEvent.BattleSlimeEvent(scene);
+        }else{
+            return AdvanceEvent.RockSlimeEvent(scene);
+        }
     }
     initialize(): void {
         this.name = "B-9"

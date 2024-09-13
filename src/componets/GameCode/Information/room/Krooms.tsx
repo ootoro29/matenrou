@@ -1,6 +1,7 @@
 import { advanceRoomEventArea } from "../../parts/area/advanceRoom";
 import AdventureThinking from "../../scenes/actions/adventureThinking";
 import * as SearchEvent from "@/componets/GameCode/functions/searchEvent"
+import * as AdvanceEvent  from "@/componets/GameCode/functions/advanceRoomEvent";
 import searchAction from "../../scenes/actions/searchAction";
 import { J5Room, J7Room, J9Room } from "./Jrooms";
 import { Room } from "./room";

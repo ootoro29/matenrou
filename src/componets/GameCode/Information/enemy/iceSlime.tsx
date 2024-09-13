@@ -9,6 +9,8 @@ class IceSlimeIceBlock extends EnemyMagicalAttack{
         this.name = "氷塊";
         this.power = 70;
         this.mei = 60;
+        this.key = "iceSlimeIceBlock"
+        this.path = "/assets/enemy/iceSlime/氷塊.png";
     }
 }
 
@@ -17,14 +19,18 @@ class IceSlimeShot extends EnemyMagicalAttack{
         this.name = "アイスショット";
         this.power = 50;
         this.mei = 90;
+        this.key = "iceSlimeShot"
+        this.path = "/assets/enemy/iceSlime/アイスショット.png";
     }
 }
 
-class IceSlimeBarn extends EnemyMagicalAttack{
+class IceSlimeBahn extends EnemyMagicalAttack{
     initialize(): void {
         this.name = "アイスバーン";
         this.power = 40;
         this.mei = 90;
+        this.key = "iceSlimeBahn"
+        this.path = "/assets/enemy/iceSlime/アイスバーン.png";
     }
 }
 
@@ -33,11 +39,11 @@ class IceSlimeBarn extends EnemyMagicalAttack{
 const BattleSlimeCommands:EnemyPhysicalAttack[] = [
     new IceSlimeIceBlock(),
     new IceSlimeShot(),
-    new IceSlimeBarn(),
+    new IceSlimeBahn(),
 ]
 
 
-export class FireSlime extends Enemy{
+export class IceSlime extends Enemy{
     initialize(){
         this.HP = this.HP_MAX = 45;
         this.PAT = 6;

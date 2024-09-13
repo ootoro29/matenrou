@@ -1,11 +1,11 @@
 import { advanceRoomEventArea } from "../../parts/area/advanceRoom";
-import * as AdvanceEvent  from "../../parts/area/advanceRoom";
 import AdventureThinking from "../../scenes/actions/adventureThinking";
 import searchAction from "../../scenes/actions/searchAction";
 import { B11Room, B12Room, B5Room, B7Room, B9Room } from "./Brooms";
 import { Room } from "./room";
 import { BattleSlime } from "../enemy/battleSlime";
 import * as SearchEvent from "@/componets/GameCode/functions/searchEvent"
+import * as AdvanceEvent  from "@/componets/GameCode/functions/advanceRoomEvent";
 
 export class A5Room extends Room {
     genAdvanceRoomEvent(scene: AdventureThinking): advanceRoomEventArea[] {
@@ -41,7 +41,12 @@ export class A7Room extends Room {
 
 export class A9Room extends Room {
     genAdvanceRoomEvent(scene: AdventureThinking): advanceRoomEventArea[] {
-        return[];
+        const rnd = Math.random()*100;
+        if(rnd < 80){
+            return AdvanceEvent.BattleSlimeEvent(scene);
+        }else{
+            return AdvanceEvent.WindSlimeEvent(scene);
+        }
     }
     initialize(): void {
         this.name = "A-9";
@@ -57,7 +62,12 @@ export class A9Room extends Room {
 
 export class A10Room extends Room {
     genAdvanceRoomEvent(scene: AdventureThinking): advanceRoomEventArea[] {
-        return[];
+        const rnd = Math.random()*100;
+        if(rnd < 60){
+            return AdvanceEvent.FireSlimeEvent(scene);
+        }else{
+            return AdvanceEvent.ThunderSlimeEvent(scene);
+        }
     }
     initialize(): void {
         this.name = "A-10";
@@ -72,7 +82,12 @@ export class A10Room extends Room {
 }
 export class A11Room extends Room {
     genAdvanceRoomEvent(scene: AdventureThinking): advanceRoomEventArea[] {
-        return[];
+        const rnd = Math.random()*100;
+        if(rnd < 60){
+            return AdvanceEvent.IceSlimeEvent(scene);
+        }else{
+            return AdvanceEvent.RockSlimeEvent(scene);
+        }
     }
     initialize(): void {
         this.name = "A-11";

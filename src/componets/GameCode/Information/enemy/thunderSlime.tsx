@@ -4,11 +4,13 @@ import { EnemyProbCommand, ProbCommand } from "../prob_commands";
 import { Command, EnemyMagicalAttack, EnemyPhysicalAttack } from "../commands";
 import BattleScene from "../../scenes/battle";
 
-class ThunderSlimeSpark extends EnemyMagicalAttack{
+class ThunderSlimeSpark extends EnemyPhysicalAttack{
     initialize(): void {
-        this.name = "スパーク";
+        this.name = "ライデンタックル";
         this.power = 60;
         this.mei = 80;
+        this.key = "thunderSlimeTackle"
+        this.path = "/assets/enemy/thunderSlime/雷電タックル.png";
     }
 }
 
@@ -17,6 +19,8 @@ class ThunderSlimeShot extends EnemyMagicalAttack{
         this.name = "サンダーショット";
         this.power = 50;
         this.mei = 90;
+        this.key = "thunderSlimeShot"
+        this.path = "/assets/enemy/thunderSlime/サンダーショット.png";
     }
 }
 
@@ -25,6 +29,8 @@ class ThunderSlimeOmegaThunder extends EnemyMagicalAttack{
         this.name = "オメガサンダー";
         this.power = 80;
         this.mei = 60;
+        this.key = "thunderSlimeOmegaThunder"
+        this.path = "/assets/enemy/thunderSlime/オメガサンダー.png";
     }
 }
 
@@ -37,7 +43,7 @@ const BattleSlimeCommands:EnemyPhysicalAttack[] = [
 ]
 
 
-export class FireSlime extends Enemy{
+export class ThunderSlime extends Enemy{
     initialize(){
         this.HP = this.HP_MAX = 35;
         this.PAT = 5;

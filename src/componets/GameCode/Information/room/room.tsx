@@ -4,10 +4,13 @@ import { advanceRoomEventArea } from "../../parts/area/advanceRoom";
 import { NormalSearchArea, searchArea } from "../../parts/area/searchArea";
 import AdventureThinking from "../../scenes/actions/adventureThinking";
 import searchAction from "../../scenes/actions/searchAction";
+import { Enemy } from "../enemy/enemy";
 
 export abstract class Room {
     nextRooms?:Room[];
     PRooms:number[] = [];
+    Enemys?:searchArea[][];
+    PEnemys:number[] = [];
     name:string = "";
     constructor(){
     }

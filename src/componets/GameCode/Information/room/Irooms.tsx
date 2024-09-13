@@ -5,6 +5,7 @@ import { H6Room, H7Room, H8Room } from "./Hrooms";
 import { J10Room, J12Room, J13Room, J2Room, J4Room, J5Room, J6Room, J7Room, J8Room } from "./Jrooms";
 import { Room } from "./room";
 import * as SearchEvent from "@/componets/GameCode/functions/searchEvent"
+import * as AdvanceEvent  from "@/componets/GameCode/functions/advanceRoomEvent";
 
 export class I1Room extends Room {
     genAdvanceRoomEvent(scene: AdventureThinking): advanceRoomEventArea[] {

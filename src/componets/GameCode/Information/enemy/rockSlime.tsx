@@ -37,7 +37,7 @@ const BattleSlimeCommands:EnemyPhysicalAttack[] = [
 ]
 
 
-export class FireSlime extends Enemy{
+export class RockSlime extends Enemy{
     initialize(){
         this.HP = this.HP_MAX = 55;
         this.PAT = 5;
