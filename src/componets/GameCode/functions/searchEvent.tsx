@@ -31,19 +31,19 @@ export function IceSlimeEvent(scene:searchAction){
     ]
 }
 
-export function SearchRockSlimeEvent(scene:searchAction){
+export function RockSlimeEvent(scene:searchAction){
     return [
         new SearchEvent.BattleSearchArea(scene,new RockSlime(),{key:"rockSlime_appear",image:"/assets/enemy/rockSlime/出現イベント.png"})
     ]
 }
 
-export function SearchThunderSlimeEvent(scene:searchAction){
+export function ThunderSlimeEvent(scene:searchAction){
     return [
         new SearchEvent.BattleSearchArea(scene,new ThunderSlime(),{key:"thunderSlime_appear",image:"/assets/enemy/thunderSlime/出現イベント.png"})
     ]
 }
 
-export function SearchWindSlimeEvent(scene:searchAction){
+export function WindSlimeEvent(scene:searchAction){
     return [
         new SearchEvent.BattleSearchArea(scene,new WindSlime(),{key:"windSlime_appear",image:"/assets/enemy/windSlime/出現イベント.png"})
     ]
