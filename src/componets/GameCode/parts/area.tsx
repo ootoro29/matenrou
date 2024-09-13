@@ -62,7 +62,7 @@ export abstract class EventArea extends Area{
             this.contents.add(this.scene.add.rectangle(50,50,this.width-100,this.width-100,0x5E7D76).setOrigin(0,0));
         }
     }
-    async load(): Promise<void> {
+    load(): void {
         if(this.path != ""){
             this.scene.load.image(this.key,this.path);
         }

@@ -28,10 +28,12 @@ export default class BattleEventAction extends BattleActionScene {
         if(!this.MAIN.Room)return;
         if(!this.MAIN.PINF)return;
         if(!this.Areas)return;
-
+        const D = new Date()
         for(let i = 0; i < this.Areas.length; i++){
             this.Areas[i].load();
         }
+        const S = new Date();
+        console.log("Done:",S.getTime()-D.getTime());
     }
     setAreas(Areas:BattleEventArea[]){
         this.Areas = Areas;

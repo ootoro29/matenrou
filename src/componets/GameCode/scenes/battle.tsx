@@ -97,11 +97,9 @@ export default class BattleScene extends PartScene{
         this.scene.launch("battleThinking",{main:this.MAIN,battle:this});
     }
     preload() {
-        const D = new Date()
         this.enemy?.load(this);
         this.battleInitialize();
         const S = new Date()
-        console.log(D.getTime()-S.getTime())
     }
     initialize(): void {
         this.player = this.MAIN?.PINF;//init()後でないとMAINが入らない
