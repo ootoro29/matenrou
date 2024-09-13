@@ -30,10 +30,10 @@ export default class BattleEventAction extends BattleActionScene {
         if(!this.MAIN.Room)return;
         if(!this.MAIN.PINF)return;
         if(!this.Areas)return;
-        this.D = new Date()
         for(let i = 0; i < this.Areas.length; i++){
             this.Areas[i].load();
         }
+        this.D = new Date()
         
     }
     setAreas(Areas:BattleEventArea[]){
@@ -89,15 +89,16 @@ export default class BattleEventAction extends BattleActionScene {
         this.Parents.GAMEOVER();
     }
     create(){
+        if(!this.D)return;
+        this.S = new Date();
+        console.log("Done:",this.S.getTime()-this.D.getTime());
         if(!this.Areas)return;
         for(let i = 0; i < this.Areas.length; i++){
             this.Areas[i].create();
         }
         this.AM = new BattleEventAreaManager(this.Areas);
         this.changeBMText();
-        if(!this.D)return;
-        this.S = new Date();
-        console.log("Done:",this.S.getTime()-this.D.getTime());
+        
     }
     changeBMText(){
         if(!this.AM)return;
