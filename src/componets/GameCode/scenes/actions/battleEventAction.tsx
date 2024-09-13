@@ -29,12 +29,9 @@ export default class BattleEventAction extends BattleActionScene {
         if(!this.MAIN.PINF)return;
         if(!this.Areas)return;
 
-        const D = new Date();
         for(let i = 0; i < this.Areas.length; i++){
             this.Areas[i].load();
         }
-        const S = new Date();
-        console.log("DONE",S.getTime()-D.getTime());
     }
     setAreas(Areas:BattleEventArea[]){
         this.Areas = Areas;
@@ -89,17 +86,12 @@ export default class BattleEventAction extends BattleActionScene {
         this.Parents.GAMEOVER();
     }
     create(){
-        const D = new Date();
         if(!this.Areas)return;
         for(let i = 0; i < this.Areas.length; i++){
             this.Areas[i].create();
         }
         this.AM = new BattleEventAreaManager(this.Areas);
         this.changeBMText();
-
-        
-        const S = new Date();
-        console.log("Create DONE",S.getTime()-D.getTime());
     }
     changeBMText(){
         if(!this.AM)return;
