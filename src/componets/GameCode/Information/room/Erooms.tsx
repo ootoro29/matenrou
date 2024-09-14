@@ -10,11 +10,14 @@ import * as SearchEvent from "@/componets/GameCode/functions/searchEvent"
 import * as AdvanceEvent  from "@/componets/GameCode/functions/advanceRoomEvent";
 
 export class E2Room extends Room {
+    constructor(){
+        super()
+        this.name = "E-2"
+    }
     genAdvanceRoomEvent(scene: AdventureThinking): advanceRoomEventArea[] {
         return[];
     }
     initialize(): void {
-        this.name = "E-2"
         this.nextRooms = [new F1Room()];
         this.PRooms = [0];
     }
@@ -26,11 +29,14 @@ export class E2Room extends Room {
 }
 
 export class E3Room extends Room {
+    constructor(){
+        super()
+        this.name = "E-3"
+    }
     genAdvanceRoomEvent(scene: AdventureThinking): advanceRoomEventArea[] {
         return[];
     }
     initialize(): void {
-        this.name = "E-3"
         const rnd = D100();
         let room1:Room = new D2Room();
         if(rnd <= 33){
@@ -49,11 +55,14 @@ export class E3Room extends Room {
 }
 
 export class E4Room extends Room {
+    constructor(){
+        super()
+        this.name = "E-4"
+    }
     genAdvanceRoomEvent(scene: AdventureThinking): advanceRoomEventArea[] {
         return[];
     }
     initialize(): void {
-        this.name = "E-4"
         this.nextRooms = [new E5Room()];
         this.PRooms = [0];
     }
@@ -65,11 +74,14 @@ export class E4Room extends Room {
 }
 
 export class E5Room extends Room {
+    constructor(){
+        super()
+        this.name = "E-5"
+    }
     genAdvanceRoomEvent(scene: AdventureThinking): advanceRoomEventArea[] {
         return[];
     }
     initialize(): void {
-        this.name = "E-5"
         this.nextRooms = [new F5Room(),new E4Room()];
         this.PRooms = [0,0];
     }
@@ -81,11 +93,14 @@ export class E5Room extends Room {
 }
 
 export class E7Room extends Room {
+    constructor(){
+        super()
+        this.name = "E-7"
+    }
     genAdvanceRoomEvent(scene: AdventureThinking): advanceRoomEventArea[] {
         return[];
     }
     initialize(): void {
-        this.name = "E-7"
         this.nextRooms = [new F7Room(),new D7Room()];
         this.PRooms = [0,0,0,0];
     }
@@ -97,11 +112,14 @@ export class E7Room extends Room {
 }
 
 export class E8Room extends Room {
+    constructor(){
+        super()
+        this.name = "E-8"
+    }
     genAdvanceRoomEvent(scene: AdventureThinking): advanceRoomEventArea[] {
         return[];
     }
     initialize(): void {
-        this.name = "E-8"
         this.nextRooms = [new D8Room()];
         this.PRooms = [0];
     }
@@ -113,11 +131,14 @@ export class E8Room extends Room {
 }
 
 export class E9Room extends Room {
+    constructor(){
+        super()
+        this.name = "E-9"
+    }
     genAdvanceRoomEvent(scene: AdventureThinking): advanceRoomEventArea[] {
         return[];
     }
     initialize(): void {
-        this.name = "E-9"
         this.nextRooms = [new E8Room(),new D9Room()];
         this.PRooms = [0,0];
     }
@@ -129,11 +150,14 @@ export class E9Room extends Room {
 }
 
 export class E10Room extends Room {
+    constructor(){
+        super()
+        this.name = "E-10"
+    }
     genAdvanceRoomEvent(scene: AdventureThinking): advanceRoomEventArea[] {
         return[];
     }
     initialize(): void {
-        this.name = "E-10"
         this.nextRooms = [new F10Room(),new E9Room()];
         this.PRooms = [0,0];
     }
@@ -145,11 +169,14 @@ export class E10Room extends Room {
 }
 
 export class E11Room extends Room {
+    constructor(){
+        super()
+        this.name = "E-11"
+    }
     genAdvanceRoomEvent(scene: AdventureThinking): advanceRoomEventArea[] {
         return[];
     }
     initialize(): void {
-        this.name = "E-11"
         this.nextRooms = [new E10Room()];
         this.PRooms = [0];
     }
@@ -161,11 +188,14 @@ export class E11Room extends Room {
 }
 
 export class E12Room extends Room {
+    constructor(){
+        super()
+        this.name = "E-12"
+    }
     genAdvanceRoomEvent(scene: AdventureThinking): advanceRoomEventArea[] {
         return[];
     }
     initialize(): void {
-        this.name = "E-12"
         this.nextRooms = [new E11Room()];
         this.PRooms = [0];
     }
@@ -177,11 +207,14 @@ export class E12Room extends Room {
 }
 
 export class E13Room extends Room {
+    constructor(){
+        super()
+        this.name = "E-13"
+    }
     genAdvanceRoomEvent(scene: AdventureThinking): advanceRoomEventArea[] {
         return[];
     }
     initialize(): void {
-        this.name = "E-13"
         this.nextRooms = [new E12Room(),new D13Room()];
         this.PRooms = [0,0];
     }
@@ -193,11 +226,14 @@ export class E13Room extends Room {
 }
 
 export class E14Room extends Room {
+    constructor(){
+        super()
+        this.name = "E-14"
+    }
     genAdvanceRoomEvent(scene: AdventureThinking): advanceRoomEventArea[] {
         return[];
     }
     initialize(): void {
-        this.name = "E-14"
         this.nextRooms = [new E13Room(),new C14Room()];
         this.PRooms = [0,0];
     }

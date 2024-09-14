@@ -10,6 +10,12 @@ export type GameInfo = {
     exp:number;
     stamina:number;
 }
+export type MatchInfo = {
+    room:string;
+    HP:number;
+    MP:number;
+    CP:number;
+}
 export type PComand = {
     command:Command;
     prob:number;

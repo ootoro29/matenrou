@@ -1,5 +1,7 @@
 export function calDamage(AT:number,DF:number,Power:number):number{
-    const d = ((AT+10)/(DF+10))*Power*0.5 - Math.sqrt(DF);
+    AT *= 0.9+(Math.random()*0.2);
+    DF *= 0.9+(Math.random()*0.2);
+    const d = (((AT+10)/(DF+10))*Power*0.5 - Math.sqrt(DF));
     if(d >= 0){
         return Math.floor(d);
     }

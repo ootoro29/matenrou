@@ -213,7 +213,7 @@ export class TransformAdventureEventArea extends AdventureEventArea {
     }
     appearance(AM:AdventureEventAreaManager): void {  
         if(!this.player)return;
-        this.player.MP -= this.mp;
+        this.player.changeMP(-this.mp);
         this.player.transform = true;      
     }
 }
@@ -242,7 +242,7 @@ export class CancelTransformAdventureEventArea extends AdventureEventArea {
     }
     appearance(AM:AdventureEventAreaManager): void {  
         if(!this.player)return;
-        this.player.MP -= this.mp;
+        this.player.changeMP(-this.mp);
         this.player.transform = false;      
     }
 }

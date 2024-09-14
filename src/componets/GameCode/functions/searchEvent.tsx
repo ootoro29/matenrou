@@ -7,9 +7,9 @@ import { WindSlime } from "../Information/enemy/windSlime";
 import * as SearchEvent  from "../parts/area/searchArea";
 import searchAction from "../scenes/actions/searchAction";
 
-export function SearchFindRoomKeyEvent(scene:searchAction,index:number){
+export function SearchFindRoomKeyEvent(scene:searchAction,name:string){
     return [
-        new SearchEvent.NormalSearchArea(scene,`${index+1}番目のドアのカギを拾った‼`)
+        new SearchEvent.NormalSearchArea(scene,`${name}のドアのカギを拾った‼`)
     ]
 }
 

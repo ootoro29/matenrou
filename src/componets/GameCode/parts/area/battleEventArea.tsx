@@ -172,7 +172,7 @@ export class PMABattleEventArea extends BattleEventArea {
     appearance(AM:BattleEventAreaManager): void {
         if(!this.enemy)return;
         if(!this.player)return;
-        this.player.MP -= this.mp;
+        this.player.changeMP(-this.mp);
         this.enemy.HP -= this.damage;
     }
 }
@@ -202,7 +202,7 @@ export class EPABattleEventArea extends BattleEventArea {
     }
     appearance(AM:BattleEventAreaManager): void {
         if(!this.player)return;
-        this.player.HP -= this.damage;
+        this.player.damage(this.damage);
     }
 }
 
@@ -320,7 +320,7 @@ export class TransformBattleEventArea extends BattleEventArea {
     }
     appearance(AM:BattleEventAreaManager): void {  
         if(!this.player)return;
-        this.player.MP -= this.mp;
+        this.player.changeMP(-this.mp);
         this.player.transform = true;      
     }
 }
@@ -349,7 +349,7 @@ export class CancelTransformBattleEventArea extends BattleEventArea {
     }
     appearance(AM:BattleEventAreaManager): void {  
         if(!this.player)return;
-        this.player.MP -= this.mp;
+        this.player.changeMP(-this.mp);
         this.player.transform = false;      
     }
 }
@@ -472,7 +472,7 @@ export class ShieldBattleEventArea extends BattleEventArea {
     }
     appearance(AM:BattleEventAreaManager): void {  
         if(!this.player)return;
-        this.player.MP -= this.mp;
+        this.player.changeMP(-this.mp);
         this.player.Shield?.setShield(this.shield);      
     }
 }

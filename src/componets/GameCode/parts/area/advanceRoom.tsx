@@ -22,7 +22,7 @@ export class advanceRoom extends Area{
         if(!this.room)return;
         const nextRooms = this.room.nextRoomList();
         for(let i = 0; i < nextRooms.length; i++){
-            const button = new Button(this.scene,30,50+150*i,`ルーム${i}`,{
+            const button = new Button(this.scene,30,50+150*i,`${nextRooms[i].name}`,{
                 width:this.width-60,
                 height:120,
                 onClick: () => {

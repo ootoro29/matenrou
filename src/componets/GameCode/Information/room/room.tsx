@@ -35,7 +35,8 @@ export abstract class Room {
             let index = DPN(this.PRooms);
             if(this.PRooms[index] != 0 && index != -1){
                 this.PRooms[index] = 0;
-                return SearchFindRoomKeyEvent(scene,index);
+                if(!this.nextRooms)return null;
+                return SearchFindRoomKeyEvent(scene,this.nextRooms[index].name);
             }
         }
         return null;

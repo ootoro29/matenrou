@@ -4,11 +4,14 @@ import { ItemList } from "./item/itemList";
 import { Command } from "./commands";
 import { CancelTransformMagicalGirl, TransformMagicalGirl } from "./playerActCommands";
 import { ShieldList } from "./shield/shieldList";
+import { updateMatchInfoStatus } from "../supabase/query";
 
 export default class PlayerINFO {
   lv = 0;
   exp = 0;
   exp_MAX = 0;
+  uid:string = "";
+  name:string = "";
   normal_status:normalStatus = {
     PAT:0,
     MAT:0,
@@ -32,13 +35,14 @@ export default class PlayerINFO {
   transform = false;
   Item?:ItemList;
   Shield?:ShieldList
-  constructor(lv:number){
+  constructor(lv:number,uid:string){
     this.lv = lv;
     this.HP = calHP(this.lv);
     this.MP = calMP(this.lv);
     this.CP = 0;
     this.Item = new ItemList();
     this.Shield = new ShieldList();
+    this.uid = uid;
   }
   getConfirmStatus():Status{
     const data:Status = {
@@ -114,5 +118,20 @@ export default class PlayerINFO {
       new TransformMagicalGirl(),
       new CancelTransformMagicalGirl()
     ];
+  }
+
+  damage(d:number){
+    if(d == 0)return;
+    this.HP -= d;
+    if(this.transform){
+      this.CP += d;
+    }
+    updateMatchInfoStatus(this.uid,this.HP,this.MP,this.CP);
+  }
+
+  changeMP(m:number){
+    if(m == 0)return;
+    this.MP += m;
+    updateMatchInfoStatus(this.uid,this.HP,this.MP,this.CP);
   }
 }

@@ -4,13 +4,14 @@ import { SupabaseClient, User } from "@supabase/supabase-js";
 import Phaser, { Math } from "phaser";
 import { Button } from "../parts/button";
 import { ButtonManager } from "../parts/buttonManager";
-import { GameInfo, gameInterface, Player } from "@/types/game";
+import { GameInfo, gameInterface, MatchInfo, Player } from "@/types/game";
 import { calCP, calHP, calMP, calNormalMAT, calNormalMDF, calNormalPAT, calNormalPDF, calNormalSP, calTransformMAT, calTransformMDF, calTransformPAT, calTransformPDF, calTransformSP } from "../functions/status";
 import PlayerINFO from "../Information/playerInformation";
 import { Room } from "../Information/room/room";
 import * as R from "../Information/room/index";
 import { Enemy } from "../Information/enemy/enemy";
 import { Shield } from "../Information/shield/shield";
+import { deleteMatchInfo, setMatchInfo, updateMatchInfoRoom, updateMatchInfoStatus } from "../supabase/query";
 
 export default class main extends Phaser.Scene {
   button?: Button;
@@ -36,12 +37,17 @@ export default class main extends Phaser.Scene {
   constructor() {
     super("main");
   }
-  init(data:{data:gameInterface,room:Room,first:boolean}) {
+  init(data:{data:gameInterface,room:Room,first:boolean,matchInfo:(MatchInfo|undefined)}) {
     this.player = data.data.player;
     this.gameInfo = data.data.gameInfo;
     this.first = data.first;
     if(this.first){
-      this.PINF = new PlayerINFO(this.gameInfo.lv);
+      this.PINF = new PlayerINFO(this.gameInfo.lv,this.player.uid);
+      if(data.matchInfo){
+        this.PINF.HP = data.matchInfo.HP;
+        this.PINF.MP = data.matchInfo.MP;
+        this.PINF.CP = data.matchInfo.CP;
+      }
     }
     this.Room = data.room;
     this.Room.initialize();  
@@ -74,7 +80,7 @@ export default class main extends Phaser.Scene {
     this.ShieldSlots.push(new ShieldSlot(this,230,1370));
     this.ShieldSlots.push(new ShieldSlot(this,410,1370));
 
-    //this.room_text = this.add.text(40,120,"room",{fontSize:120});
+    this.room_text = this.add.text(700,180,"room",{fontSize:80}).setOrigin(0.5,0.5);
     
     this.BM = new ButtonManager(this);
 
@@ -85,6 +91,7 @@ export default class main extends Phaser.Scene {
 
   GAMEOVER(){
     this.scene.stop();
+    deleteMatchInfo(this.player?.uid??"");
     this.scene.start("top");
   }
 
@@ -119,9 +126,12 @@ export default class main extends Phaser.Scene {
   changeRoom(room:Room){
     if(!this.player)return;
     if(!this.gameInfo)return;
+    if(!this.PINF)return;
     const data:gameInterface = {player:this.player,gameInfo:this.gameInfo};
     this.scene.stop('main');
     this.scene.start('main',{data,room});
+    updateMatchInfoRoom(this.player.uid,room);
+    updateMatchInfoStatus(this.player.uid,this.PINF.HP,this.PINF.MP,this.PINF.CP)
   }
 
 }
