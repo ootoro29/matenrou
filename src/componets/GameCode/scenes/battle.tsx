@@ -86,7 +86,6 @@ export default class BattleScene extends PartScene{
         }else{
             this.scene.launch("battleThinking",{main:this.MAIN,battle:this});
         }
-        console.log(this.turn);
     }
     backTurn(){
         if(this.turn == this.first_turn)return;
@@ -100,7 +99,6 @@ export default class BattleScene extends PartScene{
     preload() {
         this.enemy?.load(this);
         this.battleInitialize();
-        const S = new Date()
     }
     initialize(): void {
         this.player = this.MAIN?.PINF;//init()後でないとMAINが入らない

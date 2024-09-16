@@ -23,6 +23,7 @@ export default function Game(data:gameInterface) {
                 `main`,
                 `adventure`,
                 `battle`,
+                `loading`,
                 `actions/adventureThinking`,
                 `actions/confirmAdventureStatus`,
                 `actions/advanceRoom`,

@@ -33,8 +33,13 @@ export default class BattleEventAction extends BattleActionScene {
         for(let i = 0; i < this.Areas.length; i++){
             this.Areas[i].load();
         }
-        this.D = new Date()
-        
+        this.D = new Date();
+        let scene = this.scene.launch('loading');
+        this.load.on('complete',() => {
+            this.S = new Date();
+            this.scene.stop('loading');
+            console.log(this.S.getTime()-(this.D?this.D.getTime():0));
+        })
     }
     setAreas(Areas:BattleEventArea[]){
         this.Areas = Areas;

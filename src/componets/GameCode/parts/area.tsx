@@ -63,13 +63,9 @@ export abstract class EventArea extends Area{
         }
     }
     load(): void {
-        const D = new Date();
-        console.log("LOAD START");
         if(this.path != ""){
             this.scene.load.image(this.key,this.path);
         }
-        const S = new Date();
-        console.log(`LOAD DONE ${S.getTime()-D.getTime()}`);
     }
     abstract genSelections(): string[];
     abstract opeClick(click:number): void;
