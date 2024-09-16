@@ -37,7 +37,7 @@ export default class BattleScene extends PartScene{
             this.turn = 0;
             this.scene.stop("battleEvent");
             this.scene.launch("battleThinking",{main:this.MAIN,battle:this});
-            //this.battleInitialize();
+            this.battleInitialize();
         }else{
             this.scene.stop("battleEvent");
             this.scene.launch("battleEvent",{main:this.MAIN,battle:this});
@@ -76,7 +76,7 @@ export default class BattleScene extends PartScene{
         const ft = this.turn;
         this.turn++;
         while(this.turn <= 6){
-            if(this.actionOrder[this.turn-1] != -1)break;
+            if(this.actionOrder[this.turn-1] != -1 && this.turn-1 >= 0)break;
             this.turn++;
         }
         if(this.turn > 6){
@@ -86,6 +86,7 @@ export default class BattleScene extends PartScene{
         }else{
             this.scene.launch("battleThinking",{main:this.MAIN,battle:this});
         }
+        console.log(this.turn);
     }
     backTurn(){
         if(this.turn == this.first_turn)return;
