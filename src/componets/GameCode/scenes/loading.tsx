@@ -11,6 +11,7 @@ export default class load extends Phaser.Scene {
         this.parent = data.parent;
         this.parent.load.on('progress', (value: number) => {
             this.percent = value*100;
+            console.log(this.percent);
         });
 
         this.parent.load.on('complete', () => {
