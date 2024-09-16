@@ -6,6 +6,8 @@ import {AdventureActionScene, BattleActionScene } from "../../parts/scene";
 import AdventureScene from "../adventure";
 import BattleScene from "../battle";
 import main from "../main";
+import game from "../game";
+import load, { loadingScene } from "../loading";
 
 export default class BattleEventAction extends BattleActionScene {
     AM?:BattleEventAreaManager;
@@ -33,13 +35,7 @@ export default class BattleEventAction extends BattleActionScene {
         for(let i = 0; i < this.Areas.length; i++){
             this.Areas[i].load();
         }
-        this.D = new Date();
-        let scene = this.scene.launch('loading');
-        this.load.on('complete',() => {
-            this.S = new Date();
-            this.scene.stop('loading');
-            console.log(this.S.getTime()-(this.D?this.D.getTime():0));
-        })
+        loadingScene(this);
     }
     setAreas(Areas:BattleEventArea[]){
         this.Areas = Areas;
@@ -94,9 +90,6 @@ export default class BattleEventAction extends BattleActionScene {
         this.Parents.GAMEOVER();
     }
     create(){
-        if(!this.D)return;
-        this.S = new Date();
-        console.log("Done:",this.S.getTime()-this.D.getTime());
         if(!this.Areas)return;
         for(let i = 0; i < this.Areas.length; i++){
             this.Areas[i].create();

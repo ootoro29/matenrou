@@ -1,6 +1,7 @@
 import { PlayerProbCommand } from "../../Information/prob_commands";
 import { BattleActSelectArea } from "../../parts/area/battleActSelectArea";
 import {BattleActionScene } from "../../parts/scene";
+import { loadingScene } from "../loading";
 
 export default class BattleActSelect extends BattleActionScene {
     battleActionArea?:BattleActSelectArea
@@ -13,6 +14,11 @@ export default class BattleActSelect extends BattleActionScene {
         this.BM.changeText(buttonTexts);
         this.battleActionArea = new BattleActSelectArea(this);
     }
+    
+    preload() {
+        loadingScene(this);
+    }
+    
     update(time: number, delta: number): void {
         if(!this.BM)return;
         if(!this.Parents)return;
