@@ -246,3 +246,150 @@ export class CancelTransformAdventureEventArea extends AdventureEventArea {
         this.player.transform = false;      
     }
 }
+
+export class PlayerPATStageChange extends AdventureEventArea {
+    player?:PlayerINFO;
+    stage = 0;
+    constructor(scene:AdventureEventAction,player:PlayerINFO,stage:number,{key="",image = ""} = {}){
+        const discription = `プレイヤーのPATが${Math.abs(stage)}段階${(stage < 0)?"下がった":"上がった。"}`;
+        super(scene,discription,{key:key,image:image});
+        this.player = player;
+        this.stage = stage;
+    }
+    genSelections(): string[] {
+        return ["OK","X","X","X","X","X"];
+    }
+    opeClick(click: number): void {
+        if(!this.parents)return;
+        if(click == 0){
+            if(this.parents.AM?.isLast()){
+                this.parents.doneEvent();
+            }else{
+                this.parents.AM?.nextArea();
+                this.parents.changeBMText();
+            }
+        }
+    }
+    appearance(AM:AdventureEventAreaManager): void {  
+        if(!this.player)return;
+        if((this.player.PATstage <= -6 && this.stage < 0) || (this.player.PATstage >= 6 && this.stage > 0))return;
+        this.player.PATstage += this.stage;
+    }
+}
+export class PlayerMATStageChange extends AdventureEventArea {
+    player?:PlayerINFO;
+    stage = 0;
+    constructor(scene:AdventureEventAction,player:PlayerINFO,stage:number,{key="",image = ""} = {}){
+        const discription = `プレイヤーのMATが${Math.abs(stage)}段階${(stage < 0)?"下がった":"上がった。"}`;
+        super(scene,discription,{key:key,image:image});
+        this.player = player;
+        this.stage = stage;
+    }
+    genSelections(): string[] {
+        return ["OK","X","X","X","X","X"];
+    }
+    opeClick(click: number): void {
+        if(!this.parents)return;
+        if(click == 0){
+            if(this.parents.AM?.isLast()){
+                this.parents.doneEvent();
+            }else{
+                this.parents.AM?.nextArea();
+                this.parents.changeBMText();
+            }
+        }
+    }
+    appearance(AM:AdventureEventAreaManager): void {  
+        if(!this.player)return;
+        if((this.player.MATstage <= -6 && this.stage < 0) || (this.player.MATstage >= 6 && this.stage > 0))return;
+        this.player.MATstage += this.stage;
+    }
+}
+
+export class PlayerPDFStageChange extends AdventureEventArea {
+    player?:PlayerINFO;
+    stage = 0;
+    constructor(scene:AdventureEventAction,player:PlayerINFO,stage:number,{key="",image = ""} = {}){
+        const discription = `プレイヤーのPDFが${Math.abs(stage)}段階${(stage < 0)?"下がった":"上がった。"}`;
+        super(scene,discription,{key:key,image:image});
+        this.player = player;
+        this.stage = stage;
+    }
+    genSelections(): string[] {
+        return ["OK","X","X","X","X","X"];
+    }
+    opeClick(click: number): void {
+        if(!this.parents)return;
+        if(click == 0){
+            if(this.parents.AM?.isLast()){
+                this.parents.doneEvent();
+            }else{
+                this.parents.AM?.nextArea();
+                this.parents.changeBMText();
+            }
+        }
+    }
+    appearance(AM:AdventureEventAreaManager): void {  
+        if(!this.player)return;
+        if((this.player.PDFstage <= -6 && this.stage < 0) || (this.player.PDFstage >= 6 && this.stage > 0))return;
+        this.player.PDFstage += this.stage;
+    }
+}
+export class PlayerMDFStageChange extends AdventureEventArea {
+    player?:PlayerINFO;
+    stage = 0;
+    constructor(scene:AdventureEventAction,player:PlayerINFO,stage:number,{key="",image = ""} = {}){
+        const discription = `プレイヤーのMDFが${Math.abs(stage)}段階${(stage < 0)?"下がった":"上がった。"}`;
+        super(scene,discription,{key:key,image:image});
+        this.player = player;
+        this.stage = stage;
+    }
+    genSelections(): string[] {
+        return ["OK","X","X","X","X","X"];
+    }
+    opeClick(click: number): void {
+        if(!this.parents)return;
+        if(click == 0){
+            if(this.parents.AM?.isLast()){
+                this.parents.doneEvent();
+            }else{
+                this.parents.AM?.nextArea();
+                this.parents.changeBMText();
+            }
+        }
+    }
+    appearance(AM:AdventureEventAreaManager): void {  
+        if(!this.player)return;
+        if((this.player.MDFstage <= -6 && this.stage < 0) || (this.player.MDFstage >= 6 && this.stage > 0))return;
+        this.player.MDFstage += this.stage;
+    }
+}
+export class PlayerSPStageChange extends AdventureEventArea {
+    player?:PlayerINFO;
+    stage = 0;
+    constructor(scene:AdventureEventAction,player:PlayerINFO,stage:number,{key="",image = ""} = {}){
+        const discription = `プレイヤーのSPが${Math.abs(stage)}段階${(stage < 0)?"下がった":"上がった。"}`;
+        super(scene,discription,{key:key,image:image});
+        this.player = player;
+        this.stage = stage;
+    }
+    genSelections(): string[] {
+        return ["OK","X","X","X","X","X"];
+    }
+    opeClick(click: number): void {
+        if(!this.parents)return;
+        if(click == 0){
+            if(this.parents.AM?.isLast()){
+                this.parents.doneEvent();
+            }else{
+                this.parents.AM?.nextArea();
+                this.parents.changeBMText();
+            }
+        }
+    }
+    appearance(AM:AdventureEventAreaManager): void {  
+        if(!this.player)return;
+        if((this.player.SPstage <= -6 && this.stage < 0) || (this.player.SPstage >= 6 && this.stage > 0))return;
+        this.player.SPstage += this.stage;
+    }
+}

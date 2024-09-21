@@ -350,6 +350,34 @@ export class CancelTransformBattleEventArea extends BattleEventArea {
     appearance(AM:BattleEventAreaManager): void {  
         if(!this.player)return;
         this.player.changeMP(-this.mp);
+        this.player.resetCP();
+        this.player.transform = false;      
+    }
+}
+
+export class BreakTransformBattleEventArea extends BattleEventArea {
+    player?:PlayerINFO;
+    constructor(scene:BattleEventAction,player:PlayerINFO,{key="",image = ""} = {}){
+        const discription = `プレイヤーの魔法少女の変身が崩壊した！`;
+        super(scene,discription,{key:key,image:image});
+        this.player = player;
+    }
+    genSelections(): string[] {
+        return ["OK","X","X","X","X","X"];
+    }
+    opeClick(click: number): void {
+        if(!this.parents)return;
+        if(click == 0){
+            if(this.parents.AM?.isLast()){
+                this.parents.nextEventTurn();
+            }else{
+                this.parents.AM?.nextArea();
+                this.parents.changeBMText();
+            }
+        }
+    }
+    appearance(AM:BattleEventAreaManager): void {  
+        if(!this.player)return;
         this.player.transform = false;      
     }
 }

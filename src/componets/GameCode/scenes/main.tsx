@@ -47,6 +47,11 @@ export default class main extends Phaser.Scene {
         this.PINF.HP = data.matchInfo.HP;
         this.PINF.MP = data.matchInfo.MP;
         this.PINF.CP = data.matchInfo.CP;
+        this.PINF.PATstage = data.matchInfo.PATStage;
+        this.PINF.MATstage = data.matchInfo.MATStage;
+        this.PINF.PDFstage = data.matchInfo.PDFStage;
+        this.PINF.MDFstage = data.matchInfo.MDFStage;
+        this.PINF.SPstage = data.matchInfo.SPStage;
       }
     }
     this.Room = data.room;

@@ -65,6 +65,7 @@ export default class top extends Phaser.Scene {
           this.scene.start('main', { data, room, first: true, matchInfo:this.matchInfo });
         } else {
           if (this.gameInfo.stamina > 0) {
+            this.isLoading = true;
             updateStamina(this.player.uid, --this.gameInfo.stamina);
             const data: gameInterface = { player: this.player, gameInfo: this.gameInfo };
             const room: Room = new R.AR.A7Room();

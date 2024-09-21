@@ -15,6 +15,11 @@ export type MatchInfo = {
     HP:number;
     MP:number;
     CP:number;
+    PATStage:number;
+    MATStage:number;
+    PDFStage:number;
+    MDFStage:number;
+    SPStage:number;
 }
 export type PComand = {
     command:Command;

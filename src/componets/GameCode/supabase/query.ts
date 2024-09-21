@@ -32,6 +32,7 @@ export function updateMatchInfoRoom(uid:string,room:Room){
 export function updateMatchInfoStatus(uid:string,HP:number,MP:number,CP:number){
     const updateGameInfo = async() => {
         const {error} = await supabase.from("MatchInfo").update({HP:HP,MP:MP,CP:CP}).eq("uid",uid);
+        //console.log(error);
     }
     updateGameInfo();
 }

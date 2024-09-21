@@ -139,6 +139,7 @@ export default class PlayerINFO {
     if(this.transform){
       this.CP += d;
     }
+    if(this.CP > this.CP_MAX)this.CP = this.CP_MAX;
     if(this.HP < 0)this.HP = 0;
     updateMatchInfoStatus(this.uid,this.HP,this.MP,this.CP);
   }
@@ -147,6 +148,18 @@ export default class PlayerINFO {
     if(h <= 0)return;
     this.HP += h;
     if(this.HP > this.HP_MAX)this.HP = this.HP_MAX;
+    updateMatchInfoStatus(this.uid,this.HP,this.MP,this.CP);
+  }
+
+  heelCP(){
+    if(this.CP == 0)return;
+    this.CP *= 0.98;
+    updateMatchInfoStatus(this.uid,this.HP,this.MP,this.CP);
+  }
+
+  resetCP(){
+    if(this.CP == 0)return;
+    this.CP = 0;
     updateMatchInfoStatus(this.uid,this.HP,this.MP,this.CP);
   }
 

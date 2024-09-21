@@ -1,6 +1,6 @@
 import { PComand } from "@/types/game";
 import { AdventureActionArea } from "../../parts/area/adventureActionArea";
-import { BattleEventArea, BattleEventAreaManager, GAMEOVERBattleEventArea, GetEXPBattleEventArea, NormalBattleEventArea, YOUWINBattleEventArea } from "../../parts/area/battleEventArea";
+import { BattleEventArea, BattleEventAreaManager, BreakTransformBattleEventArea, GAMEOVERBattleEventArea, GetEXPBattleEventArea, NormalBattleEventArea, YOUWINBattleEventArea } from "../../parts/area/battleEventArea";
 import { NormalSearchArea, searchArea, searchAreaManager } from "../../parts/area/searchArea";
 import {AdventureActionScene, BattleActionScene } from "../../parts/scene";
 import AdventureScene from "../adventure";
@@ -66,9 +66,20 @@ export default class BattleEventAction extends BattleActionScene {
                 this.Areas[i].create();
             }
             this.AM = new BattleEventAreaManager(this.Areas);
+        }else if(this.Parents.player.CP >= this.Parents.player.CP_MAX){
+            this.Areas = [
+                new NormalBattleEventArea(this,`魔法少女のキャパシティーを超えてしまった！`),
+                new BreakTransformBattleEventArea(this,this.Parents.player),
+            ];
+            for(let i = 0; i < this.Areas.length; i++){
+                this.Areas[i].load();
+                this.Areas[i].create();
+            }
+            this.AM = new BattleEventAreaManager(this.Areas);
         }else{
             this.Parents.nextEventTurn();
         }
+        this.Parents.player.heelCP();
     }
     initialize(): void {
     }
