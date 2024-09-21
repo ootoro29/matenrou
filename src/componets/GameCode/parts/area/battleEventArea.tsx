@@ -476,3 +476,33 @@ export class ShieldBattleEventArea extends BattleEventArea {
         this.player.Shield?.setShield(this.shield);      
     }
 }
+
+export class EnemyHPHeelBattleEventArea extends BattleEventArea {
+    delta:number = 0;
+    enemy?:Enemy;
+    constructor(scene:BattleEventAction,enemy:Enemy,delta:number,{key="",image = ""} = {}){
+        const discription = `${enemy.name}は${delta}の回復！`;
+        super(scene,discription,{key:key,image:image});
+        this.delta = delta;
+        this.enemy = enemy;
+    }
+    genSelections(): string[] {
+        return ["OK","X","X","X","X","X"];
+    }
+    opeClick(click: number): void {
+        if(!this.parents)return;
+        if(click == 0){
+            if(this.parents.AM?.isLast()){
+                this.parents.nextEventTurn();
+            }else{
+                this.parents.AM?.nextArea();
+                this.parents.changeBMText();
+            }
+        }
+    }
+    appearance(AM:BattleEventAreaManager): void {
+        if(!this.enemy)return;
+        this.enemy.HP += this.delta;
+        if(this.enemy.HP > this.enemy.HP_MAX)this.enemy.HP = this.enemy.HP_MAX;
+    }
+}

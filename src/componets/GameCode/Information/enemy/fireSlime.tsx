@@ -36,7 +36,7 @@ class FireSlimeTackle extends EnemyPhysicalAttack{
 
 
 
-const BattleSlimeCommands:EnemyPhysicalAttack[] = [
+const FireSlimeCommands:EnemyPhysicalAttack[] = [
     new FireSlimeTackle(),
     new FireSlimeShot(),
     new FireSlimeBomb(),
@@ -55,10 +55,10 @@ export class FireSlime extends Enemy{
         this.name = "マグマスライム";
     
         this.candidatePCommands = [
-            new EnemyProbCommand([BattleSlimeCommands[0],BattleSlimeCommands[1]],{prob:[80,20]}),
-            new EnemyProbCommand([BattleSlimeCommands[0],BattleSlimeCommands[1]],{prob:[30,70]}),
-            new EnemyProbCommand([BattleSlimeCommands[0],BattleSlimeCommands[1]],{prob:[45,55]}),
-            new EnemyProbCommand([BattleSlimeCommands[1],BattleSlimeCommands[2]],{prob:[70,30]}),
+            new EnemyProbCommand([FireSlimeCommands[0],FireSlimeCommands[1]],{prob:[80,20]}),
+            new EnemyProbCommand([FireSlimeCommands[0],FireSlimeCommands[1]],{prob:[30,70]}),
+            new EnemyProbCommand([FireSlimeCommands[0],FireSlimeCommands[1]],{prob:[45,55]}),
+            new EnemyProbCommand([FireSlimeCommands[1],FireSlimeCommands[2]],{prob:[70,30]}),
         ];
     }
     load(scene: BattleScene): void {

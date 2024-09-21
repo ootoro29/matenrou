@@ -30,7 +30,7 @@ class RockSlimeEdge extends EnemyMagicalAttack{
 
 
 
-const BattleSlimeCommands:EnemyPhysicalAttack[] = [
+const RockSlimeCommands:EnemyPhysicalAttack[] = [
     new RockSlimeAttack(),
     new RockSlimeShot(),
     new RockSlimeEdge(),
@@ -49,10 +49,10 @@ export class RockSlime extends Enemy{
         this.name = "ロックスライム";
     
         this.candidatePCommands = [
-            new EnemyProbCommand([BattleSlimeCommands[0],BattleSlimeCommands[1]],{prob:[80,20]}),
-            new EnemyProbCommand([BattleSlimeCommands[0],BattleSlimeCommands[1]],{prob:[30,70]}),
-            new EnemyProbCommand([BattleSlimeCommands[0],BattleSlimeCommands[1]],{prob:[45,55]}),
-            new EnemyProbCommand([BattleSlimeCommands[1],BattleSlimeCommands[2]],{prob:[70,30]}),
+            new EnemyProbCommand([RockSlimeCommands[0],RockSlimeCommands[1]],{prob:[80,20]}),
+            new EnemyProbCommand([RockSlimeCommands[0],RockSlimeCommands[1]],{prob:[30,70]}),
+            new EnemyProbCommand([RockSlimeCommands[0],RockSlimeCommands[1]],{prob:[45,55]}),
+            new EnemyProbCommand([RockSlimeCommands[1],RockSlimeCommands[2]],{prob:[70,30]}),
         ];
     }
     load(scene: BattleScene): void {

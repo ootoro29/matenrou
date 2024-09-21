@@ -1,6 +1,6 @@
 import { calDamage, calHit } from "../functions/damage";
 import { AdventureEventArea, CancelTransformAdventureEventArea, HPHeelAdventureEventArea, NormalAdventureEventArea, TransformAdventureEventArea, UseItemAdventureEventArea } from "../parts/area/adventureEventArea";
-import { BattleEventArea, CancelTransformBattleEventArea, EPABattleEventArea, EPAShieldBattleEventArea, HPHeelBattleEventArea, MPHeelBattleEventArea, NormalBattleEventArea, PMABattleEventArea, PPABattleEventArea, ShieldBattleEventArea, ShieldBreakBattleEventArea, TransformBattleEventArea, UseItemBattleEventArea } from "../parts/area/battleEventArea";
+import { BattleEventArea, CancelTransformBattleEventArea, EnemyHPHeelBattleEventArea, EPABattleEventArea, EPAShieldBattleEventArea, HPHeelBattleEventArea, MPHeelBattleEventArea, NormalBattleEventArea, PMABattleEventArea, PPABattleEventArea, ShieldBattleEventArea, ShieldBreakBattleEventArea, TransformBattleEventArea, UseItemBattleEventArea } from "../parts/area/battleEventArea";
 import AdventureEventAction from "../scenes/actions/adventureEventAction";
 import BattleEventAction from "../scenes/actions/battleEventAction";
 import AdventureScene from "../scenes/adventure";
@@ -132,6 +132,20 @@ export abstract class EnemyMagicalAttack extends Command {
         }else{
             ans.push(new NormalBattleEventArea(scene,`プレイヤーは回避した!`));
         }
+        return ans;
+    }
+    doAdventureCommand(battle: AdventureScene, scene: AdventureEventAction): AdventureEventArea[] {
+        return []
+    }
+}
+
+export abstract class EnemyMagicalHPHeel extends Command {
+    doBattleCommand(battle:BattleScene,scene:BattleEventAction): BattleEventArea[] {
+        if(!battle.player)return[];
+        if(!battle.enemy)return[];
+        let ans:BattleEventArea[] = []
+        ans.push(new NormalBattleEventArea(scene,`${battle.enemy.name}の${this.name}!`));
+        ans.push(new EnemyHPHeelBattleEventArea(scene,battle.enemy,this.power));
         return ans;
     }
     doAdventureCommand(battle: AdventureScene, scene: AdventureEventAction): AdventureEventArea[] {
