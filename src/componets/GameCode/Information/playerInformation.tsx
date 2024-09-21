@@ -134,17 +134,27 @@ export default class PlayerINFO {
   }
 
   damage(d:number){
-    if(d == 0)return;
+    if(d <= 0)return;
     this.HP -= d;
     if(this.transform){
       this.CP += d;
     }
+    if(this.HP < 0)this.HP = 0;
+    updateMatchInfoStatus(this.uid,this.HP,this.MP,this.CP);
+  }
+
+  heelHP(h:number){
+    if(h <= 0)return;
+    this.HP += h;
+    if(this.HP > this.HP_MAX)this.HP = this.HP_MAX;
     updateMatchInfoStatus(this.uid,this.HP,this.MP,this.CP);
   }
 
   changeMP(m:number){
     if(m == 0)return;
     this.MP += m;
+    if(this.MP < 0)this.MP = 0;
+    if(this.MP > this.MP_MAX)this.MP = this.MP_MAX;
     updateMatchInfoStatus(this.uid,this.HP,this.MP,this.CP);
   }
 }

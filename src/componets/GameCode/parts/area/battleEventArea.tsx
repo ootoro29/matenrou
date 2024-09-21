@@ -379,10 +379,7 @@ export class HPHeelBattleEventArea extends BattleEventArea {
     }
     appearance(AM:BattleEventAreaManager): void {  
         if(!this.player)return;
-        this.player.HP += this.hp;
-        if(this.player.HP >= this.player.HP_MAX){
-            this.player.HP = this.player.HP_MAX;
-        }
+        this.player.heelHP(this.hp);
     }
 }
 
@@ -411,10 +408,7 @@ export class MPHeelBattleEventArea extends BattleEventArea {
     }
     appearance(AM:BattleEventAreaManager): void {  
         if(!this.player)return;
-        this.player.MP += this.mp;
-        if(this.player.MP >= this.player.MP_MAX){
-            this.player.MP = this.player.MP_MAX;
-        }
+        this.player.changeMP(this.mp);
     }
 }
 
@@ -504,5 +498,300 @@ export class EnemyHPHeelBattleEventArea extends BattleEventArea {
         if(!this.enemy)return;
         this.enemy.HP += this.delta;
         if(this.enemy.HP > this.enemy.HP_MAX)this.enemy.HP = this.enemy.HP_MAX;
+    }
+}
+
+export class EnemyPATStageChange extends BattleEventArea {
+    enemy?:Enemy;
+    stage = 0;
+    constructor(scene:BattleEventAction,enemy:Enemy,stage:number,{key="",image = ""} = {}){
+        const discription = `${enemy.name}のPATが${Math.abs(stage)}段階${(stage < 0)?"下がった":"上がった。"}`;
+        super(scene,discription,{key:key,image:image});
+        this.enemy = enemy;
+        this.stage = stage;
+    }
+    genSelections(): string[] {
+        return ["OK","X","X","X","X","X"];
+    }
+    opeClick(click: number): void {
+        if(!this.parents)return;
+        if(click == 0){
+            if(this.parents.AM?.isLast()){
+                this.parents.nextEventTurn();
+            }else{
+                this.parents.AM?.nextArea();
+                this.parents.changeBMText();
+            }
+        }
+    }
+    appearance(AM:BattleEventAreaManager): void {  
+        if(!this.enemy)return;
+        if((this.enemy.PATstage <= -6 && this.stage < 0) || (this.enemy.PATstage >= 6 && this.stage > 0))return;
+        this.enemy.PATstage += this.stage;
+    }
+}
+export class EnemyMATStageChange extends BattleEventArea {
+    enemy?:Enemy;
+    stage = 0;
+    constructor(scene:BattleEventAction,enemy:Enemy,stage:number,{key="",image = ""} = {}){
+        const discription = `${enemy.name}のMATが${Math.abs(stage)}段階${(stage < 0)?"下がった":"上がった。"}`;
+        super(scene,discription,{key:key,image:image});
+        this.enemy = enemy;
+        this.stage = stage;
+    }
+    genSelections(): string[] {
+        return ["OK","X","X","X","X","X"];
+    }
+    opeClick(click: number): void {
+        if(!this.parents)return;
+        if(click == 0){
+            if(this.parents.AM?.isLast()){
+                this.parents.nextEventTurn();
+            }else{
+                this.parents.AM?.nextArea();
+                this.parents.changeBMText();
+            }
+        }
+    }
+    appearance(AM:BattleEventAreaManager): void {  
+        if(!this.enemy)return;
+        if((this.enemy.MATstage <= -6 && this.stage < 0) || (this.enemy.MATstage >= 6 && this.stage > 0))return;
+        this.enemy.MATstage += this.stage;
+    }
+}
+
+export class EnemyPDFStageChange extends BattleEventArea {
+    enemy?:Enemy;
+    stage = 0;
+    constructor(scene:BattleEventAction,enemy:Enemy,stage:number,{key="",image = ""} = {}){
+        const discription = `${enemy.name}のPDFが${Math.abs(stage)}段階${(stage < 0)?"下がった":"上がった。"}`;
+        super(scene,discription,{key:key,image:image});
+        this.enemy = enemy;
+        this.stage = stage;
+    }
+    genSelections(): string[] {
+        return ["OK","X","X","X","X","X"];
+    }
+    opeClick(click: number): void {
+        if(!this.parents)return;
+        if(click == 0){
+            if(this.parents.AM?.isLast()){
+                this.parents.nextEventTurn();
+            }else{
+                this.parents.AM?.nextArea();
+                this.parents.changeBMText();
+            }
+        }
+    }
+    appearance(AM:BattleEventAreaManager): void {  
+        if(!this.enemy)return;
+        if((this.enemy.PDFstage <= -6 && this.stage < 0) || (this.enemy.PDFstage >= 6 && this.stage > 0))return;
+        this.enemy.PDFstage += this.stage;
+    }
+}
+export class EnemyMDFStageChange extends BattleEventArea {
+    enemy?:Enemy;
+    stage = 0;
+    constructor(scene:BattleEventAction,enemy:Enemy,stage:number,{key="",image = ""} = {}){
+        const discription = `${enemy.name}のMDFが${Math.abs(stage)}段階${(stage < 0)?"下がった":"上がった。"}`;
+        super(scene,discription,{key:key,image:image});
+        this.enemy = enemy;
+        this.stage = stage;
+    }
+    genSelections(): string[] {
+        return ["OK","X","X","X","X","X"];
+    }
+    opeClick(click: number): void {
+        if(!this.parents)return;
+        if(click == 0){
+            if(this.parents.AM?.isLast()){
+                this.parents.nextEventTurn();
+            }else{
+                this.parents.AM?.nextArea();
+                this.parents.changeBMText();
+            }
+        }
+    }
+    appearance(AM:BattleEventAreaManager): void {  
+        if(!this.enemy)return;
+        if((this.enemy.MDFstage <= -6 && this.stage < 0) || (this.enemy.MDFstage >= 6 && this.stage > 0))return;
+        this.enemy.MDFstage += this.stage;
+    }
+}
+export class EnemySPStageChange extends BattleEventArea {
+    enemy?:Enemy;
+    stage = 0;
+    constructor(scene:BattleEventAction,enemy:Enemy,stage:number,{key="",image = ""} = {}){
+        const discription = `${enemy.name}のSPが${Math.abs(stage)}段階${(stage < 0)?"下がった":"上がった。"}`;
+        super(scene,discription,{key:key,image:image});
+        this.enemy = enemy;
+        this.stage = stage;
+    }
+    genSelections(): string[] {
+        return ["OK","X","X","X","X","X"];
+    }
+    opeClick(click: number): void {
+        if(!this.parents)return;
+        if(click == 0){
+            if(this.parents.AM?.isLast()){
+                this.parents.nextEventTurn();
+            }else{
+                this.parents.AM?.nextArea();
+                this.parents.changeBMText();
+            }
+        }
+    }
+    appearance(AM:BattleEventAreaManager): void {  
+        if(!this.enemy)return;
+        if((this.enemy.SPstage <= -6 && this.stage < 0) || (this.enemy.SPstage >= 6 && this.stage > 0))return;
+        this.enemy.SPstage += this.stage;
+    }
+}
+
+
+export class PlayerPATStageChange extends BattleEventArea {
+    player?:PlayerINFO;
+    stage = 0;
+    constructor(scene:BattleEventAction,player:PlayerINFO,stage:number,{key="",image = ""} = {}){
+        const discription = `プレイヤーのPATが${Math.abs(stage)}段階${(stage < 0)?"下がった":"上がった。"}`;
+        super(scene,discription,{key:key,image:image});
+        this.player = player;
+        this.stage = stage;
+    }
+    genSelections(): string[] {
+        return ["OK","X","X","X","X","X"];
+    }
+    opeClick(click: number): void {
+        if(!this.parents)return;
+        if(click == 0){
+            if(this.parents.AM?.isLast()){
+                this.parents.nextEventTurn();
+            }else{
+                this.parents.AM?.nextArea();
+                this.parents.changeBMText();
+            }
+        }
+    }
+    appearance(AM:BattleEventAreaManager): void {  
+        if(!this.player)return;
+        if((this.player.PATstage <= -6 && this.stage < 0) || (this.player.PATstage >= 6 && this.stage > 0))return;
+        this.player.PATstage += this.stage;
+    }
+}
+export class PlayerMATStageChange extends BattleEventArea {
+    player?:PlayerINFO;
+    stage = 0;
+    constructor(scene:BattleEventAction,player:PlayerINFO,stage:number,{key="",image = ""} = {}){
+        const discription = `プレイヤーのMATが${Math.abs(stage)}段階${(stage < 0)?"下がった":"上がった。"}`;
+        super(scene,discription,{key:key,image:image});
+        this.player = player;
+        this.stage = stage;
+    }
+    genSelections(): string[] {
+        return ["OK","X","X","X","X","X"];
+    }
+    opeClick(click: number): void {
+        if(!this.parents)return;
+        if(click == 0){
+            if(this.parents.AM?.isLast()){
+                this.parents.nextEventTurn();
+            }else{
+                this.parents.AM?.nextArea();
+                this.parents.changeBMText();
+            }
+        }
+    }
+    appearance(AM:BattleEventAreaManager): void {  
+        if(!this.player)return;
+        if((this.player.MATstage <= -6 && this.stage < 0) || (this.player.MATstage >= 6 && this.stage > 0))return;
+        this.player.MATstage += this.stage;
+    }
+}
+
+export class PlayerPDFStageChange extends BattleEventArea {
+    player?:PlayerINFO;
+    stage = 0;
+    constructor(scene:BattleEventAction,player:PlayerINFO,stage:number,{key="",image = ""} = {}){
+        const discription = `プレイヤーのPDFが${Math.abs(stage)}段階${(stage < 0)?"下がった":"上がった。"}`;
+        super(scene,discription,{key:key,image:image});
+        this.player = player;
+        this.stage = stage;
+    }
+    genSelections(): string[] {
+        return ["OK","X","X","X","X","X"];
+    }
+    opeClick(click: number): void {
+        if(!this.parents)return;
+        if(click == 0){
+            if(this.parents.AM?.isLast()){
+                this.parents.nextEventTurn();
+            }else{
+                this.parents.AM?.nextArea();
+                this.parents.changeBMText();
+            }
+        }
+    }
+    appearance(AM:BattleEventAreaManager): void {  
+        if(!this.player)return;
+        if((this.player.PDFstage <= -6 && this.stage < 0) || (this.player.PDFstage >= 6 && this.stage > 0))return;
+        this.player.PDFstage += this.stage;
+    }
+}
+export class PlayerMDFStageChange extends BattleEventArea {
+    player?:PlayerINFO;
+    stage = 0;
+    constructor(scene:BattleEventAction,player:PlayerINFO,stage:number,{key="",image = ""} = {}){
+        const discription = `プレイヤーのMDFが${Math.abs(stage)}段階${(stage < 0)?"下がった":"上がった。"}`;
+        super(scene,discription,{key:key,image:image});
+        this.player = player;
+        this.stage = stage;
+    }
+    genSelections(): string[] {
+        return ["OK","X","X","X","X","X"];
+    }
+    opeClick(click: number): void {
+        if(!this.parents)return;
+        if(click == 0){
+            if(this.parents.AM?.isLast()){
+                this.parents.nextEventTurn();
+            }else{
+                this.parents.AM?.nextArea();
+                this.parents.changeBMText();
+            }
+        }
+    }
+    appearance(AM:BattleEventAreaManager): void {  
+        if(!this.player)return;
+        if((this.player.MDFstage <= -6 && this.stage < 0) || (this.player.MDFstage >= 6 && this.stage > 0))return;
+        this.player.MDFstage += this.stage;
+    }
+}
+export class PlayerSPStageChange extends BattleEventArea {
+    player?:PlayerINFO;
+    stage = 0;
+    constructor(scene:BattleEventAction,player:PlayerINFO,stage:number,{key="",image = ""} = {}){
+        const discription = `プレイヤーのSPが${Math.abs(stage)}段階${(stage < 0)?"下がった":"上がった。"}`;
+        super(scene,discription,{key:key,image:image});
+        this.player = player;
+        this.stage = stage;
+    }
+    genSelections(): string[] {
+        return ["OK","X","X","X","X","X"];
+    }
+    opeClick(click: number): void {
+        if(!this.parents)return;
+        if(click == 0){
+            if(this.parents.AM?.isLast()){
+                this.parents.nextEventTurn();
+            }else{
+                this.parents.AM?.nextArea();
+                this.parents.changeBMText();
+            }
+        }
+    }
+    appearance(AM:BattleEventAreaManager): void {  
+        if(!this.player)return;
+        if((this.player.SPstage <= -6 && this.stage < 0) || (this.player.SPstage >= 6 && this.stage > 0))return;
+        this.player.SPstage += this.stage;
     }
 }
