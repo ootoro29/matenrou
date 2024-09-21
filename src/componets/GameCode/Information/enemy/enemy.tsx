@@ -1,7 +1,8 @@
-import { PComand } from "@/types/game";
+import { normalStatus, PComand } from "@/types/game";
 import { BattleActionScene } from "../../parts/scene";
 import BattleScene from "../../scenes/battle";
 import { ProbCommand } from "../prob_commands";
+import { calStage } from "../../functions/status";
 
 export abstract class Enemy{
     scene?:BattleScene;
@@ -12,6 +13,11 @@ export abstract class Enemy{
     PDF = 1;
     MDF = 1;
     SP = 1;
+    PATstage = 0;
+    MATstage = 0;
+    PDFstage = 0;
+    MDFstage = 0;
+    SPstage = 0;
     exp = 1;
     name = "";
     image?:Phaser.GameObjects.Image;
@@ -39,6 +45,15 @@ export abstract class Enemy{
         if(rate > 1)rate = 1;
         if(rate < 0)rate = 0;
         this.HP_BAR.width = 300*rate;
+    }
+    getStatus():normalStatus{
+        return {
+            PAT:this.PAT*calStage(this.PATstage),
+            PDF:this.PDF*calStage(this.PDFstage),
+            MAT:this.PAT*calStage(this.MATstage),
+            MDF:this.PDF*calStage(this.MDFstage),
+            SP:this.PDF*calStage(this.SPstage),
+        }
     }
     abstract initialize():void;
     abstract load(scene:BattleScene):void;

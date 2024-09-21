@@ -41,3 +41,8 @@ export function calCP(lv:number):number{
 export function calEXP(lv:number):number{
     return Math.floor(0.1*lv*lv*lv+0.5*lv*lv+lv*5);
 }
+export function calStage(stage:number):number{
+    if(stage < 0)return 6/(6-stage);
+    if(stage > 0)return (6+stage)/6;
+    else return 1;
+}

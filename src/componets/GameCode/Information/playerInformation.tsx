@@ -1,5 +1,5 @@
 import { BattleStatus, normalStatus, Status, transformStatus } from "@/types/game";
-import { calCP, calEXP, calHP, calMP, calNormalMAT, calNormalMDF, calNormalPAT, calNormalPDF, calNormalSP, calTransformMAT, calTransformMDF, calTransformPAT, calTransformPDF, calTransformSP } from "../functions/status";
+import { calCP, calEXP, calHP, calMP, calNormalMAT, calNormalMDF, calNormalPAT, calNormalPDF, calNormalSP, calStage, calTransformMAT, calTransformMDF, calTransformPAT, calTransformPDF, calTransformSP } from "../functions/status";
 import { ItemList } from "./item/itemList";
 import { Command } from "./commands";
 import { CancelTransformMagicalGirl, TransformMagicalGirl } from "./playerActCommands";
@@ -33,6 +33,11 @@ export default class PlayerINFO {
   CP = 0
   CP_MAX = 0
   transform = false;
+  PATstage = 0;
+  MATstage = 0;
+  PDFstage = 0;
+  MDFstage = 0;
+  SPstage = 0;
   Item?:ItemList;
   Shield?:ShieldList
   constructor(lv:number,uid:string){
@@ -63,7 +68,7 @@ export default class PlayerINFO {
   getBattleStatus():BattleStatus{
     const data:BattleStatus = {
       lv:this.lv,
-      status:((this.isTransform())?this.transform_status:this.normal_status),
+      status:this.changeStageStatus(((this.isTransform())?this.transform_status:this.normal_status)),
       HP:this.HP,
       HP_MAX:this.HP_MAX,
       MP:this.MP,
@@ -74,6 +79,14 @@ export default class PlayerINFO {
       exp_MAX:this.exp_MAX
     }
     return data;
+  }
+  changeStageStatus(status:transformStatus|normalStatus){
+    status.MAT *= calStage(this.MATstage)
+    status.PAT *= calStage(this.PATstage)
+    status.MDF *= calStage(this.MDFstage)
+    status.PDF *= calStage(this.PDFstage)
+    status.SP *= calStage(this.SPstage)
+    return status;
   }
   isTransform(){
     return this.transform;

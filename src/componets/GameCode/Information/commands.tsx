@@ -47,8 +47,9 @@ export abstract class PlayerPhysicalAttack extends Command {
         ans.push(new NormalBattleEventArea(scene,`プレイヤーの${this.name}!`,imageInfo));
         
         const status = battle.player.getBattleStatus();
-        const damage:number = calDamage(status.status.PAT,battle.enemy.PDF,this.power);
-        if(calHit(status.status.SP,battle.enemy.SP,this.mei)){
+        const Estatus = battle.enemy.getStatus();
+        const damage:number = calDamage(status.status.PAT,Estatus.PDF,this.power);
+        if(calHit(status.status.SP,Estatus.SP,this.mei)){
             ans.push(new PPABattleEventArea(scene,battle.enemy,damage));
         }else{
             ans.push(new NormalBattleEventArea(scene,`${battle.enemy.name}は回避した!`));
@@ -68,14 +69,15 @@ export abstract class EnemyPhysicalAttack extends Command {
         let ans:BattleEventArea[] = []
         ans.push(new NormalBattleEventArea(scene,`${battle.enemy.name}の${this.name}!`,{key:this.key,image:this.path}));
         const status = battle.player.getBattleStatus();
-        const damage:number = calDamage(battle.enemy.PAT,status.status.PDF,this.power);
+        const Estatus = battle.enemy.getStatus();
+        const damage:number = calDamage(Estatus.PAT,status.status.PDF,this.power);
         const hitShield = battle.player.Shield?.selectShield();
         if(hitShield){
             ans.push(new EPAShieldBattleEventArea(scene,hitShield,damage));
             if(hitShield.HP <= damage){
                 ans.push(new NormalBattleEventArea(scene,`${hitShield.name}は崩壊した`));
             }
-        }else if(calHit(battle.enemy.SP,status.status.SP,this.mei)){
+        }else if(calHit(Estatus.SP,status.status.SP,this.mei)){
             let imageInfo = {key:"playerdamage",image:"/assets/player/被弾.png"};
             if(battle.player.transform){
                 imageInfo = {key:"playerdamagetransform",image:"/assets/player/被弾(魔法少女).png"};
@@ -98,12 +100,13 @@ export abstract class PlayerMagicalAttack extends Command {
         let ans:BattleEventArea[] = []
         ans.push(new NormalBattleEventArea(scene,`プレイヤーの${this.name}!`));
         const status = battle.player.getBattleStatus();
-        const damage:number = calDamage(status.status.MAT,battle.enemy.MDF,this.power);
+        const Estatus = battle.enemy.getStatus();
+        const damage:number = calDamage(status.status.MAT,Estatus.MDF,this.power);
         if(this.mp > status.MP){
             ans.push(new NormalBattleEventArea(scene,`しかしMPが足りなかった！`));
         }else if(!battle.player.isTransform()){
             ans.push(new NormalBattleEventArea(scene,`しかしあなたは魔法少女ではないので魔法が発動できなかった！`));
-        }else if(calHit(status.status.SP,battle.enemy.SP,this.mei)){
+        }else if(calHit(status.status.SP,Estatus.SP,this.mei)){
             ans.push(new PMABattleEventArea(scene,battle.player,battle.enemy,damage,this.mp));
         }else{
             ans.push(new NormalBattleEventArea(scene,`${battle.enemy.name}は回避した!`));
@@ -122,8 +125,9 @@ export abstract class EnemyMagicalAttack extends Command {
         let ans:BattleEventArea[] = []
         ans.push(new NormalBattleEventArea(scene,`${battle.enemy.name}の${this.name}!`));
         const status = battle.player.getBattleStatus();
-        const damage:number = calDamage(battle.enemy.MAT,status.status.MDF,this.power);
-        if(calHit(battle.enemy.SP,status.status.SP,this.mei)){
+        const Estatus = battle.enemy.getStatus();
+        const damage:number = calDamage(Estatus.MAT,status.status.MDF,this.power);
+        if(calHit(Estatus.SP,status.status.SP,this.mei)){
             let imageInfo = {key:"playerdamage",image:"/assets/player/被弾.png"};
             if(battle.player.transform){
                 imageInfo = {key:"playerdamagetransform",image:"/assets/player/被弾(魔法少女).png"};
