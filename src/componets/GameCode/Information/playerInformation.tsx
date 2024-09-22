@@ -1,5 +1,5 @@
 import { BattleStatus, normalStatus, Status, transformStatus } from "@/types/game";
-import { calCP, calEXP, calHP, calMP, calNormalMAT, calNormalMDF, calNormalPAT, calNormalPDF, calNormalSP, calStage, calTransformMAT, calTransformMDF, calTransformPAT, calTransformPDF, calTransformSP } from "../functions/status";
+import { calCP, calEXP, calHP, calMP, calNormalMAT, calNormalMDF, calNormalPAT, calNormalPDF, calNormalSP, calStage, calStatusFromStatus, calTransformMAT, calTransformMDF, calTransformPAT, calTransformPDF, calTransformSP } from "../functions/status";
 import { ItemList } from "./item/itemList";
 import { Command } from "./commands";
 import { CancelTransformMagicalGirl, TransformMagicalGirl } from "./playerActCommands";
@@ -33,6 +33,9 @@ export default class PlayerINFO {
   CP = 0
   CP_MAX = 0
   transform = false;
+  poison = false;
+  palsy = false;
+  frozen = false;
   PATstage = 0;
   MATstage = 0;
   PDFstage = 0;
@@ -91,6 +94,30 @@ export default class PlayerINFO {
   isTransform(){
     return this.transform;
   }
+  isPoison(){
+    return this.poison;
+  }
+  isPalsy(){
+    return this.palsy;
+  }
+  isFrozen(){
+    return this.frozen;
+  }
+  toData(){
+    const data = [
+      (this.isTransform())?1:0,
+      (this.isPoison())?1:0,
+      (this.isPalsy())?1:0,
+      (this.isFrozen())?1:0,
+    ]
+    return calStatusFromStatus(data);
+  }
+  toStatus(status:number[]){
+    if(status[0] == 1)this.setTransForm();
+    if(status[1] == 1)this.setPoison();
+    if(status[2] == 1)this.setPalsy();
+    if(status[3] == 1)this.setFrozen();
+  }
   updateStatus(){
     const lv = this.lv;
     this.normal_status.PAT = calNormalPAT(lv);
@@ -141,26 +168,26 @@ export default class PlayerINFO {
     }
     if(this.CP > this.CP_MAX)this.CP = this.CP_MAX;
     if(this.HP < 0)this.HP = 0;
-    updateMatchInfoStatus(this.uid,this.HP,this.MP,this.CP);
+    updateMatchInfoStatus(this.uid,this.HP,this.MP,this.CP,this.PATstage,this.MATstage,this.PDFstage,this.MDFstage,this.SPstage,this.toData());
   }
 
   heelHP(h:number){
     if(h <= 0)return;
     this.HP += h;
     if(this.HP > this.HP_MAX)this.HP = this.HP_MAX;
-    updateMatchInfoStatus(this.uid,this.HP,this.MP,this.CP);
+    updateMatchInfoStatus(this.uid,this.HP,this.MP,this.CP,this.PATstage,this.MATstage,this.PDFstage,this.MDFstage,this.SPstage,this.toData());
   }
 
   heelCP(){
     if(this.CP == 0)return;
     this.CP *= 0.98;
-    updateMatchInfoStatus(this.uid,this.HP,this.MP,this.CP);
+    updateMatchInfoStatus(this.uid,this.HP,this.MP,this.CP,this.PATstage,this.MATstage,this.PDFstage,this.MDFstage,this.SPstage,this.toData());
   }
 
   resetCP(){
     if(this.CP == 0)return;
     this.CP = 0;
-    updateMatchInfoStatus(this.uid,this.HP,this.MP,this.CP);
+    updateMatchInfoStatus(this.uid,this.HP,this.MP,this.CP,this.PATstage,this.MATstage,this.PDFstage,this.MDFstage,this.SPstage,this.toData());
   }
 
   changeMP(m:number){
@@ -168,6 +195,81 @@ export default class PlayerINFO {
     this.MP += m;
     if(this.MP < 0)this.MP = 0;
     if(this.MP > this.MP_MAX)this.MP = this.MP_MAX;
-    updateMatchInfoStatus(this.uid,this.HP,this.MP,this.CP);
+    updateMatchInfoStatus(this.uid,this.HP,this.MP,this.CP,this.PATstage,this.MATstage,this.PDFstage,this.MDFstage,this.SPstage,this.toData());
+  }
+  setTransForm(){
+    if(this.transform)return;
+    this.transform = true;
+    updateMatchInfoStatus(this.uid,this.HP,this.MP,this.CP,this.PATstage,this.MATstage,this.PDFstage,this.MDFstage,this.SPstage,this.toData());
+  }
+  setPoison(){
+    if(this.poison)return;
+    this.poison = true;
+    updateMatchInfoStatus(this.uid,this.HP,this.MP,this.CP,this.PATstage,this.MATstage,this.PDFstage,this.MDFstage,this.SPstage,this.toData());
+  }
+  setPalsy(){
+    if(this.palsy)return;
+    this.palsy = true;
+    updateMatchInfoStatus(this.uid,this.HP,this.MP,this.CP,this.PATstage,this.MATstage,this.PDFstage,this.MDFstage,this.SPstage,this.toData());
+  }
+  setFrozen(){
+    if(this.frozen)return;
+    this.frozen = false;
+    updateMatchInfoStatus(this.uid,this.HP,this.MP,this.CP,this.PATstage,this.MATstage,this.PDFstage,this.MDFstage,this.SPstage,this.toData());
+  }
+  resetTransForm(){
+    if(!this.transform)return;
+    this.transform = false;
+    updateMatchInfoStatus(this.uid,this.HP,this.MP,this.CP,this.PATstage,this.MATstage,this.PDFstage,this.MDFstage,this.SPstage,this.toData());
+  }
+  resetPoison(){
+    if(!this.poison)return;
+    this.poison = false;
+    updateMatchInfoStatus(this.uid,this.HP,this.MP,this.CP,this.PATstage,this.MATstage,this.PDFstage,this.MDFstage,this.SPstage,this.toData());
+  }
+  resetPalsy(){
+    if(!this.palsy)return;
+    this.palsy = false;
+    updateMatchInfoStatus(this.uid,this.HP,this.MP,this.CP,this.PATstage,this.MATstage,this.PDFstage,this.MDFstage,this.SPstage,this.toData());
+  }
+  resetFrozen(){
+    if(!this.frozen)return;
+    this.frozen = false;
+    updateMatchInfoStatus(this.uid,this.HP,this.MP,this.CP,this.PATstage,this.MATstage,this.PDFstage,this.MDFstage,this.SPstage,this.toData());
+  }
+  changePATStage(s:number){
+    if(s == 0)return;
+    this.PATstage += s;
+    if(this.PATstage < -6)this.PATstage = -6;
+    if(this.PATstage > 6)this.PATstage = 6;
+    updateMatchInfoStatus(this.uid,this.HP,this.MP,this.CP,this.PATstage,this.MATstage,this.PDFstage,this.MDFstage,this.SPstage,this.toData());
+  }
+  changeMATStage(s:number){
+    if(s == 0)return;
+    this.MATstage += s;
+    if(this.PATstage < -6)this.MATstage = -6;
+    if(this.PATstage > 6)this.MATstage = 6;
+    updateMatchInfoStatus(this.uid,this.HP,this.MP,this.CP,this.PATstage,this.MATstage,this.PDFstage,this.MDFstage,this.SPstage,this.toData());
+  }
+  changePDFStage(s:number){
+    if(s == 0)return;
+    this.PDFstage += s;
+    if(this.PATstage < -6)this.PDFstage = -6;
+    if(this.PATstage > 6)this.PDFstage = 6;
+    updateMatchInfoStatus(this.uid,this.HP,this.MP,this.CP,this.PATstage,this.MATstage,this.PDFstage,this.MDFstage,this.SPstage,this.toData());
+  }
+  changeMDFStage(s:number){
+    if(s == 0)return;
+    this.MDFstage += s;
+    if(this.PATstage < -6)this.MDFstage = -6;
+    if(this.PATstage > 6)this.MDFstage = 6;
+    updateMatchInfoStatus(this.uid,this.HP,this.MP,this.CP,this.PATstage,this.MATstage,this.PDFstage,this.MDFstage,this.SPstage,this.toData());
+  }
+  changeSPStage(s:number){
+    if(s == 0)return;
+    this.SPstage += s;
+    if(this.PATstage < -6)this.SPstage = -6;
+    if(this.PATstage > 6)this.SPstage = 6;
+    updateMatchInfoStatus(this.uid,this.HP,this.MP,this.CP,this.PATstage,this.MATstage,this.PDFstage,this.MDFstage,this.SPstage,this.toData());
   }
 }

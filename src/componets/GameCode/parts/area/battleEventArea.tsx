@@ -321,7 +321,7 @@ export class TransformBattleEventArea extends BattleEventArea {
     appearance(AM:BattleEventAreaManager): void {  
         if(!this.player)return;
         this.player.changeMP(-this.mp);
-        this.player.transform = true;      
+        this.player.setTransForm();
     }
 }
 export class CancelTransformBattleEventArea extends BattleEventArea {
@@ -351,7 +351,7 @@ export class CancelTransformBattleEventArea extends BattleEventArea {
         if(!this.player)return;
         this.player.changeMP(-this.mp);
         this.player.resetCP();
-        this.player.transform = false;      
+        this.player.resetTransForm();
     }
 }
 
@@ -702,8 +702,7 @@ export class PlayerBattlePATStageChange extends BattleEventArea {
     }
     appearance(AM:BattleEventAreaManager): void {  
         if(!this.player)return;
-        if((this.player.PATstage <= -6 && this.stage < 0) || (this.player.PATstage >= 6 && this.stage > 0))return;
-        this.player.PATstage += this.stage;
+        this.player.changePATStage(this.stage);
     }
 }
 export class PlayerBattleMATStageChange extends BattleEventArea {
@@ -731,8 +730,7 @@ export class PlayerBattleMATStageChange extends BattleEventArea {
     }
     appearance(AM:BattleEventAreaManager): void {  
         if(!this.player)return;
-        if((this.player.MATstage <= -6 && this.stage < 0) || (this.player.MATstage >= 6 && this.stage > 0))return;
-        this.player.MATstage += this.stage;
+        this.player.changeMATStage(this.stage);
     }
 }
 
@@ -761,8 +759,7 @@ export class PlayerBattlePDFStageChange extends BattleEventArea {
     }
     appearance(AM:BattleEventAreaManager): void {  
         if(!this.player)return;
-        if((this.player.PDFstage <= -6 && this.stage < 0) || (this.player.PDFstage >= 6 && this.stage > 0))return;
-        this.player.PDFstage += this.stage;
+        this.player.changePDFStage(this.stage);
     }
 }
 export class PlayerBattleMDFStageChange extends BattleEventArea {
@@ -790,8 +787,7 @@ export class PlayerBattleMDFStageChange extends BattleEventArea {
     }
     appearance(AM:BattleEventAreaManager): void {  
         if(!this.player)return;
-        if((this.player.MDFstage <= -6 && this.stage < 0) || (this.player.MDFstage >= 6 && this.stage > 0))return;
-        this.player.MDFstage += this.stage;
+        this.player.changeMDFStage(this.stage);
     }
 }
 export class PlayerBattleSPStageChange extends BattleEventArea {
@@ -819,7 +815,6 @@ export class PlayerBattleSPStageChange extends BattleEventArea {
     }
     appearance(AM:BattleEventAreaManager): void {  
         if(!this.player)return;
-        if((this.player.SPstage <= -6 && this.stage < 0) || (this.player.SPstage >= 6 && this.stage > 0))return;
-        this.player.SPstage += this.stage;
+        this.player.changeSPStage(this.stage);
     }
 }

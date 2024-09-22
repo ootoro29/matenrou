@@ -15,6 +15,7 @@ export type MatchInfo = {
     HP:number;
     MP:number;
     CP:number;
+    status:number;
     PATStage:number;
     MATStage:number;
     PDFStage:number;

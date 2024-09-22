@@ -17,7 +17,7 @@ export function updateStamina(uid:string,stamina:number){
 
 export function setMatchInfo(uid:string,room:Room,HP:number,MP:number,CP:number){
     const updateGameInfo = async() => {
-        const {error} = await supabase.from("MatchInfo").insert({room:room.name,HP:HP,MP:MP,CP:CP,uid:uid});
+        const {error} = await supabase.from("MatchInfo").insert({room:room.name,HP:HP,MP:MP,CP:CP,status:0,uid:uid});
     }
     updateGameInfo();
 }
@@ -29,9 +29,29 @@ export function updateMatchInfoRoom(uid:string,room:Room){
     updateGameInfo();
 }
 
-export function updateMatchInfoStatus(uid:string,HP:number,MP:number,CP:number){
+export function updateMatchInfoStatus(
+    uid:string,
+    HP:number,
+    MP:number,
+    CP:number,
+    PATStage:number,
+    MATStage:number,
+    PDFStage:number,
+    MDFStage:number,
+    SPStage:number,
+    status:number){
     const updateGameInfo = async() => {
-        const {error} = await supabase.from("MatchInfo").update({HP:HP,MP:MP,CP:CP}).eq("uid",uid);
+        const {error} = await supabase.from("MatchInfo")
+        .update({HP:HP,
+                MP:MP,
+                CP:CP,
+                PATStage:PATStage,
+                MATStage:MATStage,
+                PDFStage:PDFStage,
+                MDFStage:MDFStage,
+                SPStage:SPStage,
+                status:status
+            }).eq("uid",uid);
         //console.log(error);
     }
     updateGameInfo();

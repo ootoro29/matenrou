@@ -127,7 +127,13 @@ export abstract class EnemyMagicalAttack extends Command {
         const status = battle.player.getBattleStatus();
         const Estatus = battle.enemy.getStatus();
         const damage:number = calDamage(Estatus.MAT,status.status.MDF,this.power);
-        if(calHit(Estatus.SP,status.status.SP,this.mei)){
+        const hitShield = battle.player.Shield?.selectShield();
+        if(hitShield){
+            ans.push(new EPAShieldBattleEventArea(scene,hitShield,damage));
+            if(hitShield.HP <= damage){
+                ans.push(new NormalBattleEventArea(scene,`${hitShield.name}は崩壊した`));
+            }
+        }else if(calHit(Estatus.SP,status.status.SP,this.mei)){
             let imageInfo = {key:"playerdamage",image:"/assets/player/被弾.png"};
             if(battle.player.transform){
                 imageInfo = {key:"playerdamagetransform",image:"/assets/player/被弾(魔法少女).png"};

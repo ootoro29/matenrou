@@ -5,7 +5,7 @@ import Phaser, { Math } from "phaser";
 import { Button } from "../parts/button";
 import { ButtonManager } from "../parts/buttonManager";
 import { GameInfo, gameInterface, MatchInfo, Player } from "@/types/game";
-import { calCP, calHP, calMP, calNormalMAT, calNormalMDF, calNormalPAT, calNormalPDF, calNormalSP, calTransformMAT, calTransformMDF, calTransformPAT, calTransformPDF, calTransformSP } from "../functions/status";
+import { calCP, calHP, calMP, calNormalMAT, calNormalMDF, calNormalPAT, calNormalPDF, calNormalSP, calStatusFromBit, calTransformMAT, calTransformMDF, calTransformPAT, calTransformPDF, calTransformSP } from "../functions/status";
 import PlayerINFO from "../Information/playerInformation";
 import { Room } from "../Information/room/room";
 import * as R from "../Information/room/index";
@@ -52,6 +52,7 @@ export default class main extends Phaser.Scene {
         this.PINF.PDFstage = data.matchInfo.PDFStage;
         this.PINF.MDFstage = data.matchInfo.MDFStage;
         this.PINF.SPstage = data.matchInfo.SPStage;
+        this.PINF.toStatus(calStatusFromBit(4,data.matchInfo.status));
       }
     }
     this.Room = data.room;
@@ -136,7 +137,18 @@ export default class main extends Phaser.Scene {
     this.scene.stop('main');
     this.scene.start('main',{data,room});
     updateMatchInfoRoom(this.player.uid,room);
-    updateMatchInfoStatus(this.player.uid,this.PINF.HP,this.PINF.MP,this.PINF.CP)
+    updateMatchInfoStatus(
+      this.player.uid,
+      this.PINF.HP,
+      this.PINF.MP,
+      this.PINF.CP,
+      this.PINF.PATstage,
+      this.PINF.MATstage,
+      this.PINF.PDFstage,
+      this.PINF.MDFstage,
+      this.PINF.SPstage,
+      this.PINF.toData()
+    )
   }
 
 }

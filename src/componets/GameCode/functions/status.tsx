@@ -46,3 +46,17 @@ export function calStage(stage:number):number{
     if(stage > 0)return (6+stage)/6;
     else return 1;
 }
+export function calStatusFromBit(n:number,bit:number):number[]{
+    let ans:number[] = []
+    for(let i = 0; i < n; i++){
+        ans.push(bit&(1 << i));
+    }
+    return ans;
+}
+export function calStatusFromStatus(status:number[]):number{
+    let ans = 0;
+    for(let i = 0; i < status.length; i++){
+        ans += status[i]*Math.pow(2,i);
+    }
+    return ans;
+}

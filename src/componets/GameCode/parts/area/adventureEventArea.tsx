@@ -214,7 +214,7 @@ export class TransformAdventureEventArea extends AdventureEventArea {
     appearance(AM:AdventureEventAreaManager): void {  
         if(!this.player)return;
         this.player.changeMP(-this.mp);
-        this.player.transform = true;      
+        this.player.setTransForm();    
     }
 }
 export class CancelTransformAdventureEventArea extends AdventureEventArea {
@@ -243,7 +243,7 @@ export class CancelTransformAdventureEventArea extends AdventureEventArea {
     appearance(AM:AdventureEventAreaManager): void {  
         if(!this.player)return;
         this.player.changeMP(-this.mp);
-        this.player.transform = false;      
+        this.player.resetTransForm();     
     }
 }
 
@@ -272,8 +272,7 @@ export class PlayerAdventurePATStageChange extends AdventureEventArea {
     }
     appearance(AM:AdventureEventAreaManager): void {  
         if(!this.player)return;
-        if((this.player.PATstage <= -6 && this.stage < 0) || (this.player.PATstage >= 6 && this.stage > 0))return;
-        this.player.PATstage += this.stage;
+        this.player.changePATStage(this.stage);
     }
 }
 export class PlayerAdventureMATStageChange extends AdventureEventArea {
@@ -301,8 +300,7 @@ export class PlayerAdventureMATStageChange extends AdventureEventArea {
     }
     appearance(AM:AdventureEventAreaManager): void {  
         if(!this.player)return;
-        if((this.player.MATstage <= -6 && this.stage < 0) || (this.player.MATstage >= 6 && this.stage > 0))return;
-        this.player.MATstage += this.stage;
+        this.player.changeMATStage(this.stage);
     }
 }
 
@@ -331,8 +329,7 @@ export class PlayerAdventurePDFStageChange extends AdventureEventArea {
     }
     appearance(AM:AdventureEventAreaManager): void {  
         if(!this.player)return;
-        if((this.player.PDFstage <= -6 && this.stage < 0) || (this.player.PDFstage >= 6 && this.stage > 0))return;
-        this.player.PDFstage += this.stage;
+        this.player.changePDFStage(this.stage);
     }
 }
 export class PlayerAdventureMDFStageChange extends AdventureEventArea {
@@ -360,8 +357,7 @@ export class PlayerAdventureMDFStageChange extends AdventureEventArea {
     }
     appearance(AM:AdventureEventAreaManager): void {  
         if(!this.player)return;
-        if((this.player.MDFstage <= -6 && this.stage < 0) || (this.player.MDFstage >= 6 && this.stage > 0))return;
-        this.player.MDFstage += this.stage;
+        this.player.changeMDFStage(this.stage);
     }
 }
 export class PlayerAdventureSPStageChange extends AdventureEventArea {
@@ -389,7 +385,6 @@ export class PlayerAdventureSPStageChange extends AdventureEventArea {
     }
     appearance(AM:AdventureEventAreaManager): void {  
         if(!this.player)return;
-        if((this.player.SPstage <= -6 && this.stage < 0) || (this.player.SPstage >= 6 && this.stage > 0))return;
-        this.player.SPstage += this.stage;
+        this.player.changeSPStage(this.stage);
     }
 }
