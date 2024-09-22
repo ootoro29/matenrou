@@ -529,7 +529,7 @@ export class EnemyHPHeelBattleEventArea extends BattleEventArea {
     }
 }
 
-export class EnemyPATStageChange extends BattleEventArea {
+export class EnemyBattlePATStageChange extends BattleEventArea {
     enemy?:Enemy;
     stage = 0;
     constructor(scene:BattleEventAction,enemy:Enemy,stage:number,{key="",image = ""} = {}){
@@ -558,7 +558,7 @@ export class EnemyPATStageChange extends BattleEventArea {
         this.enemy.PATstage += this.stage;
     }
 }
-export class EnemyMATStageChange extends BattleEventArea {
+export class EnemyBattleMATStageChange extends BattleEventArea {
     enemy?:Enemy;
     stage = 0;
     constructor(scene:BattleEventAction,enemy:Enemy,stage:number,{key="",image = ""} = {}){
@@ -588,7 +588,7 @@ export class EnemyMATStageChange extends BattleEventArea {
     }
 }
 
-export class EnemyPDFStageChange extends BattleEventArea {
+export class EnemyBattlePDFStageChange extends BattleEventArea {
     enemy?:Enemy;
     stage = 0;
     constructor(scene:BattleEventAction,enemy:Enemy,stage:number,{key="",image = ""} = {}){
@@ -617,7 +617,7 @@ export class EnemyPDFStageChange extends BattleEventArea {
         this.enemy.PDFstage += this.stage;
     }
 }
-export class EnemyMDFStageChange extends BattleEventArea {
+export class EnemyBattleMDFStageChange extends BattleEventArea {
     enemy?:Enemy;
     stage = 0;
     constructor(scene:BattleEventAction,enemy:Enemy,stage:number,{key="",image = ""} = {}){
@@ -646,7 +646,7 @@ export class EnemyMDFStageChange extends BattleEventArea {
         this.enemy.MDFstage += this.stage;
     }
 }
-export class EnemySPStageChange extends BattleEventArea {
+export class EnemyBattleSPStageChange extends BattleEventArea {
     enemy?:Enemy;
     stage = 0;
     constructor(scene:BattleEventAction,enemy:Enemy,stage:number,{key="",image = ""} = {}){
@@ -677,7 +677,7 @@ export class EnemySPStageChange extends BattleEventArea {
 }
 
 
-export class PlayerPATStageChange extends BattleEventArea {
+export class PlayerBattlePATStageChange extends BattleEventArea {
     player?:PlayerINFO;
     stage = 0;
     constructor(scene:BattleEventAction,player:PlayerINFO,stage:number,{key="",image = ""} = {}){
@@ -706,7 +706,7 @@ export class PlayerPATStageChange extends BattleEventArea {
         this.player.PATstage += this.stage;
     }
 }
-export class PlayerMATStageChange extends BattleEventArea {
+export class PlayerBattleMATStageChange extends BattleEventArea {
     player?:PlayerINFO;
     stage = 0;
     constructor(scene:BattleEventAction,player:PlayerINFO,stage:number,{key="",image = ""} = {}){
@@ -736,7 +736,7 @@ export class PlayerMATStageChange extends BattleEventArea {
     }
 }
 
-export class PlayerPDFStageChange extends BattleEventArea {
+export class PlayerBattlePDFStageChange extends BattleEventArea {
     player?:PlayerINFO;
     stage = 0;
     constructor(scene:BattleEventAction,player:PlayerINFO,stage:number,{key="",image = ""} = {}){
@@ -765,7 +765,7 @@ export class PlayerPDFStageChange extends BattleEventArea {
         this.player.PDFstage += this.stage;
     }
 }
-export class PlayerMDFStageChange extends BattleEventArea {
+export class PlayerBattleMDFStageChange extends BattleEventArea {
     player?:PlayerINFO;
     stage = 0;
     constructor(scene:BattleEventAction,player:PlayerINFO,stage:number,{key="",image = ""} = {}){
@@ -794,7 +794,7 @@ export class PlayerMDFStageChange extends BattleEventArea {
         this.player.MDFstage += this.stage;
     }
 }
-export class PlayerSPStageChange extends BattleEventArea {
+export class PlayerBattleSPStageChange extends BattleEventArea {
     player?:PlayerINFO;
     stage = 0;
     constructor(scene:BattleEventAction,player:PlayerINFO,stage:number,{key="",image = ""} = {}){

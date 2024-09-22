@@ -247,7 +247,7 @@ export class CancelTransformAdventureEventArea extends AdventureEventArea {
     }
 }
 
-export class PlayerPATStageChange extends AdventureEventArea {
+export class PlayerAdventurePATStageChange extends AdventureEventArea {
     player?:PlayerINFO;
     stage = 0;
     constructor(scene:AdventureEventAction,player:PlayerINFO,stage:number,{key="",image = ""} = {}){
@@ -276,7 +276,7 @@ export class PlayerPATStageChange extends AdventureEventArea {
         this.player.PATstage += this.stage;
     }
 }
-export class PlayerMATStageChange extends AdventureEventArea {
+export class PlayerAdventureMATStageChange extends AdventureEventArea {
     player?:PlayerINFO;
     stage = 0;
     constructor(scene:AdventureEventAction,player:PlayerINFO,stage:number,{key="",image = ""} = {}){
@@ -306,7 +306,7 @@ export class PlayerMATStageChange extends AdventureEventArea {
     }
 }
 
-export class PlayerPDFStageChange extends AdventureEventArea {
+export class PlayerAdventurePDFStageChange extends AdventureEventArea {
     player?:PlayerINFO;
     stage = 0;
     constructor(scene:AdventureEventAction,player:PlayerINFO,stage:number,{key="",image = ""} = {}){
@@ -335,7 +335,7 @@ export class PlayerPDFStageChange extends AdventureEventArea {
         this.player.PDFstage += this.stage;
     }
 }
-export class PlayerMDFStageChange extends AdventureEventArea {
+export class PlayerAdventureMDFStageChange extends AdventureEventArea {
     player?:PlayerINFO;
     stage = 0;
     constructor(scene:AdventureEventAction,player:PlayerINFO,stage:number,{key="",image = ""} = {}){
@@ -364,7 +364,7 @@ export class PlayerMDFStageChange extends AdventureEventArea {
         this.player.MDFstage += this.stage;
     }
 }
-export class PlayerSPStageChange extends AdventureEventArea {
+export class PlayerAdventureSPStageChange extends AdventureEventArea {
     player?:PlayerINFO;
     stage = 0;
     constructor(scene:AdventureEventAction,player:PlayerINFO,stage:number,{key="",image = ""} = {}){
