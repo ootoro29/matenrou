@@ -43,6 +43,8 @@ export default class main extends Phaser.Scene {
     this.first = data.first;
     if(this.first){
       this.PINF = new PlayerINFO(this.gameInfo.lv,this.player.uid);
+      this.PINF.lv = data.data.gameInfo.lv;
+      this.PINF.exp = data.data.gameInfo.exp;
       if(data.matchInfo){
         this.PINF.HP = data.matchInfo.HP;
         this.PINF.MP = data.matchInfo.MP;

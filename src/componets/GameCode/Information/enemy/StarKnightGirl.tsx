@@ -44,7 +44,7 @@ const ZombiGirlCommands:EnemyPhysicalAttack[] = [
 ]
 
 
-export class StarNightGirl extends Enemy{
+export class StarKnightGirl extends Enemy{
     initialize(){
         this.HP = this.HP_MAX = 112;
         this.PAT = 32;

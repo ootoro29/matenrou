@@ -22,6 +22,13 @@ export function setMatchInfo(uid:string,room:Room,HP:number,MP:number,CP:number)
     updateGameInfo();
 }
 
+export function updateGameInfoLv(uid:string,lv:number,exp:number){
+    const updateGameInfo = async() => {
+        const {error} = await supabase.from("GameInfo").update({lv:lv,exp:exp}).eq("uid",uid);
+    }
+    updateGameInfo();
+}
+
 export function updateMatchInfoRoom(uid:string,room:Room){
     const updateGameInfo = async() => {
         const {error} = await supabase.from("MatchInfo").update({room:room.name}).eq("uid",uid);

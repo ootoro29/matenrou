@@ -112,16 +112,38 @@ export class F7Room extends Room {
         this.name = "F-7"
     }
     genAdvanceRoomEvent(scene: AdventureThinking): advanceRoomEventArea[] {
-        return[];
+        const rnd = Math.random()*100;
+        if(rnd < 20){
+            return AdvanceEvent.FireSlimeEvent(scene);
+        }else if(rnd < 40){
+            return AdvanceEvent.IceSlimeEvent(scene);
+        }else if(rnd < 60){
+            return AdvanceEvent.ThunderSlimeEvent(scene);
+        }else if(rnd < 80){
+            return AdvanceEvent.RockSlimeEvent(scene);
+        }else{
+            return AdvanceEvent.WindSlimeEvent(scene);
+        }
     }
     initialize(): void {
         this.nextRooms = [new G7Room(),new F6Room(),new E7Room(),new F8Room()];
-        this.PRooms = [0,0,0,0];
+        this.PRooms = [100,-1,-1,-1];
     }
     genSearchEvent(scene:searchAction){
         const ans = this.findRoomKeyEvent(scene,10);
         if(ans)return ans;
-        return SearchEvent.SearchNoneEvent(scene)
+        const rndBattle = Math.random()*100;
+        if(rndBattle < 20){
+            return SearchEvent.FireSlimeEvent(scene);
+        }else if(rndBattle < 40){
+            return SearchEvent.IceSlimeEvent(scene);
+        }else if(rndBattle < 60){
+            return SearchEvent.ThunderSlimeEvent(scene);
+        }else if(rndBattle < 80){
+            return SearchEvent.RockSlimeEvent(scene);
+        }else{
+            return SearchEvent.WindSlimeEvent(scene);
+        }
     }
 }
 

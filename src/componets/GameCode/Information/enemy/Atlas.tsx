@@ -44,7 +44,7 @@ const ZombiGirlCommands:EnemyPhysicalAttack[] = [
 ]
 
 
-export class CuleGoa extends Enemy{
+export class Atlas extends Enemy{
     initialize(){
         this.HP = this.HP_MAX = 152;
         this.PAT = 52;

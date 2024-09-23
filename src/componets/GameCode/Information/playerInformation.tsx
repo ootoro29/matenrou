@@ -4,7 +4,7 @@ import { ItemList } from "./item/itemList";
 import { Command } from "./commands";
 import { CancelTransformMagicalGirl, TransformMagicalGirl } from "./playerActCommands";
 import { ShieldList } from "./shield/shieldList";
-import { updateMatchInfoStatus } from "../supabase/query";
+import { updateGameInfoLv, updateMatchInfoStatus } from "../supabase/query";
 
 export default class PlayerINFO {
   lv = 0;
@@ -146,6 +146,7 @@ export default class PlayerINFO {
       this.updateStatus();
       this.exp_MAX = calEXP(this.lv);
     }
+    updateGameInfoLv(this.uid,this.lv,this.exp);
     if(pre_lv == this.lv){
       return ``;
     }else{

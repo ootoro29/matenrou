@@ -22,7 +22,7 @@ export class D1Room extends Room {
         this.PRooms = [0,0];
     }
     genSearchEvent(scene:searchAction){
-        const ans = this.findRoomKeyEvent(scene,10);
+        const ans = this.findRoomKeyEvent(scene,25);
         if(ans)return ans;
         return SearchEvent.SearchNoneEvent(scene)
     }
@@ -46,7 +46,7 @@ export class D2Room extends Room {
         this.PRooms = [0];
     }
     genSearchEvent(scene:searchAction){
-        const ans = this.findRoomKeyEvent(scene,10);
+        const ans = this.findRoomKeyEvent(scene,25);
         if(ans)return ans;
         return SearchEvent.SearchNoneEvent(scene)
     }
@@ -70,7 +70,7 @@ export class D3Room extends Room {
         this.PRooms = [0];
     }
     genSearchEvent(scene:searchAction){
-        const ans = this.findRoomKeyEvent(scene,10);
+        const ans = this.findRoomKeyEvent(scene,25);
         if(ans)return ans;
         return SearchEvent.SearchNoneEvent(scene)
     }
@@ -94,7 +94,7 @@ export class D4Room extends Room {
         this.PRooms = [0];
     }
     genSearchEvent(scene:searchAction){
-        const ans = this.findRoomKeyEvent(scene,10);
+        const ans = this.findRoomKeyEvent(scene,25);
         if(ans)return ans;
         return SearchEvent.SearchNoneEvent(scene)
     }
@@ -107,16 +107,38 @@ export class D6Room extends Room {
         this.name = "D-6"
     }
     genAdvanceRoomEvent(scene: AdventureThinking): advanceRoomEventArea[] {
-        return[];
+        const rnd = Math.random()*100;
+        if(rnd < 20){
+            return AdvanceEvent.FireSlimeEvent(scene);
+        }else if(rnd < 40){
+            return AdvanceEvent.IceSlimeEvent(scene);
+        }else if(rnd < 60){
+            return AdvanceEvent.ThunderSlimeEvent(scene);
+        }else if(rnd < 80){
+            return AdvanceEvent.RockSlimeEvent(scene);
+        }else{
+            return AdvanceEvent.WindSlimeEvent(scene);
+        }
     }
     initialize(): void {
         this.nextRooms = [new C6Room(),new D7Room()];
-        this.PRooms = [0,0];      
+        this.PRooms = [30,70];      
     }
     genSearchEvent(scene:searchAction){
-        const ans = this.findRoomKeyEvent(scene,10);
+        const ans = this.findRoomKeyEvent(scene,25);
         if(ans)return ans;
-        return SearchEvent.SearchNoneEvent(scene)
+        const rndBattle = Math.random()*100;
+        if(rndBattle < 20){
+            return SearchEvent.FireSlimeEvent(scene);
+        }else if(rndBattle < 40){
+            return SearchEvent.IceSlimeEvent(scene);
+        }else if(rndBattle < 60){
+            return SearchEvent.ThunderSlimeEvent(scene);
+        }else if(rndBattle < 80){
+            return SearchEvent.RockSlimeEvent(scene);
+        }else{
+            return SearchEvent.WindSlimeEvent(scene);
+        }
     }
 }
 
@@ -126,16 +148,26 @@ export class D7Room extends Room {
         this.name = "D-7"
     }
     genAdvanceRoomEvent(scene: AdventureThinking): advanceRoomEventArea[] {
-        return[];
+        const rnd = Math.random()*100;
+        if(rnd < 80){
+            return AdvanceEvent.BattleSlimeEvent(scene);
+        }else{
+            return AdvanceEvent.WindSlimeEvent(scene);
+        }
     }
     initialize(): void {
         this.nextRooms = [new E7Room(),new D6Room(),new B7Room()];
-        this.PRooms = [0,0,0];
+        this.PRooms = [50,25,25];
     }
     genSearchEvent(scene:searchAction){
-        const ans = this.findRoomKeyEvent(scene,10);
+        const ans = this.findRoomKeyEvent(scene,25);
         if(ans)return ans;
-        return SearchEvent.SearchNoneEvent(scene)
+        let rndBattle = Math.random()*100;
+        if(rndBattle < 80){
+            return SearchEvent.BattleSlimeEvent(scene);
+        }else{
+            return SearchEvent.WindSlimeEvent(scene);
+        }
     }
 }
 
@@ -149,10 +181,10 @@ export class D8Room extends Room {
     }
     initialize(): void {
         this.nextRooms = [new D9Room()];
-        this.PRooms = [0];
+        this.PRooms = [100];
     }
     genSearchEvent(scene:searchAction){
-        const ans = this.findRoomKeyEvent(scene,10);
+        const ans = this.findRoomKeyEvent(scene,25);
         if(ans)return ans;
         return SearchEvent.SearchNoneEvent(scene)
     }
@@ -164,16 +196,30 @@ export class D9Room extends Room {
         this.name = "D-9"
     }
     genAdvanceRoomEvent(scene: AdventureThinking): advanceRoomEventArea[] {
-        return[];
+        const rnd = Math.random()*100;
+        if(rnd < 33){
+            return AdvanceEvent.ZombiGirlEvent(scene);
+        }else if(rnd < 66){
+            return AdvanceEvent.ZombiManEvent(scene);
+        }else{
+            return AdvanceEvent.ZombiHakaEvent(scene);
+        }
     }
     initialize(): void {
         this.nextRooms = [new D8Room(),new B9Room(),new D10Room()];
-        this.PRooms = [0,0,0];
+        this.PRooms = [20,40,40];
     }
     genSearchEvent(scene:searchAction){
-        const ans = this.findRoomKeyEvent(scene,10);
+        const ans = this.findRoomKeyEvent(scene,25);
         if(ans)return ans;
-        return SearchEvent.SearchNoneEvent(scene)
+        const rndBattle = Math.random()*100;
+        if(rndBattle < 33){
+            return SearchEvent.ZombiGirlEvent(scene);
+        }else if(rndBattle < 66){
+            return SearchEvent.ZombiManEvent(scene);
+        }else{
+            return SearchEvent.ZombiHakaEvent(scene);
+        }
     }
 }
 
@@ -183,16 +229,26 @@ export class D10Room extends Room {
         this.name = "D-10"
     }
     genAdvanceRoomEvent(scene: AdventureThinking): advanceRoomEventArea[] {
-        return[];
+        const rnd = Math.random()*100;
+        if(rnd < 50){
+            return AdvanceEvent.ZombiGirlEvent(scene);
+        }else{
+            return AdvanceEvent.ZombiManEvent(scene);
+        }
     }
     initialize(): void {
         this.nextRooms = [new D9Room(),new C10Room()];
-        this.PRooms = [0,0];
+        this.PRooms = [50,50];
     }
     genSearchEvent(scene:searchAction){
-        const ans = this.findRoomKeyEvent(scene,10);
+        const ans = this.findRoomKeyEvent(scene,25);
         if(ans)return ans;
-        return SearchEvent.SearchNoneEvent(scene)
+        const rndBattle = Math.random()*100;
+        if(rndBattle < 50){
+            return SearchEvent.ZombiGirlEvent(scene);
+        }else{
+            return SearchEvent.ZombiManEvent(scene);
+        }
     }
 }
 
@@ -209,7 +265,7 @@ export class D11Room extends Room {
         this.PRooms = [0];
     }
     genSearchEvent(scene:searchAction){
-        const ans = this.findRoomKeyEvent(scene,10);
+        const ans = this.findRoomKeyEvent(scene,25);
         if(ans)return ans;
         return SearchEvent.SearchNoneEvent(scene)
     }
@@ -228,7 +284,7 @@ export class D12Room extends Room {
         this.PRooms = [0];
     }
     genSearchEvent(scene:searchAction){
-        const ans = this.findRoomKeyEvent(scene,10);
+        const ans = this.findRoomKeyEvent(scene,25);
         if(ans)return ans;
         return SearchEvent.SearchNoneEvent(scene)
     }
@@ -247,7 +303,7 @@ export class D13Room extends Room {
         this.PRooms = [0];
     }
     genSearchEvent(scene:searchAction){
-        const ans = this.findRoomKeyEvent(scene,10);
+        const ans = this.findRoomKeyEvent(scene,25);
         if(ans)return ans;
         return SearchEvent.SearchNoneEvent(scene)
     }
