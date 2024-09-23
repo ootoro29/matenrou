@@ -37,9 +37,9 @@ export class BattleSlime extends Enemy{
         this.HP = this.HP_MAX = 45;
         this.PAT = 8;
         this.MAT = 4;
-        this.PDF = 24;
-        this.MDF = 18;
-        this.SP = 11;
+        this.PDF = 9;
+        this.MDF = 12;
+        this.SP = 21;
         this.exp = 2;
         this.name = "バトルスライム";
     

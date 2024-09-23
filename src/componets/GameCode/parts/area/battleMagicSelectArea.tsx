@@ -3,15 +3,29 @@ import { Room } from "../../Information/room/room";
 import { Button } from "../button";
 import { PlayerMagCommands } from "../../Information/playerMagCommands";
 import { Command } from "../../Information/commands";
+import BBCodeText from "phaser3-rex-plugins/plugins/bbcodetext";
 
 
 
 export class BattleMagicSelectArea extends Area{
     actSelections:Button[] = []
     index = 0;
+    description?:BBCodeText;
     constructor(scene:Phaser.Scene){
         super(scene);
         this.create();
+        this.description = new BBCodeText(this.scene,140,500,"説明",{
+            fontFamily:"Arial",
+            fontSize:"36px",
+            fill:"#ffffff",
+            wrap:{
+                mode:"char",
+                width:this.width-100,
+                
+            }
+            });
+        this.scene.add.container().add(this.description);
+        this.setIndex(this.index);
     }
     initialize(): void {
         for(let i = 0; i < 5; i++){
@@ -52,6 +66,7 @@ export class BattleMagicSelectArea extends Area{
     setIndex(index:number){
         if(index <= -1 || index >= PlayerMagCommands.length)return;
         this.index = index;
+        this.description?.setText(`${PlayerMagCommands[index].name}\n ${PlayerMagCommands[index].description}`);
         for(let i = 0; i < 5; i++){
             const idx = this.index - 1 + i
             let label = "";

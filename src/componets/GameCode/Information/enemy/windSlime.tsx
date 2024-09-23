@@ -42,9 +42,9 @@ export class WindSlime extends Enemy{
         this.HP = this.HP_MAX = 75;
         this.PAT = 10;
         this.MAT = 20;
-        this.PDF = 32;
-        this.MDF = 22;
-        this.SP = 20;
+        this.PDF = 22;
+        this.MDF = 14;
+        this.SP = 43;
         this.exp = 3;
         this.name = "ウィンドスライム";
     

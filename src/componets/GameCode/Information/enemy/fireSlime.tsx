@@ -48,9 +48,9 @@ export class FireSlime extends Enemy{
         this.HP = this.HP_MAX = 80;
         this.PAT = 12;
         this.MAT = 16;
-        this.PDF = 36;
+        this.PDF = 21;
         this.MDF = 18;
-        this.SP = 22;
+        this.SP = 35;
         this.exp = 3;
         this.name = "マグマスライム";
     

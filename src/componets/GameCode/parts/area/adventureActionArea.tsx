@@ -4,6 +4,7 @@ import { Button } from "../button";
 import { Command } from "../../Information/commands";
 import AdventureScene from "../../scenes/adventure";
 import { AdventureActionScene } from "../scene";
+import BBCodeText from "phaser3-rex-plugins/plugins/bbcodetext";
 
 
 
@@ -12,6 +13,7 @@ export class AdventureActionArea extends Area{
     index = 0;
     adventure?:AdventureScene;
     actList:Command[] = [];
+    description:BBCodeText;
     constructor(scene:AdventureActionScene){
         super(scene);
         this.adventure = scene.Parents;
@@ -19,6 +21,18 @@ export class AdventureActionArea extends Area{
             this.actList = this.adventure.player?.genAdventureActList();
         }
         this.create();
+        this.description = new BBCodeText(this.scene,140,500,"説明",{
+            fontFamily:"Arial",
+            fontSize:"36px",
+            fill:"#ffffff",
+            wrap:{
+                mode:"char",
+                width:this.width-100,
+                
+            }
+            });
+        this.scene.add.container().add(this.description);
+        this.setIndex(this.index);
     }
     currentCommand(){
         return this.actList[this.index];
@@ -61,6 +75,7 @@ export class AdventureActionArea extends Area{
         if(!this.actList)return;
         if(index <= -1 || index >= this.actList.length)return;
         this.index = index;
+        this.description?.setText(this.actList[index].name+'\n '+this.actList[index].description);
         for(let i = 0; i < 5; i++){
             const idx = this.index - 1 + i
             let label = "";

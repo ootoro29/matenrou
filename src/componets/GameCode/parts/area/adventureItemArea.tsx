@@ -10,6 +10,7 @@ import { Command } from "../../Information/commands";
 
 export class AdventureItemArea extends Area{
     itemSelections:Button[] = []
+    description?:Phaser.GameObjects.Text;
     index = 0;
     adventure?:AdventureScene
     itemList:Item[] = [];
@@ -20,6 +21,8 @@ export class AdventureItemArea extends Area{
             this.itemList = this.adventure.player?.Item.genItemList();
         }
         this.create();
+        this.description = this.scene.add.text(140,500,"説明",{ font: '36px Arial'});
+        this.setIndex(this.index);
     }
     currentCommand():Command{
         return this.itemList[this.index].itemCommand();
@@ -62,6 +65,7 @@ export class AdventureItemArea extends Area{
         if(!this.itemList)return;
         if(index <= -1 || index >= this.itemList.length)return;
         this.index = index;
+        this.description?.setText(this.itemList[index].name+'\n '+this.itemList[index].description);
         for(let i = 0; i < 5; i++){
             const idx = this.index - 1 + i
             let label = "";

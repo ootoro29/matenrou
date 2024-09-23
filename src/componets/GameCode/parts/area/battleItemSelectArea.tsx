@@ -12,12 +12,15 @@ export class BattleItemSelectArea extends Area{
     actSelections:Button[] = []
     index = 0;
     battle?:BattleScene
+    description?:Phaser.GameObjects.Text;
     battleItemList:Item[] = [];
     constructor(scene:BattleItemSelect){
         super(scene);
         this.battle = scene.Parents;
         this.setItemList();
         this.create();
+        this.description = this.scene.add.text(140,500,"説明",{ font: '36px Arial'});
+        this.setIndex(this.index);
     }
     setItemList(){
         if(this.battle && this.battle.player && this.battle.player.Item){
@@ -62,6 +65,7 @@ export class BattleItemSelectArea extends Area{
         if(!this.battleItemList)return;
         if(index <= -1 || index >= this.battleItemList.length)return;
         this.index = index;
+        this.description?.setText(this.battleItemList[index].name+'\n '+this.battleItemList[index].description);
         for(let i = 0; i < 5; i++){
             const idx = this.index - 1 + i
             let label = "";
