@@ -39,7 +39,7 @@ export function calCP(lv:number):number{
     return Math.floor(29+1.5*lv+0.102*lv*lv);
 }
 export function calEXP(lv:number):number{
-    return Math.floor(0.1*lv*lv*lv+0.5*lv*lv+lv*5);
+    return Math.floor(0.2*lv*lv*lv+1.5*lv*lv+lv*7.5);
 }
 export function calStage(stage:number):number{
     if(stage < 0)return 6/(6-stage);

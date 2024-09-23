@@ -378,7 +378,7 @@ export class BreakTransformBattleEventArea extends BattleEventArea {
     }
     appearance(AM:BattleEventAreaManager): void {  
         if(!this.player)return;
-        this.player.transform = false;      
+        this.player.breakTransform();      
     }
 }
 

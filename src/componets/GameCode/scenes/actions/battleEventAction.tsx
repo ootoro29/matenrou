@@ -79,7 +79,7 @@ export default class BattleEventAction extends BattleActionScene {
         }else{
             this.Parents.nextEventTurn();
         }
-        this.Parents.player.heelCP();
+        this.Parents.player.heel();
     }
     initialize(): void {
     }

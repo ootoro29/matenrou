@@ -179,14 +179,25 @@ export default class PlayerINFO {
     updateMatchInfoStatus(this.uid,this.HP,this.MP,this.CP,this.PATstage,this.MATstage,this.PDFstage,this.MDFstage,this.SPstage,this.toData());
   }
 
-  heelCP(){
-    if(this.CP == 0)return;
+  heel(){
     this.CP *= 0.98;
+    if(this.transform){
+      this.MP += this.MP_MAX/64;
+    }else{
+      this.MP += this.MP_MAX/16;
+    }
     updateMatchInfoStatus(this.uid,this.HP,this.MP,this.CP,this.PATstage,this.MATstage,this.PDFstage,this.MDFstage,this.SPstage,this.toData());
   }
 
   resetCP(){
     if(this.CP == 0)return;
+    this.CP = 0;
+    updateMatchInfoStatus(this.uid,this.HP,this.MP,this.CP,this.PATstage,this.MATstage,this.PDFstage,this.MDFstage,this.SPstage,this.toData());
+  }
+
+  breakTransform(){
+    this.MP = 0;
+    this.transform = false;
     this.CP = 0;
     updateMatchInfoStatus(this.uid,this.HP,this.MP,this.CP,this.PATstage,this.MATstage,this.PDFstage,this.MDFstage,this.SPstage,this.toData());
   }

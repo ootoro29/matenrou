@@ -45,12 +45,12 @@ const ThunderSlimeCommands:EnemyPhysicalAttack[] = [
 
 export class ThunderSlime extends Enemy{
     initialize(){
-        this.HP = this.HP_MAX = 35;
-        this.PAT = 5;
-        this.MAT = 18;
-        this.PDF = 16;
+        this.HP = this.HP_MAX = 70;
+        this.PAT = 15;
+        this.MAT = 23;
+        this.PDF = 30;
         this.MDF = 18;
-        this.SP = 16;
+        this.SP = 24;
         this.exp = 3;
         this.name = "サンダースライム";
     

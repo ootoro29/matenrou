@@ -34,12 +34,12 @@ const BattleSlimeCommands:EnemyPhysicalAttack[] = [
 
 export class BattleSlime extends Enemy{
     initialize(){
-        this.HP = this.HP_MAX = 30;
+        this.HP = this.HP_MAX = 45;
         this.PAT = 12;
         this.MAT = 4;
-        this.PDF = 18;
-        this.MDF = 8;
-        this.SP = 9;
+        this.PDF = 32;
+        this.MDF = 18;
+        this.SP = 11;
         this.exp = 2;
         this.name = "バトルスライム";
     

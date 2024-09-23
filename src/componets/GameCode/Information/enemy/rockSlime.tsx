@@ -39,12 +39,12 @@ const RockSlimeCommands:EnemyPhysicalAttack[] = [
 
 export class RockSlime extends Enemy{
     initialize(){
-        this.HP = this.HP_MAX = 55;
-        this.PAT = 5;
-        this.MAT = 15;
-        this.PDF = 24;
-        this.MDF = 31;
-        this.SP = 5;
+        this.HP = this.HP_MAX = 95;
+        this.PAT = 15;
+        this.MAT = 25;
+        this.PDF = 50;
+        this.MDF = 21;
+        this.SP = 11;
         this.exp = 3;
         this.name = "ロックスライム";
     

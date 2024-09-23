@@ -45,12 +45,12 @@ const ZombiGirlCommands:EnemyPhysicalAttack[] = [
 
 export class ZombiHaka extends Enemy{
     initialize(){
-        this.HP = this.HP_MAX = 60;
+        this.HP = this.HP_MAX = 90;
         this.PAT = 18;
-        this.MAT = 8;
-        this.PDF = 14;
-        this.MDF = 32;
-        this.SP = 6;
+        this.MAT = 38;
+        this.PDF = 40;
+        this.MDF = 38;
+        this.SP = 10;
         this.exp = 5;
         this.name = "ゾンビマン";
     

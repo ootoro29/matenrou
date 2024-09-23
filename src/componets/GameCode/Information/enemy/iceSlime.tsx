@@ -45,12 +45,12 @@ const IceSlimeCommands:EnemyPhysicalAttack[] = [
 
 export class IceSlime extends Enemy{
     initialize(){
-        this.HP = this.HP_MAX = 45;
-        this.PAT = 6;
-        this.MAT = 14;
-        this.PDF = 16;
-        this.MDF = 20;
-        this.SP = 5;
+        this.HP = this.HP_MAX = 85;
+        this.PAT = 10;
+        this.MAT = 25;
+        this.PDF = 32;
+        this.MDF = 27;
+        this.SP = 9;
         this.exp = 3;
         this.name = "アイスライム";
     

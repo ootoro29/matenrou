@@ -4,7 +4,7 @@ import { NormalShield } from "./shields";
 export class ShieldList {
     constructor(){
         this.shieldList = [
-            new NormalShield()
+            //new NormalShield()
         ]
     }
     capacity:number = 2;
