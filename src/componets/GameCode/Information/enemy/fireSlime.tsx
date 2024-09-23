@@ -46,10 +46,10 @@ const FireSlimeCommands:EnemyPhysicalAttack[] = [
 export class FireSlime extends Enemy{
     initialize(){
         this.HP = this.HP_MAX = 80;
-        this.PAT = 15;
-        this.MAT = 21;
-        this.PDF = 48;
-        this.MDF = 24;
+        this.PAT = 12;
+        this.MAT = 16;
+        this.PDF = 36;
+        this.MDF = 18;
         this.SP = 22;
         this.exp = 3;
         this.name = "マグマスライム";

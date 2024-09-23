@@ -47,9 +47,9 @@ export class ThunderSlime extends Enemy{
     initialize(){
         this.HP = this.HP_MAX = 70;
         this.PAT = 15;
-        this.MAT = 23;
+        this.MAT = 20;
         this.PDF = 30;
-        this.MDF = 18;
+        this.MDF = 14;
         this.SP = 24;
         this.exp = 3;
         this.name = "サンダースライム";

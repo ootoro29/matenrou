@@ -122,10 +122,7 @@ export class HPHeelAdventureEventArea extends AdventureEventArea {
     }
     appearance(AM:AdventureEventAreaManager): void {  
         if(!this.player)return;
-        this.player.HP += this.hp;
-        if(this.player.HP >= this.player.HP_MAX){
-            this.player.HP = this.player.HP_MAX;
-        }
+        this.player.heelHP(this.hp);
     }
 }
 
@@ -154,10 +151,7 @@ export class MPHeelAdventureEventArea extends AdventureEventArea {
     }
     appearance(AM:AdventureEventAreaManager): void {  
         if(!this.player)return;
-        this.player.MP += this.mp;
-        if(this.player.MP >= this.player.MP_MAX){
-            this.player.MP = this.player.MP_MAX;
-        }
+        this.player.changeMP(this.mp);
     }
 }
 

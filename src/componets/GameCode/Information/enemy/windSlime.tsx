@@ -40,10 +40,10 @@ const WindSlimeCommands:EnemyPhysicalAttack[] = [
 export class WindSlime extends Enemy{
     initialize(){
         this.HP = this.HP_MAX = 75;
-        this.PAT = 12;
-        this.MAT = 22;
-        this.PDF = 25;
-        this.MDF = 30;
+        this.PAT = 10;
+        this.MAT = 20;
+        this.PDF = 32;
+        this.MDF = 22;
         this.SP = 20;
         this.exp = 3;
         this.name = "ウィンドスライム";

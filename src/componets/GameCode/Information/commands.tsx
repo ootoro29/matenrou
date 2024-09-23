@@ -1,5 +1,5 @@
 import { calDamage, calHit } from "../functions/damage";
-import { AdventureEventArea, CancelTransformAdventureEventArea, HPHeelAdventureEventArea, NormalAdventureEventArea, TransformAdventureEventArea, UseItemAdventureEventArea } from "../parts/area/adventureEventArea";
+import { AdventureEventArea, CancelTransformAdventureEventArea, HPHeelAdventureEventArea, MPHeelAdventureEventArea, NormalAdventureEventArea, TransformAdventureEventArea, UseItemAdventureEventArea } from "../parts/area/adventureEventArea";
 import { BattleEventArea, CancelTransformBattleEventArea, EnemyHPHeelBattleEventArea, EPABattleEventArea, EPAShieldBattleEventArea, HPHeelBattleEventArea, MPHeelBattleEventArea, NormalBattleEventArea, PlayerBattleMATStageChange, PlayerBattleMDFStageChange, PlayerBattlePATStageChange, PlayerBattlePDFStageChange, PlayerBattleSPStageChange, PMABattleEventArea, PPABattleEventArea, ShieldBattleEventArea, ShieldBreakBattleEventArea, TransformBattleEventArea, UseItemBattleEventArea } from "../parts/area/battleEventArea";
 import AdventureEventAction from "../scenes/actions/adventureEventAction";
 import BattleEventAction from "../scenes/actions/battleEventAction";
@@ -286,7 +286,19 @@ export abstract class PlayerItemMPHeel extends Command {
         return ans;
     }
     doAdventureCommand(battle: AdventureScene, scene: AdventureEventAction): AdventureEventArea[] {
-        return []
+        if(!battle.player)return[];
+        let item = battle.player.Item?.battleItemList[this.index];
+        if(!item)return[];
+        let ans:AdventureEventArea[] = []
+        let imageInfo = {key:`${this.key}`,image:`${this.path}.png`};
+        if(item.count > 0){
+            ans.push(new UseItemAdventureEventArea(scene,item));
+            ans.push(new MPHeelAdventureEventArea(scene,battle.player,this.power));
+        }else{
+            ans.push(new NormalAdventureEventArea(scene,`プレイヤーは${this.name}を使用した!`));
+            ans.push(new NormalAdventureEventArea(scene,`…しかしもう${this.name}を持っていなかった！`));
+        }
+        return ans;
     }
 }
 

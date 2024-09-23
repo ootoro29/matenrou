@@ -5,9 +5,9 @@ import { FireShield, GroundShield, IceShield, NormalShield, ThunderShield, WindS
 export class FireBall extends PlayerMagicalAttack{
     initialize(): void {
         this.name = "ファイアーボール";
-        this.mp = 30;
+        this.mp = 45;
         this.mei = 100;
-        this.power = 40;
+        this.power = 100;
         this.description = "火の玉をぶつけて攻撃する。確率で火傷ダメージ";
     }
 }
@@ -15,9 +15,9 @@ export class FireBall extends PlayerMagicalAttack{
 export class IceWorld extends PlayerMagicalAttack{
     initialize(): void {
         this.name = "アイスワールド";
-        this.mp = 30;
+        this.mp = 45;
         this.mei = 100;
-        this.power = 40;
+        this.power = 100;
         this.description = "空間を凍てつかせる。確率で魔法の攻撃力低下";
     }
 }
@@ -25,9 +25,9 @@ export class IceWorld extends PlayerMagicalAttack{
 export class Spark extends PlayerMagicalAttack{
     initialize(): void {
         this.name = "スパーク";
-        this.mp = 30;
+        this.mp = 45;
         this.mei = 100;
-        this.power = 40;
+        this.power = 100;
         this.description = "電撃を発生させる。確率で速度低下";
     }
 }
@@ -35,9 +35,9 @@ export class Spark extends PlayerMagicalAttack{
 export class Tornado extends PlayerMagicalAttack{
     initialize(): void {
         this.name = "トルネード";
-        this.mp = 30;
+        this.mp = 45;
         this.mei = 100;
-        this.power = 40;
+        this.power = 100;
         this.description = "竜巻を発生させ。確率で物理の攻撃力低下";
     }
 }
@@ -45,9 +45,9 @@ export class Tornado extends PlayerMagicalAttack{
 export class StoneStar extends PlayerMagicalAttack{
     initialize(): void {
         this.name = "ストーンスター";
-        this.mp = 30;
+        this.mp = 45;
         this.mei = 100;
-        this.power = 40;
+        this.power = 100;
         this.description = "星型の石をいくつも投げ飛ばす。確率で命中低下";
     }
 }

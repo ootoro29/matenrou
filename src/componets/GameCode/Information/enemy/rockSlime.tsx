@@ -41,9 +41,9 @@ export class RockSlime extends Enemy{
     initialize(){
         this.HP = this.HP_MAX = 95;
         this.PAT = 15;
-        this.MAT = 25;
+        this.MAT = 22;
         this.PDF = 50;
-        this.MDF = 21;
+        this.MDF = 16;
         this.SP = 11;
         this.exp = 3;
         this.name = "ロックスライム";

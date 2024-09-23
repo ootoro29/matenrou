@@ -1,5 +1,5 @@
 import { Command } from "../commands";
-import { HPDrinkCommand } from "../playerItemCommands";
+import { HPDrinkCommand, HPTankCommand, MPBinCommand, MPDrinkCommand, MPTankCommand } from "../playerItemCommands";
 import {Item } from "./item";
 
 export class HPDrink extends Item {
@@ -20,7 +20,7 @@ export class HPTank extends Item {
         this.description = "HPを300回復する。";
     }
     genCommand(): Command {
-        return new HPDrinkCommand();
+        return new HPTankCommand();
     }
 }
 
@@ -31,7 +31,7 @@ export class MPBin extends Item {
         this.description = "MPを50回復する。";
     }
     genCommand(): Command {
-        return new HPDrinkCommand();
+        return new MPBinCommand();
     }
 }
 
@@ -42,7 +42,7 @@ export class MPDrink extends Item {
         this.description = "MPを150回復する。";
     }
     genCommand(): Command {
-        return new HPDrinkCommand();
+        return new MPDrinkCommand();
     }
 }
 
@@ -53,6 +53,6 @@ export class MPTank extends Item {
         this.description = "MPを400回復する。";
     }
     genCommand(): Command {
-        return new HPDrinkCommand();
+        return new MPTankCommand();
     }
 }

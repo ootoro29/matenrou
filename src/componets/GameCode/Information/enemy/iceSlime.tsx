@@ -47,9 +47,9 @@ export class IceSlime extends Enemy{
     initialize(){
         this.HP = this.HP_MAX = 85;
         this.PAT = 10;
-        this.MAT = 25;
+        this.MAT = 20;
         this.PDF = 32;
-        this.MDF = 27;
+        this.MDF = 23;
         this.SP = 9;
         this.exp = 3;
         this.name = "アイスライム";
