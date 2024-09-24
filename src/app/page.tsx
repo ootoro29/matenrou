@@ -30,7 +30,7 @@ export default async function Home() {
       if(data.length != 0)return;
       const {error} = await supabase
       .from("GameInfo")
-      .insert({stamina:5,lv:1,exp:0,uid:user.id,})
+      .insert({stamina:9999999999,lv:1,exp:0,uid:user.id,})
       console.log(error);
     }
   }
