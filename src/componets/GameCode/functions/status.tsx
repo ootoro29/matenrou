@@ -30,7 +30,7 @@ export function calTransformSP(lv:number):number{
     return Math.floor(40+lv*1.65+0.092*lv*lv);
 }
 export function calHP(lv:number):number{
-    return Math.floor(100+0.01*lv+0.1*lv*lv);
+    return Math.floor(99+1.2*lv+0.25*lv*lv);
 }
 export function calMP(lv:number):number{
     return Math.floor(57+3*lv+0.2*lv*lv);
@@ -39,7 +39,7 @@ export function calCP(lv:number):number{
     return Math.floor(29+1.5*lv+0.102*lv*lv);
 }
 export function calEXP(lv:number):number{
-    return Math.floor(0.2*lv*lv*lv+1.5*lv*lv+lv*7.5);
+    return Math.floor(0.05*lv*lv*lv+0.6*lv*lv+lv*2+3);
 }
 export function calStage(stage:number):number{
     if(stage < 0)return 6/(6-stage);

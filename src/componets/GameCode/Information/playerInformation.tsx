@@ -180,11 +180,12 @@ export default class PlayerINFO {
   }
 
   heel(){
-    this.CP *= 0.9;
+    this.CP *= 0.8;
     if(this.transform){
-      this.MP += this.MP_MAX/64;
+      this.MP += this.MP_MAX/32;
+      this.HP += this.HP_MAX/32;
     }else{
-      this.MP += this.MP_MAX/16;
+      this.MP += this.MP_MAX/8;
     }
     if(this.MP > this.MP_MAX)this.MP = this.MP_MAX;
     updateMatchInfoStatus(this.uid,this.HP,this.MP,this.CP,this.PATstage,this.MATstage,this.PDFstage,this.MDFstage,this.SPstage,this.toData());
