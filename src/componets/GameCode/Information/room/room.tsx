@@ -31,7 +31,6 @@ export abstract class Room {
     }
     findRoomKeyEvent(scene:searchAction,p:number):NormalSearchArea[] | null{
         let rnd = Math.random()*100;
-        console.log(rnd);
         if(rnd < p){
             let index = DPN(this.PRooms);
             if(this.PRooms[index] != -1 &&this.PRooms[index] != 0 && index != -1){

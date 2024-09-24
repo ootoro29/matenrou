@@ -21,7 +21,6 @@ export class BattleAnalizeArea extends Area{
         super(scene);
         this.parents = scene;
         this.create();
-        console.log(this.parents.actionOrder);
     }
     initialize(): void {
         if(!this.parents)return;

@@ -39,6 +39,7 @@ export default async function Home() {
     PlayerCheck();
     GameInfoCheck();
   }
+
   
   return (
     <div className = {styles.top_page}>

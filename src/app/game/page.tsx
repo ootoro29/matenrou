@@ -45,7 +45,14 @@ export default function Game(){
         if(!user)return;
         const fetchPlayer = async () => {
           const {data,error} = await supabase.from("Player").select("*").eq("uid",`${user.id}`);
-          if(error)return;
+          if(error){
+            router.push("/");
+            return;
+          }
+          if(data.length == 0){
+            router.push("/");
+            return;
+          }
           setPlayer(data[0] as Player);
         };
         fetchPlayer();
