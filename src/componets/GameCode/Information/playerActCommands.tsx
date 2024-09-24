@@ -26,7 +26,7 @@ export class TransformMagicalGirl extends Transform{
     initialize(): void {
         this.name = "魔法少女に変身";
         this.mp = 1;
-        this.description = "魔法少女に変身する";
+        this.description = "魔法少女に変身する (消費MP:1)";
     }
 }
 

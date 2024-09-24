@@ -180,7 +180,7 @@ export default class PlayerINFO {
   }
 
   heel(){
-    this.CP *= 0.98;
+    this.CP *= 0.9;
     if(this.transform){
       this.MP += this.MP_MAX/64;
     }else{

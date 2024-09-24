@@ -96,7 +96,7 @@ export class B4Room extends Room {
         this.name = "B-4";
     }
     genAdvanceRoomEvent(scene: AdventureThinking): advanceRoomEventArea[] {
-        return[];
+        return AdvanceEvent.BossIshisuEvent(scene);
     }
     initialize(): void {
         this.nextRooms = [new B3Room(),new B5Room()];

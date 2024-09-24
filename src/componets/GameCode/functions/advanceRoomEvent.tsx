@@ -9,6 +9,7 @@ import { FroFox } from "../Information/enemy/FroFox";
 import { GoastMant } from "../Information/enemy/GoastMant";
 import { Golem } from "../Information/enemy/Golem";
 import { IceSlime } from "../Information/enemy/iceSlime";
+import { Ishisu } from "../Information/enemy/Ishisu";
 import { KarakuriGoemon } from "../Information/enemy/KarakuriGoemon";
 import { Luca } from "../Information/enemy/Luca";
 import { Myotamoru } from "../Information/enemy/Myotamoru";
@@ -145,5 +146,19 @@ export function GoastMantEvent(scene:AdventureThinking){
 export function StarKnightGirlMantEvent(scene:AdventureThinking){
     return [
         new AdvanceEvent.BattleAdvanceRoomArea(scene,new StarKnightGirl()),
+    ]
+}
+
+export function BossIshisuEvent(scene:AdventureThinking){
+    return [
+        new AdvanceEvent.NormalAdvanceRoomArea(scene,"──────────その部屋からは溢れんばかりの生命力を感じた。"),
+        new AdvanceEvent.NormalAdvanceRoomArea(scene,"壁にはツタが張り巡らされ侵食している。部屋の中心には金髪エルフの少女。"),
+        new AdvanceEvent.NormalAdvanceRoomArea(scene,"そっと彼女が口を開く。"),
+        new AdvanceEvent.NormalAdvanceRoomArea(scene,"「私の名前はイシス。普段は自室で祈りを捧げてるの」"),
+        new AdvanceEvent.NormalAdvanceRoomArea(scene,"「でも今回は家主に侵入者がどんな子か調べてほしいって頼まれちゃったんだ。」"),
+        new AdvanceEvent.NormalAdvanceRoomArea(scene,"そう言うと彼女はジッとこちらを見つめてくる。"),
+        new AdvanceEvent.NormalAdvanceRoomArea(scene,"「ふ～ん。あなた、魔法少女になれるのね。……それも、ちょっと歪に。」"),
+        new AdvanceEvent.NormalAdvanceRoomArea(scene,"「…………これ以上のことは戦ってみないと分からないなぁ。」"),
+        new AdvanceEvent.BattleAdvanceRoomArea(scene,new Ishisu()),
     ]
 }

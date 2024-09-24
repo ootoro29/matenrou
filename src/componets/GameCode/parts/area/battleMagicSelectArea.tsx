@@ -66,7 +66,7 @@ export class BattleMagicSelectArea extends Area{
     setIndex(index:number){
         if(index <= -1 || index >= PlayerMagCommands.length)return;
         this.index = index;
-        this.description?.setText(`${PlayerMagCommands[index].name}\n ${PlayerMagCommands[index].description}`);
+        this.description?.setText(`${PlayerMagCommands[index].name}  (消費MP:${PlayerMagCommands[index].mp}) \n ${PlayerMagCommands[index].description}`);
         for(let i = 0; i < 5; i++){
             const idx = this.index - 1 + i
             let label = "";

@@ -71,10 +71,11 @@ export abstract class EnemyPhysicalAttack extends Command {
         const status = battle.player.getBattleStatus();
         const Estatus = battle.enemy.getStatus();
         const damage:number = calDamage(Estatus.PAT,status.status.PDF,this.power);
+        const Sdamage:number = calDamage(Estatus.MAT,battle.player.transform_status.PDF,this.power);
         const hitShield = battle.player.Shield?.selectShield();
         if(hitShield){
-            ans.push(new EPAShieldBattleEventArea(scene,hitShield,damage));
-            if(hitShield.HP <= damage){
+            ans.push(new EPAShieldBattleEventArea(scene,hitShield,Sdamage));
+            if(hitShield.HP <= Sdamage){
                 ans.push(new NormalBattleEventArea(scene,`${hitShield.name}は崩壊した`));
             }
         }else if(calHit(Estatus.SP,status.status.SP,this.mei)){
@@ -127,10 +128,11 @@ export abstract class EnemyMagicalAttack extends Command {
         const status = battle.player.getBattleStatus();
         const Estatus = battle.enemy.getStatus();
         const damage:number = calDamage(Estatus.MAT,status.status.MDF,this.power);
+        const Sdamage:number = calDamage(Estatus.MAT,battle.player.transform_status.MDF,this.power);
         const hitShield = battle.player.Shield?.selectShield();
         if(hitShield){
-            ans.push(new EPAShieldBattleEventArea(scene,hitShield,damage));
-            if(hitShield.HP <= damage){
+            ans.push(new EPAShieldBattleEventArea(scene,hitShield,Sdamage));
+            if(hitShield.HP <= Sdamage){
                 ans.push(new NormalBattleEventArea(scene,`${hitShield.name}は崩壊した`));
             }
         }else if(calHit(Estatus.SP,status.status.SP,this.mei)){
@@ -306,7 +308,6 @@ export abstract class PlayerMagicalShield extends Command {
     shield?:Shield;
     doBattleCommand(battle:BattleScene,scene:BattleEventAction): BattleEventArea[] {
         if(!battle.player)return[];
-        if(!this.shield)return[];
         let ans:BattleEventArea[] = []
         ans.push(new NormalBattleEventArea(scene,`プレイヤーの${this.name}!`));
         const status = battle.player.getBattleStatus();
@@ -317,13 +318,14 @@ export abstract class PlayerMagicalShield extends Command {
         }else if(!battle.player.Shield?.canSetShield()){
             ans.push(new NormalBattleEventArea(scene,`しかしシールドはこれ以上展開できない！`));
         }else{
-            ans.push(new ShieldBattleEventArea(scene,battle.player,this.mp,this.shield))
+            ans.push(new ShieldBattleEventArea(scene,battle.player,this.mp,this.genSheild()))
         }
         return ans;
     }
     doAdventureCommand(battle: AdventureScene, scene: AdventureEventAction): AdventureEventArea[] {
         return []
     }
+    abstract genSheild():Shield;
 }
 
 export abstract class EnemyMagicalPATAttack extends Command {
