@@ -183,7 +183,7 @@ export default class PlayerINFO {
     this.CP *= 0.8;
     if(this.transform){
       this.MP += this.MP_MAX/32;
-      this.HP += this.HP_MAX/32;
+      this.HP += this.HP_MAX/64;
     }else{
       this.MP += this.MP_MAX/8;
     }
