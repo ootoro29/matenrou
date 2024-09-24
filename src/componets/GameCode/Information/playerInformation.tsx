@@ -233,6 +233,7 @@ export default class PlayerINFO {
   resetTransForm(){
     if(!this.transform)return;
     this.transform = false;
+    this.CP = 0;
     updateMatchInfoStatus(this.uid,this.HP,this.MP,this.CP,this.PATstage,this.MATstage,this.PDFstage,this.MDFstage,this.SPstage,this.toData());
   }
   resetPoison(){
