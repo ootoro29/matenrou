@@ -1,7 +1,7 @@
 import { PComand } from "@/types/game";
 import { Enemy } from "./enemy";
 import { EnemyProbCommand, ProbCommand } from "../prob_commands";
-import { Command, EnemyMagicalAttack, EnemyMagicalParugoa, EnemyMagicalHPSuc, EnemyMagicalLockSPAttack, EnemyMagicalPray, EnemyMagicalSPAttack, EnemyPhysicalAttack } from "../commands";
+import { Command, EnemyMagicalAttack, EnemyMagicalHPSuc, EnemyMagicalLockSPAttack, EnemyMagicalParugoa, EnemyMagicalPray, EnemyMagicalSPAttack, EnemyPhysicalAttack } from "../commands";
 import BattleScene from "../../scenes/battle";
 import { EnemyBattleSPStageChange } from "../../parts/area/battleEventArea";
 
@@ -75,6 +75,11 @@ export class Ishisu extends Enemy{
             new EnemyProbCommand([IceSlimeCommands[0],IceSlimeCommands[1]],{prob:[30,70]}),
             new EnemyProbCommand([IceSlimeCommands[0],IceSlimeCommands[1]],{prob:[45,55]}),
             new EnemyProbCommand([IceSlimeCommands[1],IceSlimeCommands[2]],{prob:[70,30]}),
+            new EnemyProbCommand([IceSlimeCommands[1],IceSlimeCommands[2]],{prob:[30,70]}),
+            new EnemyProbCommand([IceSlimeCommands[2],IceSlimeCommands[3],IceSlimeCommands[4]],{prob:[40,30,30]}),
+            new EnemyProbCommand([IceSlimeCommands[0],IceSlimeCommands[3],IceSlimeCommands[4]],{prob:[60,20,10]}),
+            new EnemyProbCommand([IceSlimeCommands[1],IceSlimeCommands[3]],{prob:[60,40]}),
+            new EnemyProbCommand([IceSlimeCommands[4],IceSlimeCommands[5]],{prob:[70,30]}),
         ];
     }
     load(scene: BattleScene): void {
