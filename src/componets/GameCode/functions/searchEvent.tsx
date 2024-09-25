@@ -76,6 +76,51 @@ export function FindSPCrystalEvent(scene:searchAction){
     ]
 }
 
+export function CursePAT(scene:searchAction) {
+    if(!scene.Parents?.player)return [];
+    const player = scene.Parents?.player;
+    if(!player.Item)return [];
+    return [
+        new SearchEvent.CursePATSearchEventArea(scene,player)
+    ]
+}
+
+export function CurseMAT(scene:searchAction) {
+    if(!scene.Parents?.player)return [];
+    const player = scene.Parents?.player;
+    if(!player.Item)return [];
+    return [
+        new SearchEvent.CurseMATSearchEventArea(scene,player)
+    ]
+}
+
+export function CursePDF(scene:searchAction) {
+    if(!scene.Parents?.player)return [];
+    const player = scene.Parents?.player;
+    if(!player.Item)return [];
+    return [
+        new SearchEvent.CursePDFSearchEventArea(scene,player)
+    ]
+}
+
+export function CurseMDF(scene:searchAction) {
+    if(!scene.Parents?.player)return [];
+    const player = scene.Parents?.player;
+    if(!player.Item)return [];
+    return [
+        new SearchEvent.CurseMDFSearchEventArea(scene,player)
+    ]
+}
+
+export function CurseSP(scene:searchAction) {
+    if(!scene.Parents?.player)return [];
+    const player = scene.Parents?.player;
+    if(!player.Item)return [];
+    return [
+        new SearchEvent.CurseSPSearchEventArea(scene,player)
+    ]
+}
+
 export function BattleSlimeEvent(scene:searchAction){
     return [
         new SearchEvent.BattleSearchArea(scene,new BattleSlime(),{key:"battleSlime_appear",image:"/assets/enemy/battleSlime/出現イベント.png"})

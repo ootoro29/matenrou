@@ -30,7 +30,7 @@ export abstract class Room {
             return null;
         }
     }
-    findRoomKeyEvent(scene:searchAction,p:number):NormalSearchArea[] | null{
+    findRoomKeyEvent(scene:searchAction,p:number):searchArea[] | null{
         let rnd = Math.random()*100;
         if(rnd < p){
             let index = DPN(this.PRooms);
@@ -42,7 +42,7 @@ export abstract class Room {
         }
         return null;
     }
-    findItemEvent(scene:searchAction,p:number):NormalSearchArea[] | null{
+    findItemEvent(scene:searchAction,p:number):searchArea[] | null{
         let rnd = Math.random()*100;
         if(rnd < p){
             let index = Math.floor(Math.random()*5);
@@ -51,6 +51,19 @@ export abstract class Room {
             if(index == 2)return SearchEvent.FindPDFCrystalEvent(scene);
             if(index == 3)return SearchEvent.FindMDFCrystalEvent(scene);
             if(index == 4)return SearchEvent.FindSPCrystalEvent(scene);
+        }
+        return null;
+    }
+
+    CurseEvent(scene:searchAction,p:number):searchArea[] | null{
+        let rnd = Math.random()*100;
+        if(rnd < p){
+            let index = Math.floor(Math.random()*5);
+            if(index == 0)return SearchEvent.CursePAT(scene);
+            if(index == 1)return SearchEvent.CurseMAT(scene);
+            if(index == 2)return SearchEvent.CursePDF(scene);
+            if(index == 3)return SearchEvent.CurseMDF(scene);
+            if(index == 4)return SearchEvent.CurseSP(scene);
         }
         return null;
     }
