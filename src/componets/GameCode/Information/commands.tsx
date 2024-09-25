@@ -1,5 +1,5 @@
 import { calDamage, calHit } from "../functions/damage";
-import { AdventureEventArea, CancelTransformAdventureEventArea, HPHeelAdventureEventArea, MPHeelAdventureEventArea, NormalAdventureEventArea, TransformAdventureEventArea, UseItemAdventureEventArea } from "../parts/area/adventureEventArea";
+import { AdventureEventArea, CancelTransformAdventureEventArea, HPHeelAdventureEventArea, MPHeelAdventureEventArea, NormalAdventureEventArea, PlayerAdventureMATStageChange, PlayerAdventureMDFStageChange, PlayerAdventurePATStageChange, PlayerAdventurePDFStageChange, PlayerAdventureSPStageChange, TransformAdventureEventArea, UseItemAdventureEventArea } from "../parts/area/adventureEventArea";
 import { BattleEventArea, CancelTransformBattleEventArea, EnemyBattleMATStageChange, EnemyHPHeelBattleEventArea, EnemyIshisuPray, EPABattleEventArea, EPAShieldBattleEventArea, HPHeelBattleEventArea, MPHeelBattleEventArea, NormalBattleEventArea, PlayerBattleIsLock, PlayerBattleMATStageChange, PlayerBattleMDFStageChange, PlayerBattlePATStageChange, PlayerBattlePDFStageChange, PlayerBattleSPStageChange, PMABattleEventArea, PPABattleEventArea, ShieldBattleEventArea, ShieldBreakBattleEventArea, TransformBattleEventArea, UseItemBattleEventArea } from "../parts/area/battleEventArea";
 import AdventureEventAction from "../scenes/actions/adventureEventAction";
 import BattleEventAction from "../scenes/actions/battleEventAction";
@@ -493,5 +493,175 @@ export abstract class EnemyMagicalParugoa extends Command {
     }
     doAdventureCommand(adventure: AdventureScene, scene: AdventureEventAction): AdventureEventArea[] {
         return [];
+    }
+}
+
+export abstract class PlayerItemPATUp extends Command {
+    index = -1;
+    doBattleCommand(battle:BattleScene,scene:BattleEventAction): BattleEventArea[] {
+        if(!battle.player)return[];
+        let item = battle.player.Item?.battleItemList[this.index];
+        if(!item)return[];
+        let ans:BattleEventArea[] = []
+        let imageInfo = {key:`${this.key}`,image:`${this.path}.png`};
+        if(item.count > 0){
+            ans.push(new UseItemBattleEventArea(scene,item));
+            ans.push(new PlayerBattlePATStageChange(scene,battle.player,1));
+        }else{
+            ans.push(new NormalBattleEventArea(scene,`プレイヤーは${this.name}を使用した!`));
+            ans.push(new NormalBattleEventArea(scene,`…しかしもう${this.name}を持っていなかった！`));
+        }
+        return ans;
+    }
+    doAdventureCommand(battle: AdventureScene, scene: AdventureEventAction): AdventureEventArea[] {
+        if(!battle.player)return[];
+        let item = battle.player.Item?.battleItemList[this.index];
+        if(!item)return[];
+        let ans:AdventureEventArea[] = []
+        let imageInfo = {key:`${this.key}`,image:`${this.path}.png`};
+        if(item.count > 0){
+            ans.push(new UseItemAdventureEventArea(scene,item));
+            ans.push(new PlayerAdventurePATStageChange(scene,battle.player,1));
+        }else{
+            ans.push(new NormalAdventureEventArea(scene,`プレイヤーは${this.name}を使用した!`));
+            ans.push(new NormalAdventureEventArea(scene,`…しかしもう${this.name}を持っていなかった！`));
+        }
+        return ans;
+    }
+}
+
+export abstract class PlayerItemMATUp extends Command {
+    index = -1;
+    doBattleCommand(battle:BattleScene,scene:BattleEventAction): BattleEventArea[] {
+        if(!battle.player)return[];
+        let item = battle.player.Item?.battleItemList[this.index];
+        if(!item)return[];
+        let ans:BattleEventArea[] = []
+        let imageInfo = {key:`${this.key}`,image:`${this.path}.png`};
+        if(item.count > 0){
+            ans.push(new UseItemBattleEventArea(scene,item));
+            ans.push(new PlayerBattleMATStageChange(scene,battle.player,1));
+        }else{
+            ans.push(new NormalBattleEventArea(scene,`プレイヤーは${this.name}を使用した!`));
+            ans.push(new NormalBattleEventArea(scene,`…しかしもう${this.name}を持っていなかった！`));
+        }
+        return ans;
+    }
+    doAdventureCommand(battle: AdventureScene, scene: AdventureEventAction): AdventureEventArea[] {
+        if(!battle.player)return[];
+        let item = battle.player.Item?.battleItemList[this.index];
+        if(!item)return[];
+        let ans:AdventureEventArea[] = []
+        let imageInfo = {key:`${this.key}`,image:`${this.path}.png`};
+        if(item.count > 0){
+            ans.push(new UseItemAdventureEventArea(scene,item));
+            ans.push(new PlayerAdventureMATStageChange(scene,battle.player,1));
+        }else{
+            ans.push(new NormalAdventureEventArea(scene,`プレイヤーは${this.name}を使用した!`));
+            ans.push(new NormalAdventureEventArea(scene,`…しかしもう${this.name}を持っていなかった！`));
+        }
+        return ans;
+    }
+}
+
+export abstract class PlayerItemPDFUp extends Command {
+    index = -1;
+    doBattleCommand(battle:BattleScene,scene:BattleEventAction): BattleEventArea[] {
+        if(!battle.player)return[];
+        let item = battle.player.Item?.battleItemList[this.index];
+        if(!item)return[];
+        let ans:BattleEventArea[] = []
+        let imageInfo = {key:`${this.key}`,image:`${this.path}.png`};
+        if(item.count > 0){
+            ans.push(new UseItemBattleEventArea(scene,item));
+            ans.push(new PlayerBattlePDFStageChange(scene,battle.player,1));
+        }else{
+            ans.push(new NormalBattleEventArea(scene,`プレイヤーは${this.name}を使用した!`));
+            ans.push(new NormalBattleEventArea(scene,`…しかしもう${this.name}を持っていなかった！`));
+        }
+        return ans;
+    }
+    doAdventureCommand(battle: AdventureScene, scene: AdventureEventAction): AdventureEventArea[] {
+        if(!battle.player)return[];
+        let item = battle.player.Item?.battleItemList[this.index];
+        if(!item)return[];
+        let ans:AdventureEventArea[] = []
+        let imageInfo = {key:`${this.key}`,image:`${this.path}.png`};
+        if(item.count > 0){
+            ans.push(new UseItemAdventureEventArea(scene,item));
+            ans.push(new PlayerAdventurePDFStageChange(scene,battle.player,1));
+        }else{
+            ans.push(new NormalAdventureEventArea(scene,`プレイヤーは${this.name}を使用した!`));
+            ans.push(new NormalAdventureEventArea(scene,`…しかしもう${this.name}を持っていなかった！`));
+        }
+        return ans;
+    }
+}
+
+export abstract class PlayerItemMDFUp extends Command {
+    index = -1;
+    doBattleCommand(battle:BattleScene,scene:BattleEventAction): BattleEventArea[] {
+        if(!battle.player)return[];
+        let item = battle.player.Item?.battleItemList[this.index];
+        if(!item)return[];
+        let ans:BattleEventArea[] = []
+        let imageInfo = {key:`${this.key}`,image:`${this.path}.png`};
+        if(item.count > 0){
+            ans.push(new UseItemBattleEventArea(scene,item));
+            ans.push(new PlayerBattleMDFStageChange(scene,battle.player,1));
+        }else{
+            ans.push(new NormalBattleEventArea(scene,`プレイヤーは${this.name}を使用した!`));
+            ans.push(new NormalBattleEventArea(scene,`…しかしもう${this.name}を持っていなかった！`));
+        }
+        return ans;
+    }
+    doAdventureCommand(battle: AdventureScene, scene: AdventureEventAction): AdventureEventArea[] {
+        if(!battle.player)return[];
+        let item = battle.player.Item?.battleItemList[this.index];
+        if(!item)return[];
+        let ans:AdventureEventArea[] = []
+        let imageInfo = {key:`${this.key}`,image:`${this.path}.png`};
+        if(item.count > 0){
+            ans.push(new UseItemAdventureEventArea(scene,item));
+            ans.push(new PlayerAdventureMDFStageChange(scene,battle.player,1));
+        }else{
+            ans.push(new NormalAdventureEventArea(scene,`プレイヤーは${this.name}を使用した!`));
+            ans.push(new NormalAdventureEventArea(scene,`…しかしもう${this.name}を持っていなかった！`));
+        }
+        return ans;
+    }
+}
+
+export abstract class PlayerItemSPUp extends Command {
+    index = -1;
+    doBattleCommand(battle:BattleScene,scene:BattleEventAction): BattleEventArea[] {
+        if(!battle.player)return[];
+        let item = battle.player.Item?.battleItemList[this.index];
+        if(!item)return[];
+        let ans:BattleEventArea[] = []
+        let imageInfo = {key:`${this.key}`,image:`${this.path}.png`};
+        if(item.count > 0){
+            ans.push(new UseItemBattleEventArea(scene,item));
+            ans.push(new PlayerBattleSPStageChange(scene,battle.player,1));
+        }else{
+            ans.push(new NormalBattleEventArea(scene,`プレイヤーは${this.name}を使用した!`));
+            ans.push(new NormalBattleEventArea(scene,`…しかしもう${this.name}を持っていなかった！`));
+        }
+        return ans;
+    }
+    doAdventureCommand(battle: AdventureScene, scene: AdventureEventAction): AdventureEventArea[] {
+        if(!battle.player)return[];
+        let item = battle.player.Item?.battleItemList[this.index];
+        if(!item)return[];
+        let ans:AdventureEventArea[] = []
+        let imageInfo = {key:`${this.key}`,image:`${this.path}.png`};
+        if(item.count > 0){
+            ans.push(new UseItemAdventureEventArea(scene,item));
+            ans.push(new PlayerAdventureSPStageChange(scene,battle.player,1));
+        }else{
+            ans.push(new NormalAdventureEventArea(scene,`プレイヤーは${this.name}を使用した!`));
+            ans.push(new NormalAdventureEventArea(scene,`…しかしもう${this.name}を持っていなかった！`));
+        }
+        return ans;
     }
 }

@@ -1,5 +1,5 @@
 import { Command } from "../commands";
-import { HPDrinkCommand, HPTankCommand, MPBinCommand, MPDrinkCommand, MPTankCommand } from "../playerItemCommands";
+import { HPDrinkCommand, HPTankCommand, MATCrystalCommand, MDFCrystalCommand, MPBinCommand, MPDrinkCommand, MPTankCommand, PATCrystalCommand, PDFCrystalCommand, SPCrystalCommand } from "../playerItemCommands";
 import {Item } from "./item";
 
 export class HPDrink extends Item {
@@ -54,5 +54,60 @@ export class MPTank extends Item {
     }
     genCommand(): Command {
         return new MPTankCommand();
+    }
+}
+
+export class PATCrystal extends Item {
+    initialize(): void {
+        this.power = 400;
+        this.name = "剛力の結晶";
+        this.description = "PATを1段階上げる";
+    }
+    genCommand(): Command {
+        return new PATCrystalCommand();
+    }
+}
+
+export class MATCrystal extends Item {
+    initialize(): void {
+        this.power = 400;
+        this.name = "魔力の結晶";
+        this.description = "MATを1段階上げる";
+    }
+    genCommand(): Command {
+        return new MATCrystalCommand();
+    }
+}
+
+export class PDFCrystal extends Item {
+    initialize(): void {
+        this.power = 400;
+        this.name = "鉄壁の結晶";
+        this.description = "PDFを1段階上げる";
+    }
+    genCommand(): Command {
+        return new PDFCrystalCommand();
+    }
+}
+
+export class MDFCrystal extends Item {
+    initialize(): void {
+        this.power = 400;
+        this.name = "魔防の結晶";
+        this.description = "MDFを1段階上げる";
+    }
+    genCommand(): Command {
+        return new MDFCrystalCommand();
+    }
+}
+
+export class SPCrystal extends Item {
+    initialize(): void {
+        this.power = 400;
+        this.name = "俊敏の結晶";
+        this.description = "SPを1段階上げる";
+    }
+    genCommand(): Command {
+        return new SPCrystalCommand();
     }
 }
