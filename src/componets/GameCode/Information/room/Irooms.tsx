@@ -20,7 +20,7 @@ export class I1Room extends Room {
         this.PRooms = [0];
     }
     genSearchEvent(scene:searchAction){
-        const ans = this.findRoomKeyEvent(scene,10);
+        const ans = this.findRoomKeyEvent(scene,35);
         if(ans)return ans;
         return SearchEvent.SearchNoneEvent(scene)
     }
@@ -39,7 +39,7 @@ export class I2Room extends Room {
         this.PRooms = [0,0];
     }
     genSearchEvent(scene:searchAction){
-        const ans = this.findRoomKeyEvent(scene,10);
+        const ans = this.findRoomKeyEvent(scene,35);
         if(ans)return ans;
         return SearchEvent.SearchNoneEvent(scene)
     }
@@ -58,7 +58,7 @@ export class I3Room extends Room {
         this.PRooms = [0];
     }
     genSearchEvent(scene:searchAction){
-        const ans = this.findRoomKeyEvent(scene,10);
+        const ans = this.findRoomKeyEvent(scene,35);
         if(ans)return ans;
         return SearchEvent.SearchNoneEvent(scene)
     }
@@ -77,7 +77,7 @@ export class I4Room extends Room {
         this.PRooms = [0,0];
     }
     genSearchEvent(scene:searchAction){
-        const ans = this.findRoomKeyEvent(scene,10);
+        const ans = this.findRoomKeyEvent(scene,35);
         if(ans)return ans;
         return SearchEvent.SearchNoneEvent(scene)
     }
@@ -96,7 +96,7 @@ export class I5Room extends Room {
         this.PRooms = [0,0];
     }
     genSearchEvent(scene:searchAction){
-        const ans = this.findRoomKeyEvent(scene,10);
+        const ans = this.findRoomKeyEvent(scene,35);
         if(ans)return ans;
         return SearchEvent.SearchNoneEvent(scene)
     }
@@ -115,7 +115,7 @@ export class I6Room extends Room {
         this.PRooms = [0,0,0];
     }
     genSearchEvent(scene:searchAction){
-        const ans = this.findRoomKeyEvent(scene,10);
+        const ans = this.findRoomKeyEvent(scene,35);
         if(ans)return ans;
         return SearchEvent.SearchNoneEvent(scene)
     }
@@ -134,7 +134,7 @@ export class I7Room extends Room {
         this.PRooms = [0,0];
     }
     genSearchEvent(scene:searchAction){
-        const ans = this.findRoomKeyEvent(scene,10);
+        const ans = this.findRoomKeyEvent(scene,35);
         if(ans)return ans;
         return SearchEvent.SearchNoneEvent(scene)
     }
@@ -153,7 +153,7 @@ export class I8Room extends Room {
         this.PRooms = [0,0,0];
     }
     genSearchEvent(scene:searchAction){
-        const ans = this.findRoomKeyEvent(scene,10);
+        const ans = this.findRoomKeyEvent(scene,35);
         if(ans)return ans;
         return SearchEvent.SearchNoneEvent(scene)
     }
@@ -172,7 +172,7 @@ export class I9Room extends Room {
         this.PRooms = [0,0];
     }
     genSearchEvent(scene:searchAction){
-        const ans = this.findRoomKeyEvent(scene,10);
+        const ans = this.findRoomKeyEvent(scene,35);
         if(ans)return ans;
         return SearchEvent.SearchNoneEvent(scene)
     }
@@ -191,7 +191,7 @@ export class I10Room extends Room {
         this.PRooms = [0,0,0];
     }
     genSearchEvent(scene:searchAction){
-        const ans = this.findRoomKeyEvent(scene,10);
+        const ans = this.findRoomKeyEvent(scene,35);
         if(ans)return ans;
         return SearchEvent.SearchNoneEvent(scene)
     }
@@ -210,7 +210,7 @@ export class I11Room extends Room {
         this.PRooms = [0,0];
     }
     genSearchEvent(scene:searchAction){
-        const ans = this.findRoomKeyEvent(scene,10);
+        const ans = this.findRoomKeyEvent(scene,35);
         if(ans)return ans;
         return SearchEvent.SearchNoneEvent(scene)
     }
@@ -229,7 +229,7 @@ export class I12Room extends Room {
         this.PRooms = [0,0];
     }
     genSearchEvent(scene:searchAction){
-        const ans = this.findRoomKeyEvent(scene,10);
+        const ans = this.findRoomKeyEvent(scene,35);
         if(ans)return ans;
         return SearchEvent.SearchNoneEvent(scene)
     }
@@ -248,7 +248,7 @@ export class I13Room extends Room {
         this.PRooms = [0,0];
     }
     genSearchEvent(scene:searchAction){
-        const ans = this.findRoomKeyEvent(scene,10);
+        const ans = this.findRoomKeyEvent(scene,35);
         if(ans)return ans;
         return SearchEvent.SearchNoneEvent(scene)
     }
@@ -267,7 +267,7 @@ export class I14Room extends Room {
         this.PRooms = [0];
     }
     genSearchEvent(scene:searchAction){
-        const ans = this.findRoomKeyEvent(scene,10);
+        const ans = this.findRoomKeyEvent(scene,35);
         if(ans)return ans;
         return SearchEvent.SearchNoneEvent(scene)
     }
