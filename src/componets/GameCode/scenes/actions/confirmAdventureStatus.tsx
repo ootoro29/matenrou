@@ -19,7 +19,7 @@ export default class ConfirmAdventureStatus extends AdventureActionScene {
         if(!this.MAIN.PINF)return;
         const graphics = this.add.graphics();
         const data:BattleStatus = this.MAIN.PINF.getBattleStatus();
-        this.statusArea = new confirmBattleStatusArea(this,data);
+        this.statusArea = new confirmBattleStatusArea(this,this.MAIN.PINF);
     }
     update(time: number, delta: number): void {
         if(!this.BM)return;

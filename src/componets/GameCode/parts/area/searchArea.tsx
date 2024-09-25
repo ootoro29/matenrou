@@ -4,6 +4,7 @@ import { Area, EventArea } from "../area";
 import BBCodeText from "phaser3-rex-plugins/plugins/bbcodetext";
 import { areaManager } from "../areaManager";
 import { Enemy } from "../../Information/enemy/enemy";
+import { Item } from "../../Information/item/item";
 
 export class searchAreaManager extends areaManager{
     AreaList?:searchArea[];
@@ -16,6 +17,17 @@ export class searchAreaManager extends areaManager{
         if(this.isEmpty())return null;
         return this.AreaList[this.index];
     }
+
+    nextArea(){
+        if(!this.AreaList)return;
+        if(this.index >= this.AreaList.length)return;
+        if(this.index >= 0)this.AreaList[this.index].setVisible(false);
+        this.index++;
+        if(this.index < this.AreaList.length) {
+            this.AreaList[this.index].setVisible(true);
+        }
+        this.AreaList[this.index].appearance();
+    }
 }
 
 
@@ -26,6 +38,7 @@ export abstract class searchArea extends EventArea{
     }
     abstract genSelections(): string[];
     abstract opeClick(click:number): void;
+    abstract appearance(): void;
 }
 
 export class NormalSearchArea extends searchArea {
@@ -42,6 +55,9 @@ export class NormalSearchArea extends searchArea {
                 this.parents.changeBMText();
             }
         }
+    }
+    appearance(): void {
+        
     }
 }
 
@@ -66,5 +82,35 @@ export class BattleSearchArea extends searchArea {
                 alert("設定ミス(開発者にお問い合わせください)");
             }
         }
+    }
+    appearance(): void {
+        
+    }
+}
+
+export class FindItemSearchEventArea extends searchArea {
+    item?:Item
+    constructor(scene:searchAction,item:Item,{key="",image = ""} = {}){
+        const discription = `プレイヤーは${item.name}を使用した！`;
+        super(scene,discription,{key:key,image:image});
+        this.item = item;
+    }
+    genSelections(): string[] {
+        return ["OK","X","X","X","X","X"];
+    }
+    opeClick(click: number): void {
+        if(!this.parents)return;
+        if(click == 0){
+            if(this.parents.AM?.isLast()){
+                this.parents.scene.start("adventureThinking",{main:this.parents.MAIN,adventure:this.parents.Parents});
+            }else{
+                this.parents.AM?.nextArea();
+                this.parents.changeBMText();
+            }
+        }
+    }
+    appearance(): void { 
+        if(!this.item)return;
+        this.item.count++;
     }
 }

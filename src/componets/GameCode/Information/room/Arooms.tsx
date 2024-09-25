@@ -58,6 +58,8 @@ export class A7Room extends Room {
         this.PRooms = [0];
     }
     genSearchEvent(scene:searchAction){
+        const item = this.findItemEvent(scene,3);
+        if(item)return item;
         const ans = this.findRoomKeyEvent(scene,35);
         if(ans)return ans;
         return SearchEvent.SearchNoneEvent(scene)

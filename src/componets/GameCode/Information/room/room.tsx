@@ -4,6 +4,7 @@ import { advanceRoomEventArea } from "../../parts/area/advanceRoom";
 import { NormalSearchArea, searchArea } from "../../parts/area/searchArea";
 import AdventureThinking from "../../scenes/actions/adventureThinking";
 import searchAction from "../../scenes/actions/searchAction";
+import * as SearchEvent from "@/componets/GameCode/functions/searchEvent"
 import { Enemy } from "../enemy/enemy";
 
 export abstract class Room {
@@ -38,6 +39,18 @@ export abstract class Room {
                 if(!this.nextRooms)return null;
                 return SearchFindRoomKeyEvent(scene,this.nextRooms[index].name);
             }
+        }
+        return null;
+    }
+    findItemEvent(scene:searchAction,p:number):NormalSearchArea[] | null{
+        let rnd = Math.random()*100;
+        if(rnd < p){
+            let index = Math.floor(Math.random()*5);
+            if(index == 0)return SearchEvent.FindPATCrystalEvent(scene);
+            if(index == 1)return SearchEvent.FindMATCrystalEvent(scene);
+            if(index == 2)return SearchEvent.FindPDFCrystalEvent(scene);
+            if(index == 3)return SearchEvent.FindMDFCrystalEvent(scene);
+            if(index == 4)return SearchEvent.FindSPCrystalEvent(scene);
         }
         return null;
     }

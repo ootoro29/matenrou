@@ -19,12 +19,60 @@ import { WindSlime } from "../Information/enemy/windSlime";
 import { ZombiGirl } from "../Information/enemy/ZombiGirl";
 import { ZombiHaka } from "../Information/enemy/ZombiHaka";
 import { ZombiMan } from "../Information/enemy/ZombiMan";
+import { Item } from "../Information/item/item";
+import { ItemList } from "../Information/item/itemList";
+import PlayerINFO from "../Information/playerInformation";
 import * as SearchEvent  from "../parts/area/searchArea";
 import searchAction from "../scenes/actions/searchAction";
 
 export function SearchFindRoomKeyEvent(scene:searchAction,name:string){
     return [
         new SearchEvent.NormalSearchArea(scene,`${name}のドアのカギを拾った‼`)
+    ]
+}
+
+export function FindPATCrystalEvent(scene:searchAction){
+    if(!scene.Parents?.player)return [];
+    const player = scene.Parents?.player;
+    if(!player.Item)return [];
+    return [
+        new SearchEvent.FindItemSearchEventArea(scene,player.Item?.battleItemList[5])
+    ]
+}
+
+export function FindMATCrystalEvent(scene:searchAction){
+    if(!scene.Parents?.player)return [];
+    const player = scene.Parents?.player;
+    if(!player.Item)return [];
+    return [
+        new SearchEvent.FindItemSearchEventArea(scene,player.Item?.battleItemList[5])
+    ]
+}
+
+export function FindPDFCrystalEvent(scene:searchAction){
+    if(!scene.Parents?.player)return [];
+    const player = scene.Parents?.player;
+    if(!player.Item)return [];
+    return [
+        new SearchEvent.FindItemSearchEventArea(scene,player.Item?.battleItemList[6])
+    ]
+}
+
+export function FindMDFCrystalEvent(scene:searchAction){
+    if(!scene.Parents?.player)return [];
+    const player = scene.Parents?.player;
+    if(!player.Item)return [];
+    return [
+        new SearchEvent.FindItemSearchEventArea(scene,player.Item?.battleItemList[7])
+    ]
+}
+
+export function FindSPCrystalEvent(scene:searchAction){
+    if(!scene.Parents?.player)return [];
+    const player = scene.Parents?.player;
+    if(!player.Item)return [];
+    return [
+        new SearchEvent.FindItemSearchEventArea(scene,player.Item?.battleItemList[8])
     ]
 }
 
