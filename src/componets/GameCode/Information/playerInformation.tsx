@@ -241,17 +241,17 @@ export default class PlayerINFO {
   }
   setFrozen(){
     if(this.frozen)return;
-    this.frozen = false;
+    this.frozen = true;
     updateMatchInfoStatus(this.uid,this.HP,this.MP,this.CP,this.PATstage,this.MATstage,this.PDFstage,this.MDFstage,this.SPstage,this.toData());
   }
   setBurn(){
     if(this.frozen)return;
-    this.burn = false;
+    this.burn = true;
     updateMatchInfoStatus(this.uid,this.HP,this.MP,this.CP,this.PATstage,this.MATstage,this.PDFstage,this.MDFstage,this.SPstage,this.toData());
   }
   setLock(){
     if(this.frozen)return;
-    this.lock = false;
+    this.lock = true;
     updateMatchInfoStatus(this.uid,this.HP,this.MP,this.CP,this.PATstage,this.MATstage,this.PDFstage,this.MDFstage,this.SPstage,this.toData());
   }
   resetTransForm(){
@@ -273,6 +273,16 @@ export default class PlayerINFO {
   resetFrozen(){
     if(!this.frozen)return;
     this.frozen = false;
+    updateMatchInfoStatus(this.uid,this.HP,this.MP,this.CP,this.PATstage,this.MATstage,this.PDFstage,this.MDFstage,this.SPstage,this.toData());
+  }
+  resetBurn(){
+    if(!this.frozen)return;
+    this.burn = false;
+    updateMatchInfoStatus(this.uid,this.HP,this.MP,this.CP,this.PATstage,this.MATstage,this.PDFstage,this.MDFstage,this.SPstage,this.toData());
+  }
+  resetLock(){
+    if(!this.frozen)return;
+    this.lock = false;
     updateMatchInfoStatus(this.uid,this.HP,this.MP,this.CP,this.PATstage,this.MATstage,this.PDFstage,this.MDFstage,this.SPstage,this.toData());
   }
   changePATStage(s:number){

@@ -54,7 +54,7 @@ export default class main extends Phaser.Scene {
         this.PINF.PDFstage = data.matchInfo.PDFStage;
         this.PINF.MDFstage = data.matchInfo.MDFStage;
         this.PINF.SPstage = data.matchInfo.SPStage;
-        this.PINF.toStatus(calStatusFromBit(4,data.matchInfo.status));
+        this.PINF.toStatus(calStatusFromBit(6,data.matchInfo.status));
       }
     }
     this.Room = data.room;
