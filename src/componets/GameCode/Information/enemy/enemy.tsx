@@ -13,6 +13,7 @@ export abstract class Enemy{
     PDF = 1;
     MDF = 1;
     SP = 1;
+    charge = 0;
     PATstage = 0;
     MATstage = 0;
     PDFstage = 0;

@@ -818,3 +818,58 @@ export class PlayerBattleSPStageChange extends BattleEventArea {
         this.player.changeSPStage(this.stage);
     }
 }
+
+export class PlayerBattleIsLock extends BattleEventArea {
+    player?:PlayerINFO;
+    constructor(scene:BattleEventAction,player:PlayerINFO,{key="",image = ""} = {}){
+        const discription = `プレイヤーは身動きが取れなくなった！`;
+        super(scene,discription,{key:key,image:image});
+        this.player = player;
+    }
+    genSelections(): string[] {
+        return ["OK","X","X","X","X","X"];
+    }
+    opeClick(click: number): void {
+        if(!this.parents)return;
+        if(click == 0){
+            if(this.parents.AM?.isLast()){
+                this.parents.nextEventTurn();
+            }else{
+                this.parents.AM?.nextArea();
+                this.parents.changeBMText();
+            }
+        }
+    }
+    appearance(AM:BattleEventAreaManager): void {  
+        if(!this.player)return;
+        this.player.setLock();
+    }
+}
+export class EnemyIshisuPray extends BattleEventArea {
+    enemy?:Enemy;
+    constructor(scene:BattleEventAction,enemy:Enemy,{key="",image = ""} = {}){
+        const discription = `${enemy.name}のMATが1段階上がり、空間に生命力があふれた。"}`;
+        super(scene,discription,{key:key,image:image});
+        this.enemy = enemy;
+    }
+    genSelections(): string[] {
+        return ["OK","X","X","X","X","X"];
+    }
+    opeClick(click: number): void {
+        if(!this.parents)return;
+        if(click == 0){
+            if(this.parents.AM?.isLast()){
+                this.parents.nextEventTurn();
+            }else{
+                this.parents.AM?.nextArea();
+                this.parents.changeBMText();
+            }
+        }
+    }
+    appearance(AM:BattleEventAreaManager): void {  
+        if(!this.enemy)return;
+        if(this.enemy.MATstage >= 6)return;
+        this.enemy.MATstage += 1;
+        this.enemy.charge += 1;
+    }
+}

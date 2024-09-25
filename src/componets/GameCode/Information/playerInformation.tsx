@@ -36,6 +36,8 @@ export default class PlayerINFO {
   poison = false;
   palsy = false;
   frozen = false;
+  burn = false;
+  lock = false;
   PATstage = 0;
   MATstage = 0;
   PDFstage = 0;
@@ -103,20 +105,30 @@ export default class PlayerINFO {
   isFrozen(){
     return this.frozen;
   }
+  isBurn(){
+    return this.burn;
+  }
+  isLock(){
+    return this.lock;
+  }
   toData(){
     const data = [
       (this.isTransform())?1:0,
       (this.isPoison())?1:0,
       (this.isPalsy())?1:0,
       (this.isFrozen())?1:0,
+      (this.isBurn())?1:0,
+      (this.isLock())?1:0,
     ]
     return calStatusFromStatus(data);
   }
   toStatus(status:number[]){
-    if(status[0] == 1)this.setTransForm();
-    if(status[1] == 1)this.setPoison();
-    if(status[2] == 1)this.setPalsy();
-    if(status[3] == 1)this.setFrozen();
+    if(status[0] == 1)this.transform = true;
+    if(status[1] == 1)this.poison = true;
+    if(status[2] == 1)this.palsy = true;
+    if(status[3] == 1)this.frozen = true;
+    if(status[4] == 1)this.burn = true;
+    if(status[5] == 1)this.lock = true;
   }
   updateStatus(){
     const lv = this.lv;
@@ -230,6 +242,16 @@ export default class PlayerINFO {
   setFrozen(){
     if(this.frozen)return;
     this.frozen = false;
+    updateMatchInfoStatus(this.uid,this.HP,this.MP,this.CP,this.PATstage,this.MATstage,this.PDFstage,this.MDFstage,this.SPstage,this.toData());
+  }
+  setBurn(){
+    if(this.frozen)return;
+    this.burn = false;
+    updateMatchInfoStatus(this.uid,this.HP,this.MP,this.CP,this.PATstage,this.MATstage,this.PDFstage,this.MDFstage,this.SPstage,this.toData());
+  }
+  setLock(){
+    if(this.frozen)return;
+    this.lock = false;
     updateMatchInfoStatus(this.uid,this.HP,this.MP,this.CP,this.PATstage,this.MATstage,this.PDFstage,this.MDFstage,this.SPstage,this.toData());
   }
   resetTransForm(){

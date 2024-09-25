@@ -1,7 +1,7 @@
 import { PComand } from "@/types/game";
 import { Enemy } from "./enemy";
 import { EnemyProbCommand, ProbCommand } from "../prob_commands";
-import { Command, EnemyMagicalAttack, EnemyMagicalSPAttack, EnemyPhysicalAttack } from "../commands";
+import { Command, EnemyMagicalAttack, EnemyMagicalParugoa, EnemyMagicalHPSuc, EnemyMagicalLockSPAttack, EnemyMagicalPray, EnemyMagicalSPAttack, EnemyPhysicalAttack } from "../commands";
 import BattleScene from "../../scenes/battle";
 import { EnemyBattleSPStageChange } from "../../parts/area/battleEventArea";
 
@@ -23,19 +23,39 @@ class IshisuPlantWhip extends EnemyPhysicalAttack{
     }
 }
 
-class IshisuPlantGoku extends EnemyMagicalSPAttack{
+class IshisuPlantGoku extends EnemyMagicalLockSPAttack{
     initialize(): void {
         this.name = "深緑の獄";
         this.power = 30
     }
 }
 
+class IshisuHPSuc extends EnemyMagicalHPSuc{
+    initialize(): void {
+        this.name = "HP吸収"
+    }
+}
+
+class IshisuMagicalPray extends EnemyMagicalPray{
+    initialize(): void {
+        this.name = "エルフの祈り"
+    }
+}
+
+class IshisuParugoa extends EnemyMagicalParugoa{
+    initialize(): void {
+        this.name = "パルゴア"
+    }
+}
 
 
 const IceSlimeCommands:EnemyPhysicalAttack[] = [
     new IshisuHolySlash(),
     new IshisuPlantWhip(),
     new IshisuPlantGoku(),
+    new IshisuHPSuc(),
+    new IshisuMagicalPray(),
+    new IshisuParugoa(),
 ]
 
 
