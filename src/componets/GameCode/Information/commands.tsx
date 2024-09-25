@@ -423,7 +423,7 @@ export abstract class EnemyMagicalHPSuc extends Command {
         const Estatus = battle.enemy.getStatus();
         const damage:number = battle.player.HP*0.2;
         const hitShield = battle.player.Shield?.selectShield();
-        const Sdamage:number = (hitShield)? hitShield.HP*0.2:0;
+        const Sdamage:number = damage;
         if(hitShield){
             ans.push(new EPAShieldBattleEventArea(scene,hitShield,Sdamage));
             if(hitShield.HP <= Sdamage){
