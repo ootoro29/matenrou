@@ -20,10 +20,10 @@ export class ShieldList {
             return undefined;
         }else{
             let ans:Shield|undefined;
-            let max_HP = 0;
+            let min_HP = 1000;
             for(let i = 0; i < this.shieldList.length; i++){
-                if(this.shieldList[i].HP > max_HP){
-                    max_HP = this.shieldList[i].HP;
+                if(this.shieldList[i].HP < min_HP && this.shieldList[i] instanceof NormalShield){
+                    min_HP = this.shieldList[i].HP;
                     ans = this.shieldList[i];
                 }
             }
