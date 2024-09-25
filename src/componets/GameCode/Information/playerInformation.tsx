@@ -188,6 +188,7 @@ export default class PlayerINFO {
       this.MP += this.MP_MAX/8;
     }
     if(this.MP > this.MP_MAX)this.MP = this.MP_MAX;
+    if(this.HP > this.HP_MAX)this.HP = this.HP_MAX;
     updateMatchInfoStatus(this.uid,this.HP,this.MP,this.CP,this.PATstage,this.MATstage,this.PDFstage,this.MDFstage,this.SPstage,this.toData());
   }
 
