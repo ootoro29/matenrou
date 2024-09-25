@@ -24,6 +24,8 @@ export class D1Room extends Room {
     genSearchEvent(scene:searchAction){
         const ans = this.findRoomKeyEvent(scene,35);
         if(ans)return ans;
+        const item = this.findItemEvent(scene,10);
+        if(item)return item;
         return SearchEvent.SearchNoneEvent(scene)
     }
 }
@@ -48,6 +50,8 @@ export class D2Room extends Room {
     genSearchEvent(scene:searchAction){
         const ans = this.findRoomKeyEvent(scene,35);
         if(ans)return ans;
+        const item = this.findItemEvent(scene,10);
+        if(item)return item;
         return SearchEvent.SearchNoneEvent(scene)
     }
 }
@@ -72,6 +76,8 @@ export class D3Room extends Room {
     genSearchEvent(scene:searchAction){
         const ans = this.findRoomKeyEvent(scene,35);
         if(ans)return ans;
+        const item = this.findItemEvent(scene,10);
+        if(item)return item;
         return SearchEvent.SearchNoneEvent(scene)
     }
 }
@@ -96,6 +102,8 @@ export class D4Room extends Room {
     genSearchEvent(scene:searchAction){
         const ans = this.findRoomKeyEvent(scene,35);
         if(ans)return ans;
+        const item = this.findItemEvent(scene,10);
+        if(item)return item;
         return SearchEvent.SearchNoneEvent(scene)
     }
 }
@@ -127,6 +135,8 @@ export class D6Room extends Room {
     genSearchEvent(scene:searchAction){
         const ans = this.findRoomKeyEvent(scene,35);
         if(ans)return ans;
+        const item = this.findItemEvent(scene,10);
+        if(item)return item;
         const rndBattle = Math.random()*100;
         if(rndBattle < 20){
             return SearchEvent.FireSlimeEvent(scene);
@@ -162,6 +172,8 @@ export class D7Room extends Room {
     genSearchEvent(scene:searchAction){
         const ans = this.findRoomKeyEvent(scene,35);
         if(ans)return ans;
+        const item = this.findItemEvent(scene,10);
+        if(item)return item;
         let rndBattle = Math.random()*100;
         if(rndBattle < 80){
             return SearchEvent.BattleSlimeEvent(scene);
@@ -186,6 +198,8 @@ export class D8Room extends Room {
     genSearchEvent(scene:searchAction){
         const ans = this.findRoomKeyEvent(scene,35);
         if(ans)return ans;
+        const item = this.findItemEvent(scene,10);
+        if(item)return item;
         return SearchEvent.SearchNoneEvent(scene)
     }
 }
@@ -212,6 +226,8 @@ export class D9Room extends Room {
     genSearchEvent(scene:searchAction){
         const ans = this.findRoomKeyEvent(scene,35);
         if(ans)return ans;
+        const item = this.findItemEvent(scene,10);
+        if(item)return item;
         const rndBattle = Math.random()*100;
         if(rndBattle < 33){
             return SearchEvent.ZombiGirlEvent(scene);
@@ -243,6 +259,8 @@ export class D10Room extends Room {
     genSearchEvent(scene:searchAction){
         const ans = this.findRoomKeyEvent(scene,35);
         if(ans)return ans;
+        const item = this.findItemEvent(scene,10);
+        if(item)return item;
         const rndBattle = Math.random()*100;
         if(rndBattle < 50){
             return SearchEvent.ZombiGirlEvent(scene);
@@ -267,6 +285,8 @@ export class D11Room extends Room {
     genSearchEvent(scene:searchAction){
         const ans = this.findRoomKeyEvent(scene,35);
         if(ans)return ans;
+        const item = this.findItemEvent(scene,10);
+        if(item)return item;
         return SearchEvent.SearchNoneEvent(scene)
     }
 }
@@ -286,6 +306,8 @@ export class D12Room extends Room {
     genSearchEvent(scene:searchAction){
         const ans = this.findRoomKeyEvent(scene,35);
         if(ans)return ans;
+        const item = this.findItemEvent(scene,10);
+        if(item)return item;
         return SearchEvent.SearchNoneEvent(scene)
     }
 }
@@ -305,6 +327,8 @@ export class D13Room extends Room {
     genSearchEvent(scene:searchAction){
         const ans = this.findRoomKeyEvent(scene,35);
         if(ans)return ans;
+        const item = this.findItemEvent(scene,10);
+        if(item)return item;
         return SearchEvent.SearchNoneEvent(scene)
     }
 }

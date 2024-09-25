@@ -22,6 +22,8 @@ export class C4Room extends Room {
     genSearchEvent(scene:searchAction){
         const ans = this.findRoomKeyEvent(scene,35);
         if(ans)return ans;
+        const item = this.findItemEvent(scene,10);
+        if(item)return item;
         return SearchEvent.SearchNoneEvent(scene)
     }
 }
@@ -52,6 +54,8 @@ export class C5Room extends Room {
     genSearchEvent(scene:searchAction){
         const ans = this.findRoomKeyEvent(scene,35);
         if(ans)return ans;
+        const item = this.findItemEvent(scene,10);
+        if(item)return item;
         const rndBattle = Math.random()*100;
         if(rndBattle < 20){
             return SearchEvent.FireSlimeEvent(scene);
@@ -89,6 +93,8 @@ export class C6Room extends Room {
     genSearchEvent(scene:searchAction){
         const ans = this.findRoomKeyEvent(scene,35);
         if(ans)return ans;
+        const item = this.findItemEvent(scene,10);
+        if(item)return item;
         let rndBattle = Math.random()*100;
         if(rndBattle < 60){
             return SearchEvent.BattleSlimeEvent(scene);
@@ -122,6 +128,8 @@ export class C8Room extends Room {
     genSearchEvent(scene:searchAction){
         const ans = this.findRoomKeyEvent(scene,35);
         if(ans)return ans;
+        const item = this.findItemEvent(scene,10);
+        if(item)return item;
         let rndBattle = Math.random()*100;
         if(rndBattle < 60){
             return SearchEvent.BattleSlimeEvent(scene);
@@ -153,6 +161,8 @@ export class C10Room extends Room {
     genSearchEvent(scene:searchAction){
         const ans = this.findRoomKeyEvent(scene,35);
         if(ans)return ans;
+        const item = this.findItemEvent(scene,10);
+        if(item)return item;
         const rndBattle = Math.random()*100;
         if(rndBattle < 50){
             return SearchEvent.ZombiManEvent(scene);
@@ -182,6 +192,8 @@ export class C11Room extends Room {
     genSearchEvent(scene:searchAction){
         const ans = this.findRoomKeyEvent(scene,35);
         if(ans)return ans;
+        const item = this.findItemEvent(scene,10);
+        if(item)return item;
         const rndBattle = Math.random()*100;
         if(rndBattle < 50){
             return SearchEvent.ZombiGirlEvent(scene);
@@ -213,6 +225,8 @@ export class C12Room extends Room {
     genSearchEvent(scene:searchAction){
         const ans = this.findRoomKeyEvent(scene,35);
         if(ans)return ans;
+        const item = this.findItemEvent(scene,10);
+        if(item)return item;
         const rndBattle = Math.random()*100;
         if(rndBattle < 40){
             return SearchEvent.WindSlimeEvent(scene);
@@ -239,6 +253,8 @@ export class C13Room extends Room {
     genSearchEvent(scene:searchAction){
         const ans = this.findRoomKeyEvent(scene,35);
         if(ans)return ans;
+        const item = this.findItemEvent(scene,10);
+        if(item)return item;
         return SearchEvent.SearchNoneEvent(scene)
     }
 }
@@ -258,6 +274,8 @@ export class C14Room extends Room {
     genSearchEvent(scene:searchAction){
         const ans = this.findRoomKeyEvent(scene,35);
         if(ans)return ans;
+        const item = this.findItemEvent(scene,10);
+        if(item)return item;
         return SearchEvent.SearchNoneEvent(scene)
     }
 }

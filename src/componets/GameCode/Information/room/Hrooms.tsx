@@ -29,6 +29,8 @@ export class H1Room extends Room {
     genSearchEvent(scene:searchAction){
         const ans = this.findRoomKeyEvent(scene,35);
         if(ans)return ans;
+        const item = this.findItemEvent(scene,10);
+        if(item)return item;
         return SearchEvent.SearchNoneEvent(scene)
     }
 }
@@ -53,6 +55,8 @@ export class H2Room extends Room {
     genSearchEvent(scene:searchAction){
         const ans = this.findRoomKeyEvent(scene,35);
         if(ans)return ans;
+        const item = this.findItemEvent(scene,10);
+        if(item)return item;
         return SearchEvent.SearchNoneEvent(scene)
     }
 }
@@ -77,6 +81,8 @@ export class H3Room extends Room {
     genSearchEvent(scene:searchAction){
         const ans = this.findRoomKeyEvent(scene,35);
         if(ans)return ans;
+        const item = this.findItemEvent(scene,10);
+        if(item)return item;
         return SearchEvent.SearchNoneEvent(scene)
     }
 }
@@ -101,6 +107,8 @@ export class H4Room extends Room {
     genSearchEvent(scene:searchAction){
         const ans = this.findRoomKeyEvent(scene,35);
         if(ans)return ans;
+        const item = this.findItemEvent(scene,10);
+        if(item)return item;
         return SearchEvent.SearchNoneEvent(scene)
     }
 }
@@ -125,6 +133,8 @@ export class H5Room extends Room {
     genSearchEvent(scene:searchAction){
         const ans = this.findRoomKeyEvent(scene,35);
         if(ans)return ans;
+        const item = this.findItemEvent(scene,10);
+        if(item)return item;
         return SearchEvent.SearchNoneEvent(scene)
     }
 }
@@ -144,6 +154,8 @@ export class H6Room extends Room {
     genSearchEvent(scene:searchAction){
         const ans = this.findRoomKeyEvent(scene,35);
         if(ans)return ans;
+        const item = this.findItemEvent(scene,10);
+        if(item)return item;
         return SearchEvent.SearchNoneEvent(scene)
     }
 }
@@ -163,6 +175,8 @@ export class H7Room extends Room {
     genSearchEvent(scene:searchAction){
         const ans = this.findRoomKeyEvent(scene,35);
         if(ans)return ans;
+        const item = this.findItemEvent(scene,10);
+        if(item)return item;
         return SearchEvent.SearchNoneEvent(scene)
     }
 }
@@ -182,6 +196,8 @@ export class H8Room extends Room {
     genSearchEvent(scene:searchAction){
         const ans = this.findRoomKeyEvent(scene,35);
         if(ans)return ans;
+        const item = this.findItemEvent(scene,10);
+        if(item)return item;
         return SearchEvent.SearchNoneEvent(scene)
     }
 }
@@ -201,6 +217,8 @@ export class H9Room extends Room {
     genSearchEvent(scene:searchAction){
         const ans = this.findRoomKeyEvent(scene,35);
         if(ans)return ans;
+        const item = this.findItemEvent(scene,10);
+        if(item)return item;
         return SearchEvent.SearchNoneEvent(scene)
     }
 }
@@ -220,6 +238,8 @@ export class H10Room extends Room {
     genSearchEvent(scene:searchAction){
         const ans = this.findRoomKeyEvent(scene,35);
         if(ans)return ans;
+        const item = this.findItemEvent(scene,10);
+        if(item)return item;
         return SearchEvent.SearchNoneEvent(scene)
     }
 }
@@ -239,6 +259,8 @@ export class H11Room extends Room {
     genSearchEvent(scene:searchAction){
         const ans = this.findRoomKeyEvent(scene,35);
         if(ans)return ans;
+        const item = this.findItemEvent(scene,10);
+        if(item)return item;
         return SearchEvent.SearchNoneEvent(scene)
     }
 }
@@ -258,6 +280,8 @@ export class H12Room extends Room {
     genSearchEvent(scene:searchAction){
         const ans = this.findRoomKeyEvent(scene,35);
         if(ans)return ans;
+        const item = this.findItemEvent(scene,10);
+        if(item)return item;
         return SearchEvent.SearchNoneEvent(scene)
     }
 }
@@ -277,6 +301,8 @@ export class H13Room extends Room {
     genSearchEvent(scene:searchAction){
         const ans = this.findRoomKeyEvent(scene,35);
         if(ans)return ans;
+        const item = this.findItemEvent(scene,10);
+        if(item)return item;
         return SearchEvent.SearchNoneEvent(scene)
     }
 }
@@ -296,6 +322,8 @@ export class H14Room extends Room {
     genSearchEvent(scene:searchAction){
         const ans = this.findRoomKeyEvent(scene,35);
         if(ans)return ans;
+        const item = this.findItemEvent(scene,10);
+        if(item)return item;
         return SearchEvent.SearchNoneEvent(scene)
     }
 }
