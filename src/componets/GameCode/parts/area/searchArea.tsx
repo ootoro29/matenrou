@@ -9,9 +9,10 @@ import PlayerINFO from "../../Information/playerInformation";
 
 export class searchAreaManager extends areaManager{
     AreaList?:searchArea[];
-    index = 0;
+    index = -1;
     constructor(AreaList:searchArea[]){
         super(AreaList);
+        this.nextArea();
     }
     currentArea():searchArea | null{
         if(!this.AreaList)return null;
@@ -21,7 +22,7 @@ export class searchAreaManager extends areaManager{
 
     nextArea(){
         if(!this.AreaList)return;
-        if(this.index >= this.AreaList.length)return;
+        if(this.index+1 >= this.AreaList.length)return;
         if(this.index >= 0)this.AreaList[this.index].setVisible(false);
         this.index++;
         if(this.index < this.AreaList.length) {
