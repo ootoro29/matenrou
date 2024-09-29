@@ -7,7 +7,7 @@ import { redirect } from "next/dist/server/api-utils";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { GameInfo, Player } from "@/types/game";
-import { GameInfoCheck, PlayerCheck } from "../actions";
+import { GameInfoCheck, InitGameMatchInfo, InitPlayerInfo, PlayerCheck } from "../actions";
 
 export default function Game(){
     const [user, setUser] = useState<User|null>(null);
@@ -48,8 +48,9 @@ export default function Game(){
           const {data,error} = await supabase.from("Player").select("*").eq("uid",`${user.id}`);
           if(error)return;
           if(data.length == 0){
-            await PlayerCheck().then(() => {
-              router.push("/game");
+            await PlayerCheck().then(async() => {
+              const Player = await InitPlayerInfo(user.user_metadata.name,user.id) as Player;
+              setPlayer(Player);
             })
             return;
           }
@@ -63,8 +64,9 @@ export default function Game(){
           const {data,error} = await supabase.from("GameInfo").select("*").eq("uid",`${user.id}`);
           if(error)return;
           if(data.length == 0){
-            await GameInfoCheck().then(() => {
-              router.push("/game");
+            await GameInfoCheck().then(async() => {
+              const Game = await InitGameMatchInfo(user.id) as GameInfo;
+              setGameInfo(Game);
             })
             return;
           }

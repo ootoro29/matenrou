@@ -1,5 +1,6 @@
 "use server"
 
+import { Player } from "@/types/game";
 import { getURL } from "@/utils/helpers";
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
@@ -22,6 +23,14 @@ export async function oAuthSignIn() {
     return redirect(data.url)
 }
 
+export async function InitPlayerInfo(name:string,uid:string){
+    return {name:name,uid:uid,};
+}
+
+export async function InitGameMatchInfo(uid:string){
+    return {stamina:9999999999,lv:1,exp:0,uid:uid,};
+}
+
 export async function signOut() {
     const supabase = createClient();
     await supabase.auth.signOut();
@@ -41,7 +50,7 @@ export async function PlayerCheck(){
       if(data.length != 0)return;
       const {error} = await supabase
       .from("Player")
-      .insert({name:user.user_metadata.name,uid:user.id,})
+      .insert(InitPlayerInfo(user.user_metadata.name,user.id))
     }
   }
 export async function GameInfoCheck(){
@@ -57,6 +66,6 @@ export async function GameInfoCheck(){
       if(data.length != 0)return;
       const {error} = await supabase
       .from("GameInfo")
-      .insert({stamina:9999999999,lv:1,exp:0,uid:user.id,})
+      .insert(InitGameMatchInfo(user.id))
     }
   }
