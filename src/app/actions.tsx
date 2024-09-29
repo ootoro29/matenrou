@@ -23,11 +23,11 @@ export async function oAuthSignIn() {
     return redirect(data.url)
 }
 
-export async function InitPlayerInfo(name:string,uid:string){
+export function InitPlayerInfo(name:string,uid:string){
     return {name:name,uid:uid,};
 }
 
-export async function InitGameMatchInfo(uid:string){
+export function InitGameMatchInfo(uid:string){
     return {stamina:9999999999,lv:1,exp:0,uid:uid,};
 }
 
