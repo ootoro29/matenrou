@@ -99,12 +99,14 @@ export default class main extends Phaser.Scene {
 
   GAMEOVER(){
     if(!this.player)return;
+    if(!this.PINF)return;
     if(!this.gameInfo)return;
     this.scene.stop();
     deleteMatchInfo(this.player?.uid??"");
+    const newGameInfo:GameInfo = {lv:this.PINF.lv,exp:this.PINF.exp,stamina:this.gameInfo.stamina};
     const data:gameInterface = {
       player:this.player,
-      gameInfo:this.gameInfo
+      gameInfo:newGameInfo
     }
     this.scene.start("top",data);
   }
