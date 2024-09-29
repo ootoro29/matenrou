@@ -98,9 +98,15 @@ export default class main extends Phaser.Scene {
   }
 
   GAMEOVER(){
+    if(!this.player)return;
+    if(!this.gameInfo)return;
     this.scene.stop();
     deleteMatchInfo(this.player?.uid??"");
-    this.scene.start("top");
+    const data:gameInterface = {
+      player:this.player,
+      gameInfo:this.gameInfo
+    }
+    this.scene.start("top",data);
   }
 
   toAdventure(){
