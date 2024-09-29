@@ -7,7 +7,8 @@ import { redirect } from "next/dist/server/api-utils";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { GameInfo, Player } from "@/types/game";
-import { GameInfoCheck, InitGameMatchInfo, InitPlayerInfo, PlayerCheck } from "../actions";
+import { GameInfoCheck, PlayerCheck } from "../actions";
+import { InitGameMatchInfo, InitPlayerInfo } from "../components/utils";
 
 export default function Game(){
     const [user, setUser] = useState<User|null>(null);
