@@ -51,7 +51,7 @@ export default function Game(){
             const {error} = await supabase
             .from("Player")
             .insert(InitPlayerInfo(user.user_metadata.name,user.id))
-            const Player = await InitPlayerInfo(user.user_metadata.name,user.id) as Player;
+            const Player = InitPlayerInfo(user.user_metadata.name,user.id) as Player;
             setPlayer(Player);
             return;
           }
@@ -68,7 +68,7 @@ export default function Game(){
             const {error} = await supabase
             .from("GameInfo")
             .insert(InitGameMatchInfo(user.id))
-            const Game = await InitGameMatchInfo(user.id) as GameInfo;
+            const Game = InitGameMatchInfo(user.id) as GameInfo;
             setGameInfo(Game);
             return;
           }
