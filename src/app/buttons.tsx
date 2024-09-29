@@ -7,10 +7,10 @@ export function LogginButton(){
         <>
             <button onClick={async () => {
                 await oAuthSignIn().then((res) => {
-                    PlayerCheck();
-                    GameInfoCheck();
                 }).catch((e) => {
                 })
+                await PlayerCheck();
+                await GameInfoCheck();
             }}>ログイン</button>
         </>
     )

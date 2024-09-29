@@ -48,10 +48,11 @@ export default function Game(){
           const {data,error} = await supabase.from("Player").select("*").eq("uid",`${user.id}`);
           if(error)return;
           if(data.length == 0){
-            await PlayerCheck().then(async() => {
-              const Player = await InitPlayerInfo(user.user_metadata.name,user.id) as Player;
-              setPlayer(Player);
-            })
+            const {error} = await supabase
+            .from("Player")
+            .insert(InitPlayerInfo(user.user_metadata.name,user.id))
+            const Player = await InitPlayerInfo(user.user_metadata.name,user.id) as Player;
+            setPlayer(Player);
             return;
           }
           setPlayer(data[0] as Player);
@@ -64,10 +65,11 @@ export default function Game(){
           const {data,error} = await supabase.from("GameInfo").select("*").eq("uid",`${user.id}`);
           if(error)return;
           if(data.length == 0){
-            await GameInfoCheck().then(async() => {
-              const Game = await InitGameMatchInfo(user.id) as GameInfo;
-              setGameInfo(Game);
-            })
+            const {error} = await supabase
+            .from("GameInfo")
+            .insert(InitGameMatchInfo(user.id))
+            const Game = await InitGameMatchInfo(user.id) as GameInfo;
+            setGameInfo(Game);
             return;
           }
           setGameInfo(data[0] as GameInfo);
