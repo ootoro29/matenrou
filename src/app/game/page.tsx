@@ -48,7 +48,9 @@ export default function Game(){
           const {data,error} = await supabase.from("Player").select("*").eq("uid",`${user.id}`);
           if(error)return;
           if(data.length == 0){
-            PlayerCheck()
+            await PlayerCheck().then(() => {
+              router.push("/game");
+            })
             return;
           }
           setPlayer(data[0] as Player);
@@ -61,7 +63,9 @@ export default function Game(){
           const {data,error} = await supabase.from("GameInfo").select("*").eq("uid",`${user.id}`);
           if(error)return;
           if(data.length == 0){
-            GameInfoCheck()
+            await GameInfoCheck().then(() => {
+              router.push("/game");
+            })
             return;
           }
           setGameInfo(data[0] as GameInfo);
