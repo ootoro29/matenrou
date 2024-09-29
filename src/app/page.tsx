@@ -31,7 +31,6 @@ export default async function Home() {
       const {error} = await supabase
       .from("GameInfo")
       .insert({stamina:9999999999,lv:1,exp:0,uid:user.id,})
-      console.log(error);
     }
   }
 

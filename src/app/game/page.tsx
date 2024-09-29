@@ -45,12 +45,8 @@ export default function Game(){
         if(!user)return;
         const fetchPlayer = async () => {
           const {data,error} = await supabase.from("Player").select("*").eq("uid",`${user.id}`);
-          if(error){
-            router.push("/");
-            return;
-          }
-          if(data.length == 0){
-            router.push("/");
+          if(error || data.length == 0){
+            GameInfoCheck()
             return;
           }
           setPlayer(data[0] as Player);
@@ -65,7 +61,19 @@ export default function Game(){
           setGameInfo(data[0] as GameInfo);
         };
         fetchGameInfo();
-      }, [user]);
+      }, [user,player]);
+
+    const GameInfoCheck = async() => {
+      if(!user)return;
+      const {data,error} = await supabase.from("GameInfo").select("*").eq("uid",`${user.id}`);
+      if(error){
+      }else{
+        if(data.length != 0)return;
+        const {error} = await supabase
+        .from("GameInfo")
+        .insert({stamina:9999999999,lv:1,exp:0,uid:user.id,})
+      }
+    }
     if(!isLoggin && isLoggin !== null){
       router.push('/');
       return;
