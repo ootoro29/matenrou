@@ -421,7 +421,7 @@ export abstract class EnemyMagicalHPSuc extends Command {
         ans.push(new NormalBattleEventArea(scene,`${battle.enemy.name}の${this.name}!`));
         const status = battle.player.getBattleStatus();
         const Estatus = battle.enemy.getStatus();
-        const damage:number = battle.player.HP*0.2;
+        const damage:number = Math.floor(battle.player.HP*0.2);
         const hitShield = battle.player.Shield?.selectShield();
         const Sdamage:number = damage;
         if(hitShield){

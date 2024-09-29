@@ -848,7 +848,7 @@ export class PlayerBattleIsLock extends BattleEventArea {
 export class EnemyIshisuPray extends BattleEventArea {
     enemy?:Enemy;
     constructor(scene:BattleEventAction,enemy:Enemy,{key="",image = ""} = {}){
-        const discription = `${enemy.name}のMATが1段階上がり、空間に生命力があふれた。"}`;
+        const discription = `${enemy.name}のMATが1段階上がり、空間に生命力があふれた。`;
         super(scene,discription,{key:key,image:image});
         this.enemy = enemy;
     }

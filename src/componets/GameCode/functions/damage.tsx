@@ -9,7 +9,7 @@ export function calDamage(AT:number,DF:number,Power:number):number{
 }
 
 export function calHit(ASP:number,DSP:number,MEI:number,lock:boolean):boolean{
-    if(lock)return false;
+    if(lock)return true;
     const p = MEI + (ASP-DSP)/2;
     let ans:boolean = false;
     if(p <= 0){

@@ -26,25 +26,29 @@ class IshisuPlantWhip extends EnemyPhysicalAttack{
 class IshisuPlantGoku extends EnemyMagicalLockSPAttack{
     initialize(): void {
         this.name = "深緑の獄";
-        this.power = 30
+        this.power = 30;
+        this.mei = 85;
     }
 }
 
 class IshisuHPSuc extends EnemyMagicalHPSuc{
     initialize(): void {
         this.name = "HP吸収"
+        this.mei = 80;
     }
 }
 
 class IshisuMagicalPray extends EnemyMagicalPray{
     initialize(): void {
         this.name = "エルフの祈り"
+        this.mei = 100;
     }
 }
 
 class IshisuParugoa extends EnemyMagicalParugoa{
     initialize(): void {
         this.name = "パルゴア"
+        this.mei = 90;
     }
 }
 

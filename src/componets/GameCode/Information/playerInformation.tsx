@@ -295,29 +295,29 @@ export default class PlayerINFO {
   changeMATStage(s:number){
     if(s == 0)return;
     this.MATstage += s;
-    if(this.PATstage < -6)this.MATstage = -6;
-    if(this.PATstage > 6)this.MATstage = 6;
+    if(this.MATstage < -6)this.MATstage = -6;
+    if(this.MATstage > 6)this.MATstage = 6;
     updateMatchInfoStatus(this.uid,this.HP,this.MP,this.CP,this.PATstage,this.MATstage,this.PDFstage,this.MDFstage,this.SPstage,this.toData());
   }
   changePDFStage(s:number){
     if(s == 0)return;
     this.PDFstage += s;
-    if(this.PATstage < -6)this.PDFstage = -6;
-    if(this.PATstage > 6)this.PDFstage = 6;
+    if(this.PDFstage < -6)this.PDFstage = -6;
+    if(this.PDFstage > 6)this.PDFstage = 6;
     updateMatchInfoStatus(this.uid,this.HP,this.MP,this.CP,this.PATstage,this.MATstage,this.PDFstage,this.MDFstage,this.SPstage,this.toData());
   }
   changeMDFStage(s:number){
     if(s == 0)return;
     this.MDFstage += s;
-    if(this.PATstage < -6)this.MDFstage = -6;
-    if(this.PATstage > 6)this.MDFstage = 6;
+    if(this.MDFstage < -6)this.MDFstage = -6;
+    if(this.MDFstage > 6)this.MDFstage = 6;
     updateMatchInfoStatus(this.uid,this.HP,this.MP,this.CP,this.PATstage,this.MATstage,this.PDFstage,this.MDFstage,this.SPstage,this.toData());
   }
   changeSPStage(s:number){
     if(s == 0)return;
     this.SPstage += s;
-    if(this.PATstage < -6)this.SPstage = -6;
-    if(this.PATstage > 6)this.SPstage = 6;
+    if(this.SPstage < -6)this.SPstage = -6;
+    if(this.SPstage > 6)this.SPstage = 6;
     updateMatchInfoStatus(this.uid,this.HP,this.MP,this.CP,this.PATstage,this.MATstage,this.PDFstage,this.MDFstage,this.SPstage,this.toData());
   }
 }
