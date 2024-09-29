@@ -7,6 +7,7 @@ import { redirect } from "next/dist/server/api-utils";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { GameInfo, Player } from "@/types/game";
+import { GameInfoCheck, PlayerCheck } from "../actions";
 
 export default function Game(){
     const [user, setUser] = useState<User|null>(null);
@@ -45,8 +46,9 @@ export default function Game(){
         if(!user)return;
         const fetchPlayer = async () => {
           const {data,error} = await supabase.from("Player").select("*").eq("uid",`${user.id}`);
-          if(error || data.length == 0){
-            GameInfoCheck()
+          if(error)return;
+          if(data.length == 0){
+            PlayerCheck()
             return;
           }
           setPlayer(data[0] as Player);
@@ -58,22 +60,15 @@ export default function Game(){
         const fetchGameInfo = async () => {
           const {data,error} = await supabase.from("GameInfo").select("*").eq("uid",`${user.id}`);
           if(error)return;
+          if(data.length == 0){
+            GameInfoCheck()
+            return;
+          }
           setGameInfo(data[0] as GameInfo);
         };
         fetchGameInfo();
       }, [user,player]);
 
-    const GameInfoCheck = async() => {
-      if(!user)return;
-      const {data,error} = await supabase.from("GameInfo").select("*").eq("uid",`${user.id}`);
-      if(error){
-      }else{
-        if(data.length != 0)return;
-        const {error} = await supabase
-        .from("GameInfo")
-        .insert({stamina:9999999999,lv:1,exp:0,uid:user.id,})
-      }
-    }
     if(!isLoggin && isLoggin !== null){
       router.push('/');
       return;
