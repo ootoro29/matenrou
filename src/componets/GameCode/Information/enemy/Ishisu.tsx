@@ -10,8 +10,8 @@ class IshisuHolySlash extends EnemyMagicalAttack{
         this.name = "エルドラの光刃";
         this.power = 70;
         this.mei = 80;
-        //this.key = "iceSlimeIceBlock"
-        //this.path = "/assets/enemy/iceSlime/氷塊.png";
+        this.key = "IshisuHolySlash"
+        this.path = "/assets/enemy/ishisu/エルドラの光刃";
     }
 }
 
@@ -20,6 +20,8 @@ class IshisuPlantWhip extends EnemyPhysicalAttack{
         this.name = "プラント・ウィップ";
         this.power = 60;
         this.mei = 90;
+        this.key = "IshisuPlantWip"
+        this.path = "/assets/enemy/ishisu/プラント_ウィップ";
     }
 }
 
@@ -28,6 +30,8 @@ class IshisuPlantGoku extends EnemyMagicalLockSPAttack{
         this.name = "深緑の獄";
         this.power = 30;
         this.mei = 85;
+        this.key = "IshisuPlantGoku"
+        this.path = "/assets/enemy/ishisu/深緑の獄";
     }
 }
 
@@ -35,6 +39,8 @@ class IshisuHPSuc extends EnemyMagicalHPSuc{
     initialize(): void {
         this.name = "HP吸収"
         this.mei = 80;
+        this.key = "IshisuHPSuc"
+        this.path = "/assets/enemy/ishisu/HP吸収";
     }
 }
 
@@ -42,6 +48,8 @@ class IshisuMagicalPray extends EnemyMagicalPray{
     initialize(): void {
         this.name = "エルフの祈り"
         this.mei = 100;
+        this.key = "IshisuPray"
+        this.path = "/assets/enemy/ishisu/エルフの祈り";
     }
 }
 
@@ -49,6 +57,8 @@ class IshisuParugoa extends EnemyMagicalParugoa{
     initialize(): void {
         this.name = "パルゴア"
         this.mei = 90;
+        this.key = "IshisuParugoa"
+        this.path = "/assets/enemy/ishisu/パルゴア";
     }
 }
 

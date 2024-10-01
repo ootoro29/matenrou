@@ -10,7 +10,7 @@ class FireSlimeBomb extends EnemyMagicalAttack{
         this.power = 70;
         this.mei = 60;
         this.key = "fireSlimeBomb"
-        this.path = "/assets/enemy/fireSlime/マグマグ爆弾.png";
+        this.path = "/assets/enemy/fireSlime/マグマグ爆弾";
     }
 }
 
@@ -20,7 +20,7 @@ class FireSlimeShot extends EnemyMagicalAttack{
         this.power = 50;
         this.mei = 90;
         this.key = "fireSlimeShot"
-        this.path = "/assets/enemy/fireSlime/マグマショット.png";
+        this.path = "/assets/enemy/fireSlime/マグマショット";
     }
 }
 
@@ -30,7 +30,7 @@ class FireSlimeTackle extends EnemyPhysicalAttack{
         this.power = 40;
         this.mei = 90;
         this.key = "fireSlimeTackle"
-        this.path = "/assets/enemy/fireSlime/マグマタックル.png";
+        this.path = "/assets/enemy/fireSlime/マグマタックル";
     }
 }
 

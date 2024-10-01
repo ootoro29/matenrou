@@ -10,7 +10,7 @@ class IceSlimeIceBlock extends EnemyMagicalAttack{
         this.power = 70;
         this.mei = 60;
         this.key = "iceSlimeIceBlock"
-        this.path = "/assets/enemy/iceSlime/氷塊.png";
+        this.path = "/assets/enemy/iceSlime/氷塊";
     }
 }
 
@@ -20,7 +20,7 @@ class IceSlimeShot extends EnemyMagicalAttack{
         this.power = 50;
         this.mei = 90;
         this.key = "iceSlimeShot"
-        this.path = "/assets/enemy/iceSlime/アイスショット.png";
+        this.path = "/assets/enemy/iceSlime/アイスショット";
     }
 }
 
@@ -30,7 +30,7 @@ class IceSlimeBahn extends EnemyMagicalAttack{
         this.power = 40;
         this.mei = 90;
         this.key = "iceSlimeBahn"
-        this.path = "/assets/enemy/iceSlime/アイスバーン.png";
+        this.path = "/assets/enemy/iceSlime/アイスバーン";
     }
 }
 

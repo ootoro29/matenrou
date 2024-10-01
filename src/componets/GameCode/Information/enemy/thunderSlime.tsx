@@ -10,7 +10,7 @@ class ThunderSlimeSpark extends EnemyPhysicalAttack{
         this.power = 60;
         this.mei = 80;
         this.key = "thunderSlimeTackle"
-        this.path = "/assets/enemy/thunderSlime/雷電タックル.png";
+        this.path = "/assets/enemy/thunderSlime/雷電タックル";
     }
 }
 
@@ -20,7 +20,7 @@ class ThunderSlimeShot extends EnemyMagicalAttack{
         this.power = 50;
         this.mei = 90;
         this.key = "thunderSlimeShot"
-        this.path = "/assets/enemy/thunderSlime/サンダーショット.png";
+        this.path = "/assets/enemy/thunderSlime/サンダーショット";
     }
 }
 
@@ -30,7 +30,7 @@ class ThunderSlimeOmegaThunder extends EnemyMagicalAttack{
         this.power = 80;
         this.mei = 60;
         this.key = "thunderSlimeOmegaThunder"
-        this.path = "/assets/enemy/thunderSlime/オメガサンダー.png";
+        this.path = "/assets/enemy/thunderSlime/オメガサンダー";
     }
 }
 
