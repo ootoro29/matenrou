@@ -31,7 +31,7 @@ export class advanceRoom extends Area{
             },{
                 align:"left",
                 fontSize:50,
-                textcolor:"#dddddd",
+                textcolor:(this.room.PRooms[i] == 0)?"#dddddd":"#444444",
                 rectcolor:0xaa6600,
                 strokecolor:0x552200
             })
@@ -62,21 +62,23 @@ export class advanceRoom extends Area{
         }
     }
     downStyle(){
+        if(!this.room)return;
         if(this.index <= -1 || this.index >= this.roomSelections.length)return;
         this.roomSelections[this.index].setStyle({
             align:"left",
             fontSize:50,
-            textcolor:"#dddddd",
+            textcolor:(this.room.PRooms[this.index] == 0)?"#dddddd":"#444444",
             rectcolor:0xaa6600,
             strokecolor:0x552200
         });
     }
     updateStyle(){
         if(this.index <= -1 || this.index >= this.roomSelections.length)return;
+        if(!this.room)return;
         this.roomSelections[this.index].setStyle({
             align:"left",
             fontSize:50,
-            textcolor:"#ffffff",
+            textcolor:(this.room.PRooms[this.index] == 0)?"#ffffff":"#444444",
             rectcolor:0xcc3300,
             strokecolor:0xff5500,
             strokeWeight:10,
