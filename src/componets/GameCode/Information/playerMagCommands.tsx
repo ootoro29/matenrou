@@ -10,6 +10,8 @@ export class FireBall extends PlayerMagicalAndMDFAttack{
         this.mei = 100;
         this.power = 100;
         this.description = "火の玉をぶつけて攻撃する。確率で魔法の防御力低下";
+        this.key = "PlayerFireBall"
+        this.path = "/assets/player/ファイアーボール";
     }
 }
 
@@ -21,6 +23,8 @@ export class IceWorld extends PlayerMagicalAndMATAttack{
         this.mei = 100;
         this.power = 100;
         this.description = "空間を凍てつかせる。確率で魔法の攻撃力低下";
+        this.key = "PlayerIceWorld"
+        this.path = "/assets/player/アイスワールド";
     }
 }
 
@@ -32,6 +36,8 @@ export class Spark extends PlayerMagicalAndSPAttack{
         this.mei = 100;
         this.power = 100;
         this.description = "電撃を発生させる。確率で速度低下";
+        this.key = "PlayerSpark"
+        this.path = "/assets/player/スパーク";
     }
 }
 
@@ -43,6 +49,8 @@ export class Tornado extends PlayerMagicalAndPATAttack{
         this.mei = 100;
         this.power = 100;
         this.description = "竜巻を発生させ。確率で物理の攻撃力低下";
+        this.key = "PlayerTornado"
+        this.path = "/assets/player/トルネード";
     }
 }
 
@@ -54,6 +62,8 @@ export class StoneStar extends PlayerMagicalAndPDFAttack{
         this.mei = 100;
         this.power = 100;
         this.description = "星型の石をいくつも投げ飛ばす。確率で物理の防御力低下";
+        this.key = "PlayerStoneStar"
+        this.path = "/assets/player/ストーンスター";
     }
 }
 
