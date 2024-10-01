@@ -10,7 +10,7 @@ class BattleSlimeSlash extends EnemyPhysicalAttack{
         this.power = 50;
         this.mei = 50;
         this.key = "battleSlimeSlash"
-        this.path = "/assets/enemy/battleSlime/斬りつけ.png";
+        this.path = "/assets/enemy/battleSlime/斬りつけ";
     }
 }
 
@@ -20,7 +20,7 @@ class BattleSlimeTackle extends EnemyPhysicalAttack{
         this.power = 30;
         this.mei = 80;
         this.key = "battleSlimeTackle"
-        this.path = "/assets/enemy/battleSlime/タックル.png";
+        this.path = "/assets/enemy/battleSlime/タックル";
     }
 }
 
