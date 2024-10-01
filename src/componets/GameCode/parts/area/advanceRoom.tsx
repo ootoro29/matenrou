@@ -31,9 +31,9 @@ export class advanceRoom extends Area{
             },{
                 align:"left",
                 fontSize:50,
-                textcolor:"#000000",
-                rectcolor:0xaaaa00,
-                strokecolor:0x555500
+                textcolor:"#dddddd",
+                rectcolor:0xaa6600,
+                strokecolor:0x552200
             })
 
             this.roomSelections.push(button);
@@ -66,9 +66,9 @@ export class advanceRoom extends Area{
         this.roomSelections[this.index].setStyle({
             align:"left",
             fontSize:50,
-            textcolor:"#000000",
-            rectcolor:0xaaaa00,
-            strokecolor:0x555500
+            textcolor:"#dddddd",
+            rectcolor:0xaa6600,
+            strokecolor:0x552200
         });
     }
     updateStyle(){
@@ -76,9 +76,9 @@ export class advanceRoom extends Area{
         this.roomSelections[this.index].setStyle({
             align:"left",
             fontSize:50,
-            textcolor:"#000000",
-            rectcolor:0xcccc00,
-            strokecolor:0xffff00,
+            textcolor:"#ffffff",
+            rectcolor:0xcc3300,
+            strokecolor:0xff5500,
             strokeWeight:10,
         });
     }
