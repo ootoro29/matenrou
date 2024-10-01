@@ -8,6 +8,7 @@ import BattleScene from "../battle";
 import main from "../main";
 import { AdventureEventArea, AdventureEventAreaManager } from "../../parts/area/adventureEventArea";
 import { Command } from "../../Information/commands";
+import { loadingScene } from "../loading";
 
 export default class AdventureEventAction extends AdventureActionScene {
     AM?:AdventureEventAreaManager;
@@ -43,6 +44,10 @@ export default class AdventureEventAction extends AdventureActionScene {
         this.Areas = [
             ...this.command.doAdventureCommand(this.Parents,this)
         ];
+        this.Areas.map((area) => {
+            area.load();
+        })
+        loadingScene(this);
     }
     initialize(): void {
         

@@ -3,6 +3,7 @@ import { AdventureActionArea } from "../../parts/area/adventureActionArea";
 import { NormalSearchArea, searchArea, searchAreaManager } from "../../parts/area/searchArea";
 import {AdventureActionScene } from "../../parts/scene";
 import AdventureScene from "../adventure";
+import { loadingScene } from "../loading";
 
 export default class searchAction extends AdventureActionScene {
     AM?:searchAreaManager;
@@ -25,6 +26,7 @@ export default class searchAction extends AdventureActionScene {
         this.Areas.map((area) => {
             area.load();
         })
+        loadingScene(this);
     }
     initialize(): void {
     }
