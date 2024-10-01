@@ -83,8 +83,8 @@ export class Ishisu extends Enemy{
             new EnemyProbCommand([IceSlimeCommands[2],IceSlimeCommands[3],IceSlimeCommands[4]],{prob:[40,30,30]}),
             new EnemyProbCommand([IceSlimeCommands[0],IceSlimeCommands[3],IceSlimeCommands[4]],{prob:[60,20,10]}),
             new EnemyProbCommand([IceSlimeCommands[1],IceSlimeCommands[3]],{prob:[60,40]}),
-            new EnemyProbCommand([IceSlimeCommands[4],IceSlimeCommands[5]],{prob:[70,30]}),
-            new EnemyProbCommand([IceSlimeCommands[4],IceSlimeCommands[5]],{prob:[30,70]}),
+            new EnemyProbCommand([IceSlimeCommands[4],IceSlimeCommands[5]],{prob:[80,20]}),
+            new EnemyProbCommand([IceSlimeCommands[4],IceSlimeCommands[5]],{prob:[20,80]}),
         ];
     }
     load(scene: BattleScene): void {
@@ -93,7 +93,7 @@ export class Ishisu extends Enemy{
         this.scene.load.image(this.key,"/assets/enemy/ishisu/戦闘.png");
     }
     genPComand(): ProbCommand {
-        if(this.HP/this.HP_MAX > 0.6){
+        if(this.HP/this.HP_MAX > 0.6 || this.charge < 4){
             return this.candidatePCommands[Math.floor(Math.random()*(this.candidatePCommands.length-1))];
         }else{
             return this.candidatePCommands[Math.floor(Math.random()*(this.candidatePCommands.length))];
