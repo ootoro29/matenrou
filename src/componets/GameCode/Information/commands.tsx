@@ -101,7 +101,8 @@ export abstract class PlayerMagicalAttack extends Command {
         if(!battle.player)return[];
         if(!battle.enemy)return[];
         let ans:BattleEventArea[] = []
-        ans.push(new NormalBattleEventArea(scene,`プレイヤーの${this.name}!`));
+        let imageInfo = {key:`${this.key}`,image:`${this.path}.png`};
+        ans.push(new NormalBattleEventArea(scene,`プレイヤーの${this.name}!`,imageInfo));
         const status = battle.player.getBattleStatus();
         const Estatus = battle.enemy.getStatus();
         const damage:number = calDamage(status.status.MAT,Estatus.MDF,this.power);
@@ -126,7 +127,8 @@ export abstract class PlayerMagicalAndPATAttack extends Command {
         if(!battle.player)return[];
         if(!battle.enemy)return[];
         let ans:BattleEventArea[] = []
-        ans.push(new NormalBattleEventArea(scene,`プレイヤーの${this.name}!`));
+        let imageInfo = {key:`${this.key}`,image:`${this.path}.png`};
+        ans.push(new NormalBattleEventArea(scene,`プレイヤーの${this.name}!`,imageInfo));
         const status = battle.player.getBattleStatus();
         const Estatus = battle.enemy.getStatus();
         const damage:number = calDamage(status.status.MAT,Estatus.MDF,this.power);
@@ -152,7 +154,8 @@ export abstract class PlayerMagicalAndMATAttack extends Command {
         if(!battle.player)return[];
         if(!battle.enemy)return[];
         let ans:BattleEventArea[] = []
-        ans.push(new NormalBattleEventArea(scene,`プレイヤーの${this.name}!`));
+        let imageInfo = {key:`${this.key}`,image:`${this.path}.png`};
+        ans.push(new NormalBattleEventArea(scene,`プレイヤーの${this.name}!`,imageInfo));
         const status = battle.player.getBattleStatus();
         const Estatus = battle.enemy.getStatus();
         const damage:number = calDamage(status.status.MAT,Estatus.MDF,this.power);
@@ -178,7 +181,8 @@ export abstract class PlayerMagicalAndPDFAttack extends Command {
         if(!battle.player)return[];
         if(!battle.enemy)return[];
         let ans:BattleEventArea[] = []
-        ans.push(new NormalBattleEventArea(scene,`プレイヤーの${this.name}!`));
+        let imageInfo = {key:`${this.key}`,image:`${this.path}.png`};
+        ans.push(new NormalBattleEventArea(scene,`プレイヤーの${this.name}!`,imageInfo));
         const status = battle.player.getBattleStatus();
         const Estatus = battle.enemy.getStatus();
         const damage:number = calDamage(status.status.MAT,Estatus.MDF,this.power);
@@ -204,7 +208,8 @@ export abstract class PlayerMagicalAndMDFAttack extends Command {
         if(!battle.player)return[];
         if(!battle.enemy)return[];
         let ans:BattleEventArea[] = []
-        ans.push(new NormalBattleEventArea(scene,`プレイヤーの${this.name}!`));
+        let imageInfo = {key:`${this.key}`,image:`${this.path}.png`};
+        ans.push(new NormalBattleEventArea(scene,`プレイヤーの${this.name}!`,imageInfo));
         const status = battle.player.getBattleStatus();
         const Estatus = battle.enemy.getStatus();
         const damage:number = calDamage(status.status.MAT,Estatus.MDF,this.power);
@@ -230,7 +235,8 @@ export abstract class PlayerMagicalAndSPAttack extends Command {
         if(!battle.player)return[];
         if(!battle.enemy)return[];
         let ans:BattleEventArea[] = []
-        ans.push(new NormalBattleEventArea(scene,`プレイヤーの${this.name}!`));
+        let imageInfo = {key:`${this.key}`,image:`${this.path}.png`};
+        ans.push(new NormalBattleEventArea(scene,`プレイヤーの${this.name}!`,imageInfo));
         const status = battle.player.getBattleStatus();
         const Estatus = battle.enemy.getStatus();
         const damage:number = calDamage(status.status.MAT,Estatus.MDF,this.power);
