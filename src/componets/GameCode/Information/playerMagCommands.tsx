@@ -1,20 +1,22 @@
-import { Command, PlayerMagicalAttack, PlayerMagicalShield} from "./commands";
+import { Command, PlayerMagicalAndMATAttack, PlayerMagicalAndMDFAttack, PlayerMagicalAndPATAttack, PlayerMagicalAndPDFAttack, PlayerMagicalAndSPAttack, PlayerMagicalAttack, PlayerMagicalShield} from "./commands";
 import { Shield } from "./shield/shield";
 import { FireShield, GroundShield, IceShield, NormalShield, ThunderShield, WindShield } from "./shield/shields";
 
-export class FireBall extends PlayerMagicalAttack{
+export class FireBall extends PlayerMagicalAndMDFAttack{
     initialize(): void {
         this.name = "ファイアーボール";
+        this.type = "Fire";
         this.mp = 25;
         this.mei = 100;
         this.power = 100;
-        this.description = "火の玉をぶつけて攻撃する。確率で火傷ダメージ";
+        this.description = "火の玉をぶつけて攻撃する。確率で魔法の防御力低下";
     }
 }
 
-export class IceWorld extends PlayerMagicalAttack{
+export class IceWorld extends PlayerMagicalAndMATAttack{
     initialize(): void {
         this.name = "アイスワールド";
+        this.type = "Ice";
         this.mp = 25;
         this.mei = 100;
         this.power = 100;
@@ -22,9 +24,10 @@ export class IceWorld extends PlayerMagicalAttack{
     }
 }
 
-export class Spark extends PlayerMagicalAttack{
+export class Spark extends PlayerMagicalAndSPAttack{
     initialize(): void {
         this.name = "スパーク";
+        this.type = "Thunder";
         this.mp = 25;
         this.mei = 100;
         this.power = 100;
@@ -32,9 +35,10 @@ export class Spark extends PlayerMagicalAttack{
     }
 }
 
-export class Tornado extends PlayerMagicalAttack{
+export class Tornado extends PlayerMagicalAndPATAttack{
     initialize(): void {
         this.name = "トルネード";
+        this.type = "Wind";
         this.mp = 25;
         this.mei = 100;
         this.power = 100;
@@ -42,13 +46,14 @@ export class Tornado extends PlayerMagicalAttack{
     }
 }
 
-export class StoneStar extends PlayerMagicalAttack{
+export class StoneStar extends PlayerMagicalAndPDFAttack{
     initialize(): void {
         this.name = "ストーンスター";
+        this.type = "Rock";
         this.mp = 25;
         this.mei = 100;
         this.power = 100;
-        this.description = "星型の石をいくつも投げ飛ばす。確率で命中低下";
+        this.description = "星型の石をいくつも投げ飛ばす。確率で物理の防御力低下";
     }
 }
 
@@ -127,9 +132,9 @@ export const PlayerMagCommands:Command[] = [
     new Spark(),
     new Tornado(),
     new StoneStar(),
-    new ExpandFireShield(),
-    new ExpandIceShield(),
-    new ExpandThunderShield(),
-    new ExpandWindShield(),
-    new ExpandGroundShield(),
+    //new ExpandFireShield(),
+    //new ExpandIceShield(),
+    //new ExpandThunderShield(),
+    //new ExpandWindShield(),
+    //new ExpandGroundShield(),
 ];

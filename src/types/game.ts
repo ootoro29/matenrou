@@ -73,3 +73,5 @@ export interface BattleStatus{
     exp:number;
     exp_MAX:number;
 }
+
+export type CommandAttribute = "None"|"Fire"|"Ice"|"Thunder"|"Wind"|"Rock";
