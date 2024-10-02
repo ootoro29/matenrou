@@ -157,8 +157,8 @@ export default class BattleScene extends PartScene{
     }
     create(){
         const graphics = this.add.graphics();
-        graphics.fillStyle(0x0000dd, 1.0);
-        graphics.fillRect(0, 0,this.scale.width, this.scale.height);
+        //graphics.fillStyle(0x0000dd, 1.0);
+        //graphics.fillRect(0, 0,this.scale.width, this.scale.height);
         const A = this.scene.launch('battleThinking',{main:this.MAIN,battle:this});
         this.enemy?.create();
     }

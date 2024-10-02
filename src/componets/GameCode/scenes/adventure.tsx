@@ -21,8 +21,8 @@ export default class AdventureScene extends PartScene{
     }
     create(){
         const graphics = this.add.graphics();
-        graphics.fillStyle(0x00dd00, 1.0);
-        graphics.fillRect(0, 0,this.scale.width, this.scale.height);
+        //graphics.fillStyle(0x00dd00, 1.0);
+        //graphics.fillRect(0, 0,this.scale.width, this.scale.height);
         const A = this.scene.launch('adventureThinking',{main:this.MAIN,adventure:this,first:this.first});
     }
     toCombat(enemy:Enemy){

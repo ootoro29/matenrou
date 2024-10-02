@@ -31,6 +31,7 @@ export default class main extends Phaser.Scene {
   ShieldSlots:ShieldSlot[] = [];
   normal_player?:Phaser.GameObjects.Image;
   transform_player?:Phaser.GameObjects.Image;
+  backImage?:Phaser.GameObjects.Image;
   room_text?:Phaser.GameObjects.Text;
   first = true;
 
@@ -66,6 +67,7 @@ export default class main extends Phaser.Scene {
   preload() {
     this.load.image("normal_player","./assets/player/ユーリ.png");
     this.load.image("transform_player","./assets/player/ユーリ(魔法少女の姿).png");
+    this.load.image("RoomBackImage1","./assets/backImage/backImage1.png");
   }
   
   create() {
@@ -73,6 +75,7 @@ export default class main extends Phaser.Scene {
     if(!this.PINF)return;
     // シンプルなゲームオブジェクトを作成
     const graphics = this.add.graphics();
+    this.backImage = this.add.image(0,300,"RoomBackImage1").setOrigin(0,0);
 
     this.normal_player = this.add.image(700, 1200, "normal_player").setScale(0.85).setVisible(!this.PINF?.isTransform());
     this.transform_player = this.add.image(550, 1200, "transform_player").setScale(0.85).setVisible(this.PINF?.isTransform());
@@ -93,7 +96,7 @@ export default class main extends Phaser.Scene {
     this.BM = new ButtonManager(this);
 
     this.scene.launch('adventure',{main:this,first:true});
-    this.scene.moveAbove('adventure');
+    //this.scene.moveAbove('adventure');
     //this.toCombat();
   }
 
@@ -113,12 +116,12 @@ export default class main extends Phaser.Scene {
 
   toAdventure(){
     this.scene.launch('adventure',{main:this,first:false});
-    this.scene.moveAbove('adventure');
+    //this.scene.moveAbove('adventure');
   }
 
   toCombat(enemy:Enemy){
     this.scene.launch('battle',{main:this,enemy:enemy});
-    this.scene.moveAbove('battle');
+    //this.scene.moveAbove('battle');
     //this.scene.moveDown('battle');
   }
 
