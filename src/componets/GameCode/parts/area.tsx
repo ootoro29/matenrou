@@ -63,7 +63,7 @@ export abstract class EventArea extends Area{
         }
     }
     load(): void {
-        if(this.path != ""){
+        if(this.path != "" && this.path.split(".png")[0] != ""){
             this.scene.load.image(this.key,this.path);
         }
     }
