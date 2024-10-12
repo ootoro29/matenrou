@@ -59,13 +59,13 @@ export default class top extends Phaser.Scene {
         if (!this.player) return;
         if (!this.gameInfo) return;
         if (this.isLoading) return;
+        this.isLoading = true;
         if (this.matchInfo) {
           const data: gameInterface = { player: this.player, gameInfo: this.gameInfo };
           const room: Room = toRoom(this.matchInfo.room);
           this.scene.start('main', { data, room, first: true, matchInfo:this.matchInfo });
         } else {
           if (this.gameInfo.stamina > 0) {
-            this.isLoading = true;
             updateStamina(this.player.uid, --this.gameInfo.stamina);
             const data: gameInterface = { player: this.player, gameInfo: this.gameInfo };
             const room: Room = new R.AR.A7Room();
