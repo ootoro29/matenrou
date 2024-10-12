@@ -505,7 +505,6 @@ export abstract class PlayerMagicalShield extends Command {
             ans.push(new NormalBattleEventArea(scene,`しかしシールドはこれ以上展開できない！`));
         }else{
             let imageInfo = {key:`${this.key}`,image:`${this.path}.png`};
-            console.log(imageInfo)
             ans.push(new NormalBattleEventArea(scene,`プレイヤーの${this.name}!`,imageInfo));
             let imageInfo2 = {key:`NormalShield`,image:`assets/shield/ノーマルシールド.png`};
             ans.push(new ShieldBattleEventArea(scene,battle.player,this.mp,this.genSheild(),imageInfo2))
@@ -523,7 +522,8 @@ export abstract class EnemyMagicalPATAttack extends Command {
         if(!battle.player)return[];
         if(!battle.enemy)return[];
         let ans:BattleEventArea[] = []
-        ans.push(new NormalBattleEventArea(scene,`${battle.enemy.name}の${this.name}!`));
+        let imageInfo = {key:`${this.key}`,image:`${this.path}.png`};
+        ans.push(new NormalBattleEventArea(scene,`${battle.enemy.name}の${this.name}!`,imageInfo));
         ans.push(new PlayerBattlePATStageChange(scene,battle.player,-1));
         return ans;
     }

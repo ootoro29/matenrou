@@ -57,6 +57,7 @@ class ZanbiaHerugaia extends EnemyMagicalHerugaia{
     initialize(): void {
         this.name = "ヘルガイア"
         this.mei = 90;
+        this.power = 120;
         this.key = "Zanbia"
         this.path = "/assets/enemy/zanbia/ヘルガイア";
     }
