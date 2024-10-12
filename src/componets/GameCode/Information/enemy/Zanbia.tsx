@@ -57,7 +57,7 @@ class ZanbiaHerugaia extends EnemyMagicalHerugaia{
     initialize(): void {
         this.name = "ヘルガイア"
         this.mei = 90;
-        this.power = 120;
+        this.power = 90;
         this.key = "Zanbia"
         this.path = "/assets/enemy/zanbia/ヘルガイア";
     }
@@ -76,7 +76,7 @@ const IceSlimeCommands:EnemyPhysicalAttack[] = [
 
 export class Zanbia extends Enemy{
     initialize(){
-        this.HP = this.HP_MAX = 535;
+        this.HP = this.HP_MAX = 385;
         this.PAT = 37;
         this.MAT = 32;
         this.PDF = 38;
@@ -89,13 +89,13 @@ export class Zanbia extends Enemy{
             new EnemyProbCommand([IceSlimeCommands[0],IceSlimeCommands[1]],{prob:[80,20]}),
             new EnemyProbCommand([IceSlimeCommands[0],IceSlimeCommands[1]],{prob:[30,70]}),
             new EnemyProbCommand([IceSlimeCommands[0],IceSlimeCommands[1]],{prob:[45,55]}),
-            new EnemyProbCommand([IceSlimeCommands[1],IceSlimeCommands[2]],{prob:[70,30]}),
-            new EnemyProbCommand([IceSlimeCommands[1],IceSlimeCommands[2]],{prob:[30,70]}),
+            new EnemyProbCommand([IceSlimeCommands[1],IceSlimeCommands[2]],{prob:[75,25]}),
+            new EnemyProbCommand([IceSlimeCommands[1],IceSlimeCommands[3]],{prob:[30,70]}),
             new EnemyProbCommand([IceSlimeCommands[2],IceSlimeCommands[3],IceSlimeCommands[4]],{prob:[40,30,30]}),
             new EnemyProbCommand([IceSlimeCommands[0],IceSlimeCommands[3],IceSlimeCommands[4]],{prob:[60,20,10]}),
             new EnemyProbCommand([IceSlimeCommands[1],IceSlimeCommands[3]],{prob:[60,40]}),
             new EnemyProbCommand([IceSlimeCommands[4],IceSlimeCommands[5]],{prob:[80,20]}),
-            new EnemyProbCommand([IceSlimeCommands[4],IceSlimeCommands[5]],{prob:[10,90]}),
+            new EnemyProbCommand([IceSlimeCommands[4],IceSlimeCommands[5]],{prob:[40,60]}),
         ];
     }
     load(scene: BattleScene): void {
@@ -107,7 +107,7 @@ export class Zanbia extends Enemy{
         if(this.charge < 3){
             return this.candidatePCommands[Math.floor(Math.random()*(this.candidatePCommands.length-2))];
         }else{
-            if(this.HP/this.HP_MAX < 0.4 && Math.random()*100 < 25){
+            if(this.HP/this.HP_MAX < 0.4 && Math.random()*100 < 15){
                 return this.candidatePCommands[9];    
             }
             return this.candidatePCommands[Math.floor(Math.random()*(this.candidatePCommands.length))];
