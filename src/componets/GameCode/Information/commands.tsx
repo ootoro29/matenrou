@@ -105,9 +105,9 @@ export abstract class PlayerMagicalAttack extends Command {
         let imageInfo = {key:`${this.key}`,image:`${this.path}.png`};
         const status = battle.player.getBattleStatus();
         const Estatus = battle.enemy.getStatus();
-        ans.push(new NormalBattleEventArea(scene,`プレイヤーの${this.name}!`,(battle.player.isTransform())?((this.mp > status.MP)?imageInfo:undefined):undefined));
+        ans.push(new NormalBattleEventArea(scene,`プレイヤーの${this.name}!`,(battle.player.isTransform())?((this.mp >= status.MP)?undefined:imageInfo):undefined));
         const damage:number = calDamage(status.status.MAT,Estatus.MDF,this.power);
-        if(this.mp > status.MP){
+        if(this.mp >= status.MP){
             ans.push(new NormalBattleEventArea(scene,`しかしMPが足りなかった！`));
         }else if(!battle.player.isTransform()){
             ans.push(new NormalBattleEventArea(scene,`しかしあなたは魔法少女ではないので魔法が発動できなかった！`));
@@ -130,10 +130,10 @@ export abstract class PlayerMagicalAndPATAttack extends Command {
         let ans:BattleEventArea[] = []
         let imageInfo = {key:`${this.key}`,image:`${this.path}.png`};
         const status = battle.player.getBattleStatus();
-        ans.push(new NormalBattleEventArea(scene,`プレイヤーの${this.name}!`,(battle.player.isTransform())?((this.mp > status.MP)?imageInfo:undefined):undefined));
+        ans.push(new NormalBattleEventArea(scene,`プレイヤーの${this.name}!`,(battle.player.isTransform())?((this.mp >= status.MP)?undefined:imageInfo):undefined));
         const Estatus = battle.enemy.getStatus();
         const damage:number = calDamage(status.status.MAT,Estatus.MDF,this.power);
-        if(this.mp > status.MP){
+        if(this.mp >= status.MP){
             ans.push(new NormalBattleEventArea(scene,`しかしMPが足りなかった！`));
         }else if(!battle.player.isTransform()){
             ans.push(new NormalBattleEventArea(scene,`しかしあなたは魔法少女ではないので魔法が発動できなかった！`));
@@ -157,10 +157,10 @@ export abstract class PlayerMagicalAndMATAttack extends Command {
         let ans:BattleEventArea[] = []
         let imageInfo = {key:`${this.key}`,image:`${this.path}.png`};
         const status = battle.player.getBattleStatus();
-        ans.push(new NormalBattleEventArea(scene,`プレイヤーの${this.name}!`,(battle.player.isTransform())?((this.mp > status.MP)?imageInfo:undefined):undefined));
+        ans.push(new NormalBattleEventArea(scene,`プレイヤーの${this.name}!`,(battle.player.isTransform())?((this.mp >= status.MP)?undefined:imageInfo):undefined));
         const Estatus = battle.enemy.getStatus();
         const damage:number = calDamage(status.status.MAT,Estatus.MDF,this.power);
-        if(this.mp > status.MP){
+        if(this.mp >= status.MP){
             ans.push(new NormalBattleEventArea(scene,`しかしMPが足りなかった！`));
         }else if(!battle.player.isTransform()){
             ans.push(new NormalBattleEventArea(scene,`しかしあなたは魔法少女ではないので魔法が発動できなかった！`));
@@ -184,10 +184,10 @@ export abstract class PlayerMagicalAndPDFAttack extends Command {
         let ans:BattleEventArea[] = []
         let imageInfo = {key:`${this.key}`,image:`${this.path}.png`};
         const status = battle.player.getBattleStatus();
-        ans.push(new NormalBattleEventArea(scene,`プレイヤーの${this.name}!`,(battle.player.isTransform())?((this.mp > status.MP)?imageInfo:undefined):undefined));
+        ans.push(new NormalBattleEventArea(scene,`プレイヤーの${this.name}!`,(battle.player.isTransform())?((this.mp >= status.MP)?undefined:imageInfo):undefined));
         const Estatus = battle.enemy.getStatus();
         const damage:number = calDamage(status.status.MAT,Estatus.MDF,this.power);
-        if(this.mp > status.MP){
+        if(this.mp >= status.MP){
             ans.push(new NormalBattleEventArea(scene,`しかしMPが足りなかった！`));
         }else if(!battle.player.isTransform()){
             ans.push(new NormalBattleEventArea(scene,`しかしあなたは魔法少女ではないので魔法が発動できなかった！`));
@@ -210,11 +210,12 @@ export abstract class PlayerMagicalAndMDFAttack extends Command {
         if(!battle.enemy)return[];
         let ans:BattleEventArea[] = []
         let imageInfo = {key:`${this.key}`,image:`${this.path}.png`};
+        console.log(imageInfo);
         const status = battle.player.getBattleStatus();
-        ans.push(new NormalBattleEventArea(scene,`プレイヤーの${this.name}!`,(battle.player.isTransform())?((this.mp > status.MP)?imageInfo:undefined):undefined));
+        ans.push(new NormalBattleEventArea(scene,`プレイヤーの${this.name}!`,(battle.player.isTransform())?((this.mp >= status.MP)?undefined:imageInfo):undefined));
         const Estatus = battle.enemy.getStatus();
         const damage:number = calDamage(status.status.MAT,Estatus.MDF,this.power);
-        if(this.mp > status.MP){
+        if(this.mp >= status.MP){
             ans.push(new NormalBattleEventArea(scene,`しかしMPが足りなかった！`));
         }else if(!battle.player.isTransform()){
             ans.push(new NormalBattleEventArea(scene,`しかしあなたは魔法少女ではないので魔法が発動できなかった！`));
@@ -238,10 +239,10 @@ export abstract class PlayerMagicalAndSPAttack extends Command {
         let ans:BattleEventArea[] = []
         let imageInfo = {key:`${this.key}`,image:`${this.path}.png`};
         const status = battle.player.getBattleStatus();
-        ans.push(new NormalBattleEventArea(scene,`プレイヤーの${this.name}!`,(battle.player.isTransform())?((this.mp > status.MP)?imageInfo:undefined):undefined));
+        ans.push(new NormalBattleEventArea(scene,`プレイヤーの${this.name}!`,(battle.player.isTransform())?((this.mp >= status.MP)?undefined:imageInfo):undefined));
         const Estatus = battle.enemy.getStatus();
         const damage:number = calDamage(status.status.MAT,Estatus.MDF,this.power);
-        if(this.mp > status.MP){
+        if(this.mp >= status.MP){
             ans.push(new NormalBattleEventArea(scene,`しかしMPが足りなかった！`));
         }else if(!battle.player.isTransform()){
             ans.push(new NormalBattleEventArea(scene,`しかしあなたは魔法少女ではないので魔法が発動できなかった！`));
@@ -451,7 +452,7 @@ export abstract class PlayerMagicalShield extends Command {
         let ans:BattleEventArea[] = []
         ans.push(new NormalBattleEventArea(scene,`プレイヤーの${this.name}!`));
         const status = battle.player.getBattleStatus();
-        if(this.mp > status.MP){
+        if(this.mp >= status.MP){
             ans.push(new NormalBattleEventArea(scene,`しかしMPが足りなかった！`));
         }else if(!battle.player.isTransform()){
             ans.push(new NormalBattleEventArea(scene,`しかしあなたは魔法少女ではないので魔法が発動できなかった！`));
