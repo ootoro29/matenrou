@@ -1,7 +1,7 @@
 import { CommandAttribute } from "@/types/game";
 import { calDamage, calHit } from "../functions/damage";
 import { AdventureEventArea, CancelTransformAdventureEventArea, HPHeelAdventureEventArea, MPHeelAdventureEventArea, NormalAdventureEventArea, PlayerAdventureMATStageChange, PlayerAdventureMDFStageChange, PlayerAdventurePATStageChange, PlayerAdventurePDFStageChange, PlayerAdventureSPStageChange, TransformAdventureEventArea, UseItemAdventureEventArea } from "../parts/area/adventureEventArea";
-import { BattleEventArea, CancelTransformBattleEventArea, EMPABattleEventArea, EnemyBattleMATStageChange, EnemyBattleMDFStageChange, EnemyBattlePATStageChange, EnemyBattlePDFStageChange, EnemyBattleSPStageChange, EnemyHPHeelBattleEventArea, EnemyIshisuPray, EnemyZanbiaWords, EPABattleEventArea, EPAShieldBattleEventArea, HPHeelBattleEventArea, MPHeelBattleEventArea, NormalBattleEventArea, PlayerBattleIsLock, PlayerBattleMATStageChange, PlayerBattleMDFStageChange, PlayerBattlePATStageChange, PlayerBattlePDFStageChange, PlayerBattleSPStageChange, PMABattleEventArea, PPABattleEventArea, ShieldBattleEventArea, ShieldBreakBattleEventArea, TransformBattleEventArea, UseItemBattleEventArea } from "../parts/area/battleEventArea";
+import { BattleEventArea, CancelTransformBattleEventArea, EMPABattleEventArea, EnemyAvoid, EnemyBattleMATStageChange, EnemyBattleMDFStageChange, EnemyBattlePATStageChange, EnemyBattlePDFStageChange, EnemyBattleSPStageChange, EnemyHPHeelBattleEventArea, EnemyIshisuPray, EnemyZanbiaWords, EPABattleEventArea, EPAShieldBattleEventArea, HPHeelBattleEventArea, MPHeelBattleEventArea, NormalBattleEventArea, PlayerBattleIsLock, PlayerBattleMATStageChange, PlayerBattleMDFStageChange, PlayerBattlePATStageChange, PlayerBattlePDFStageChange, PlayerBattleSPStageChange, PMABattleEventArea, PPABattleEventArea, ShieldBattleEventArea, ShieldBreakBattleEventArea, TransformBattleEventArea, UseItemBattleEventArea } from "../parts/area/battleEventArea";
 import AdventureEventAction from "../scenes/actions/adventureEventAction";
 import BattleEventAction from "../scenes/actions/battleEventAction";
 import AdventureScene from "../scenes/adventure";
@@ -54,7 +54,7 @@ export abstract class PlayerPhysicalAttack extends Command {
         if(calHit(status.status.SP,Estatus.SP,this.mei,false)){
             ans.push(new PPABattleEventArea(scene,battle.enemy,damage));
         }else{
-            ans.push(new NormalBattleEventArea(scene,`${battle.enemy.name}は回避した!`));
+            ans.push(new EnemyAvoid(scene,battle.player,battle.enemy,this.mp));
         }
         return ans;
     }
@@ -77,9 +77,11 @@ export abstract class EnemyPhysicalAttack extends Command {
         const Sdamage:number = calDamage(Estatus.MAT,battle.player.transform_status.PDF,this.power);
         const hitShield = battle.player.Shield?.selectShield();
         if(hitShield){
-            ans.push(new EPAShieldBattleEventArea(scene,hitShield,Sdamage));
+            let imageInfo = {key:`NormalShield`,image:`assets/shield/ノーマルシールド.png`};
+            ans.push(new EPAShieldBattleEventArea(scene,hitShield,Sdamage,imageInfo));
             if(hitShield.HP <= Sdamage){
-                ans.push(new NormalBattleEventArea(scene,`${hitShield.name}は崩壊した`));
+                let imageInfo2 = {key:`NormalShield`,image:`assets/shield/ノーマルシールド(破壊.png`};
+                ans.push(new NormalBattleEventArea(scene,`${hitShield.name}は崩壊した`,imageInfo2));
             }
         }else if(calHit(Estatus.SP,status.status.SP,this.mei,battle.player.isLock())){
             let imageInfo = {key:"playerdamage",image:"/assets/player/被弾.png"};
@@ -105,16 +107,21 @@ export abstract class PlayerMagicalAttack extends Command {
         let imageInfo = {key:`${this.key}`,image:`${this.path}.png`};
         const status = battle.player.getBattleStatus();
         const Estatus = battle.enemy.getStatus();
-        ans.push(new NormalBattleEventArea(scene,`プレイヤーの${this.name}!`,(battle.player.isTransform())?((this.mp >= status.MP)?undefined:imageInfo):undefined));
         const damage:number = calDamage(status.status.MAT,Estatus.MDF,this.power);
-        if(this.mp >= status.MP){
+        if(!battle.player.isTransform()){
+            let imageInfo2 = {key:`NormalStateMagic`,image:`assets/player/通常詠唱.png`};
+            ans.push(new NormalBattleEventArea(scene,`プレイヤーの${this.name}!`,imageInfo2));
+            let imageInfo3 = {key:`FaildMagic`,image:`assets/player/魔法失敗.png`};
+            ans.push(new NormalBattleEventArea(scene,`しかしあなたは魔法少女ではないので魔法が発動できなかった！`,imageInfo3));
+        }else if(this.mp >= status.MP){
+            ans.push(new NormalBattleEventArea(scene,`プレイヤーの${this.name}!`));
             ans.push(new NormalBattleEventArea(scene,`しかしMPが足りなかった！`));
-        }else if(!battle.player.isTransform()){
-            ans.push(new NormalBattleEventArea(scene,`しかしあなたは魔法少女ではないので魔法が発動できなかった！`));
         }else if(calHit(status.status.SP,Estatus.SP,this.mei,false)){
+            ans.push(new NormalBattleEventArea(scene,`プレイヤーの${this.name}!`,imageInfo));
             ans.push(new PMABattleEventArea(scene,battle.player,battle.enemy,damage,this.mp));
         }else{
-            ans.push(new NormalBattleEventArea(scene,`${battle.enemy.name}は回避した!`));
+            ans.push(new NormalBattleEventArea(scene,`プレイヤーの${this.name}!`,imageInfo));
+            ans.push(new EnemyAvoid(scene,battle.player,battle.enemy,this.mp));
         }
         return ans;
     }
@@ -130,18 +137,23 @@ export abstract class PlayerMagicalAndPATAttack extends Command {
         let ans:BattleEventArea[] = []
         let imageInfo = {key:`${this.key}`,image:`${this.path}.png`};
         const status = battle.player.getBattleStatus();
-        ans.push(new NormalBattleEventArea(scene,`プレイヤーの${this.name}!`,(battle.player.isTransform())?((this.mp >= status.MP)?undefined:imageInfo):undefined));
         const Estatus = battle.enemy.getStatus();
         const damage:number = calDamage(status.status.MAT,Estatus.MDF,this.power);
-        if(this.mp >= status.MP){
+        if(!battle.player.isTransform()){
+            let imageInfo2 = {key:`NormalStateMagic`,image:`assets/player/通常詠唱.png`};
+            ans.push(new NormalBattleEventArea(scene,`プレイヤーの${this.name}!`,imageInfo2));
+            let imageInfo3 = {key:`FaildMagic`,image:`assets/player/魔法失敗.png`};
+            ans.push(new NormalBattleEventArea(scene,`しかしあなたは魔法少女ではないので魔法が発動できなかった！`,imageInfo3));
+        }else if(this.mp >= status.MP){
+            ans.push(new NormalBattleEventArea(scene,`プレイヤーの${this.name}!`));
             ans.push(new NormalBattleEventArea(scene,`しかしMPが足りなかった！`));
-        }else if(!battle.player.isTransform()){
-            ans.push(new NormalBattleEventArea(scene,`しかしあなたは魔法少女ではないので魔法が発動できなかった！`));
         }else if(calHit(status.status.SP,Estatus.SP,this.mei,false)){
+            ans.push(new NormalBattleEventArea(scene,`プレイヤーの${this.name}!`,imageInfo));
             ans.push(new PMABattleEventArea(scene,battle.player,battle.enemy,damage,this.mp));
             if(Math.random()*100 < 15)ans.push(new EnemyBattlePATStageChange(scene,battle.enemy,-1));
         }else{
-            ans.push(new NormalBattleEventArea(scene,`${battle.enemy.name}は回避した!`));
+            ans.push(new NormalBattleEventArea(scene,`プレイヤーの${this.name}!`,imageInfo));
+            ans.push(new EnemyAvoid(scene,battle.player,battle.enemy,this.mp));
         }
         return ans;
     }
@@ -157,18 +169,23 @@ export abstract class PlayerMagicalAndMATAttack extends Command {
         let ans:BattleEventArea[] = []
         let imageInfo = {key:`${this.key}`,image:`${this.path}.png`};
         const status = battle.player.getBattleStatus();
-        ans.push(new NormalBattleEventArea(scene,`プレイヤーの${this.name}!`,(battle.player.isTransform())?((this.mp >= status.MP)?undefined:imageInfo):undefined));
         const Estatus = battle.enemy.getStatus();
         const damage:number = calDamage(status.status.MAT,Estatus.MDF,this.power);
-        if(this.mp >= status.MP){
+        if(!battle.player.isTransform()){
+            let imageInfo2 = {key:`NormalStateMagic`,image:`assets/player/通常詠唱.png`};
+            ans.push(new NormalBattleEventArea(scene,`プレイヤーの${this.name}!`,imageInfo2));
+            let imageInfo3 = {key:`FaildMagic`,image:`assets/player/魔法失敗.png`};
+            ans.push(new NormalBattleEventArea(scene,`しかしあなたは魔法少女ではないので魔法が発動できなかった！`,imageInfo3));
+        }else if(this.mp >= status.MP){
+            ans.push(new NormalBattleEventArea(scene,`プレイヤーの${this.name}!`));
             ans.push(new NormalBattleEventArea(scene,`しかしMPが足りなかった！`));
-        }else if(!battle.player.isTransform()){
-            ans.push(new NormalBattleEventArea(scene,`しかしあなたは魔法少女ではないので魔法が発動できなかった！`));
         }else if(calHit(status.status.SP,Estatus.SP,this.mei,false)){
+            ans.push(new NormalBattleEventArea(scene,`プレイヤーの${this.name}!`,imageInfo));
             ans.push(new PMABattleEventArea(scene,battle.player,battle.enemy,damage,this.mp));
             if(Math.random()*100 < 15)ans.push(new EnemyBattleMATStageChange(scene,battle.enemy,-1));
         }else{
-            ans.push(new NormalBattleEventArea(scene,`${battle.enemy.name}は回避した!`));
+            ans.push(new NormalBattleEventArea(scene,`プレイヤーの${this.name}!`,imageInfo));
+            ans.push(new EnemyAvoid(scene,battle.player,battle.enemy,this.mp));
         }
         return ans;
     }
@@ -184,18 +201,23 @@ export abstract class PlayerMagicalAndPDFAttack extends Command {
         let ans:BattleEventArea[] = []
         let imageInfo = {key:`${this.key}`,image:`${this.path}.png`};
         const status = battle.player.getBattleStatus();
-        ans.push(new NormalBattleEventArea(scene,`プレイヤーの${this.name}!`,(battle.player.isTransform())?((this.mp >= status.MP)?undefined:imageInfo):undefined));
         const Estatus = battle.enemy.getStatus();
         const damage:number = calDamage(status.status.MAT,Estatus.MDF,this.power);
-        if(this.mp >= status.MP){
+        if(!battle.player.isTransform()){
+            let imageInfo2 = {key:`NormalStateMagic`,image:`assets/player/通常詠唱.png`};
+            ans.push(new NormalBattleEventArea(scene,`プレイヤーの${this.name}!`,imageInfo2));
+            let imageInfo3 = {key:`FaildMagic`,image:`assets/player/魔法失敗.png`};
+            ans.push(new NormalBattleEventArea(scene,`しかしあなたは魔法少女ではないので魔法が発動できなかった！`,imageInfo3));
+        }else if(this.mp >= status.MP){
+            ans.push(new NormalBattleEventArea(scene,`プレイヤーの${this.name}!`));
             ans.push(new NormalBattleEventArea(scene,`しかしMPが足りなかった！`));
-        }else if(!battle.player.isTransform()){
-            ans.push(new NormalBattleEventArea(scene,`しかしあなたは魔法少女ではないので魔法が発動できなかった！`));
         }else if(calHit(status.status.SP,Estatus.SP,this.mei,false)){
+            ans.push(new NormalBattleEventArea(scene,`プレイヤーの${this.name}!`,imageInfo));
             ans.push(new PMABattleEventArea(scene,battle.player,battle.enemy,damage,this.mp));
             if(Math.random()*100 < 15)ans.push(new EnemyBattlePDFStageChange(scene,battle.enemy,-1));
         }else{
-            ans.push(new NormalBattleEventArea(scene,`${battle.enemy.name}は回避した!`));
+            ans.push(new NormalBattleEventArea(scene,`プレイヤーの${this.name}!`,imageInfo));
+            ans.push(new EnemyAvoid(scene,battle.player,battle.enemy,this.mp));
         }
         return ans;
     }
@@ -212,18 +234,23 @@ export abstract class PlayerMagicalAndMDFAttack extends Command {
         let imageInfo = {key:`${this.key}`,image:`${this.path}.png`};
         console.log(imageInfo);
         const status = battle.player.getBattleStatus();
-        ans.push(new NormalBattleEventArea(scene,`プレイヤーの${this.name}!`,(battle.player.isTransform())?((this.mp >= status.MP)?undefined:imageInfo):undefined));
         const Estatus = battle.enemy.getStatus();
         const damage:number = calDamage(status.status.MAT,Estatus.MDF,this.power);
-        if(this.mp >= status.MP){
+        if(!battle.player.isTransform()){
+            let imageInfo2 = {key:`NormalStateMagic`,image:`assets/player/通常詠唱.png`};
+            ans.push(new NormalBattleEventArea(scene,`プレイヤーの${this.name}!`,imageInfo2));
+            let imageInfo3 = {key:`FaildMagic`,image:`assets/player/魔法失敗.png`};
+            ans.push(new NormalBattleEventArea(scene,`しかしあなたは魔法少女ではないので魔法が発動できなかった！`,imageInfo3));
+        }else if(this.mp >= status.MP){
+            ans.push(new NormalBattleEventArea(scene,`プレイヤーの${this.name}!`));
             ans.push(new NormalBattleEventArea(scene,`しかしMPが足りなかった！`));
-        }else if(!battle.player.isTransform()){
-            ans.push(new NormalBattleEventArea(scene,`しかしあなたは魔法少女ではないので魔法が発動できなかった！`));
         }else if(calHit(status.status.SP,Estatus.SP,this.mei,false)){
+            ans.push(new NormalBattleEventArea(scene,`プレイヤーの${this.name}!`,imageInfo));
             ans.push(new PMABattleEventArea(scene,battle.player,battle.enemy,damage,this.mp));
             if(Math.random()*100 < 15)ans.push(new EnemyBattleMDFStageChange(scene,battle.enemy,-1));
         }else{
-            ans.push(new NormalBattleEventArea(scene,`${battle.enemy.name}は回避した!`));
+            ans.push(new NormalBattleEventArea(scene,`プレイヤーの${this.name}!`,imageInfo));
+            ans.push(new EnemyAvoid(scene,battle.player,battle.enemy,this.mp));
         }
         return ans;
     }
@@ -239,18 +266,22 @@ export abstract class PlayerMagicalAndSPAttack extends Command {
         let ans:BattleEventArea[] = []
         let imageInfo = {key:`${this.key}`,image:`${this.path}.png`};
         const status = battle.player.getBattleStatus();
-        ans.push(new NormalBattleEventArea(scene,`プレイヤーの${this.name}!`,(battle.player.isTransform())?((this.mp >= status.MP)?undefined:imageInfo):undefined));
         const Estatus = battle.enemy.getStatus();
         const damage:number = calDamage(status.status.MAT,Estatus.MDF,this.power);
-        if(this.mp >= status.MP){
+        if(!battle.player.isTransform()){
+            let imageInfo2 = {key:`NormalStateMagic`,image:`assets/player/通常詠唱.png`};
+            ans.push(new NormalBattleEventArea(scene,`プレイヤーの${this.name}!`,imageInfo2));
+            let imageInfo3 = {key:`FaildMagic`,image:`assets/player/魔法失敗.png`};
+            ans.push(new NormalBattleEventArea(scene,`しかしあなたは魔法少女ではないので魔法が発動できなかった！`,imageInfo3));
+        }else if(this.mp >= status.MP){
             ans.push(new NormalBattleEventArea(scene,`しかしMPが足りなかった！`));
-        }else if(!battle.player.isTransform()){
-            ans.push(new NormalBattleEventArea(scene,`しかしあなたは魔法少女ではないので魔法が発動できなかった！`));
         }else if(calHit(status.status.SP,Estatus.SP,this.mei,false)){
+            ans.push(new NormalBattleEventArea(scene,`プレイヤーの${this.name}!`,imageInfo));
             ans.push(new PMABattleEventArea(scene,battle.player,battle.enemy,damage,this.mp));
             if(Math.random()*100 < 15)ans.push(new EnemyBattleSPStageChange(scene,battle.enemy,-1));
         }else{
-            ans.push(new NormalBattleEventArea(scene,`${battle.enemy.name}は回避した!`));
+            ans.push(new NormalBattleEventArea(scene,`プレイヤーの${this.name}!`,imageInfo));
+            ans.push(new EnemyAvoid(scene,battle.player,battle.enemy,this.mp));
         }
         return ans;
     }
@@ -272,9 +303,11 @@ export abstract class EnemyMagicalAttack extends Command {
         const Sdamage:number = calDamage(Estatus.MAT,battle.player.transform_status.MDF,this.power);
         const hitShield = battle.player.Shield?.selectShield();
         if(hitShield){
-            ans.push(new EPAShieldBattleEventArea(scene,hitShield,Sdamage));
+            let imageInfo = {key:`NormalShield`,image:`assets/shield/ノーマルシールド.png`};
+            ans.push(new EPAShieldBattleEventArea(scene,hitShield,Sdamage,imageInfo));
             if(hitShield.HP <= Sdamage){
-                ans.push(new NormalBattleEventArea(scene,`${hitShield.name}は崩壊した`));
+                let imageInfo2 = {key:`NormalShield`,image:`assets/shield/ノーマルシールド(破壊.png`};
+                ans.push(new NormalBattleEventArea(scene,`${hitShield.name}は崩壊した`,imageInfo2));
             }
         }else if(calHit(Estatus.SP,status.status.SP,this.mei,battle.player.isLock())){
             let imageInfo = {key:"playerdamage",image:"/assets/player/被弾.png"};
@@ -310,16 +343,20 @@ export abstract class Transform extends PlayerMagicCommand {
     doBattleCommand(battle:BattleScene,scene:BattleEventAction): BattleEventArea[] {
         if(!battle.player)return[];
         let ans:BattleEventArea[] = []
-        ans.push(new NormalBattleEventArea(scene,`プレイヤーの${this.name}!`));
+        
         const status = battle.player.getBattleStatus();
         if(this.mp <= status.MP){
             if(battle.player.transform){
+                ans.push(new NormalBattleEventArea(scene,`プレイヤーの${this.name}!`));
                 ans.push(new NormalBattleEventArea(scene,`たが君には既に魔法少女なので変身する必要が無い！`));
             }else{
-                
-                ans.push(new TransformBattleEventArea(scene,battle.player,this.mp));
+                let imageInfo = {key:`${this.key}`,image:`${this.path}.png`};
+                ans.push(new NormalBattleEventArea(scene,`プレイヤーの${this.name}!`,imageInfo));
+                let imageInfo2 = {key:`CompleteTransform`,image:`assets/player/変身完了.png`};
+                ans.push(new TransformBattleEventArea(scene,battle.player,this.mp,imageInfo2));
             }
         }else{
+            ans.push(new NormalBattleEventArea(scene,`プレイヤーの${this.name}!`));
             ans.push(new NormalBattleEventArea(scene,`しかし魔力が足りない！`));
         }
         return ans;
@@ -327,15 +364,19 @@ export abstract class Transform extends PlayerMagicCommand {
     doAdventureCommand(adventure: AdventureScene, scene: AdventureEventAction): AdventureEventArea[] {
         if(!adventure.player)return[];
         let ans:AdventureEventArea[] = []
-        ans.push(new NormalAdventureEventArea(scene,`プレイヤーの${this.name}!`));
         const status = adventure.player.getBattleStatus();
         if(this.mp <= status.MP){
             if(adventure.player.transform){
+                ans.push(new NormalAdventureEventArea(scene,`プレイヤーの${this.name}!`));
                 ans.push(new NormalAdventureEventArea(scene,`たが君には既に魔法少女なので変身する必要が無い！`));
             }else{
-                ans.push(new TransformAdventureEventArea(scene,adventure.player,this.mp));
+                let imageInfo = {key:`${this.key}`,image:`${this.path}.png`};
+                ans.push(new NormalAdventureEventArea(scene,`プレイヤーの${this.name}!`,imageInfo));
+                let imageInfo2 = {key:`CompleteTransform`,image:`assets/player/変身完了.png`};
+                ans.push(new TransformAdventureEventArea(scene,adventure.player,this.mp,imageInfo2));
             }
         }else{
+            ans.push(new NormalAdventureEventArea(scene,`プレイヤーの${this.name}!`));
             ans.push(new NormalAdventureEventArea(scene,`しかし魔力が足りない！`));
         }
         return ans;
@@ -450,16 +491,23 @@ export abstract class PlayerMagicalShield extends Command {
     doBattleCommand(battle:BattleScene,scene:BattleEventAction): BattleEventArea[] {
         if(!battle.player)return[];
         let ans:BattleEventArea[] = []
-        ans.push(new NormalBattleEventArea(scene,`プレイヤーの${this.name}!`));
         const status = battle.player.getBattleStatus();
-        if(this.mp >= status.MP){
+        if(!battle.player.isTransform()){
+            let imageInfo2 = {key:`NormalStateMagic`,image:`assets/player/通常詠唱.png`};
+            ans.push(new NormalBattleEventArea(scene,`プレイヤーの${this.name}!`,imageInfo2));
+            let imageInfo3 = {key:`FaildMagic`,image:`assets/player/魔法失敗.png`};
+            ans.push(new NormalBattleEventArea(scene,`しかしあなたは魔法少女ではないので魔法が発動できなかった！`,imageInfo3));
+        }else if(this.mp >= status.MP){
+            ans.push(new NormalBattleEventArea(scene,`プレイヤーの${this.name}!`));
             ans.push(new NormalBattleEventArea(scene,`しかしMPが足りなかった！`));
-        }else if(!battle.player.isTransform()){
-            ans.push(new NormalBattleEventArea(scene,`しかしあなたは魔法少女ではないので魔法が発動できなかった！`));
         }else if(!battle.player.Shield?.canSetShield()){
+            ans.push(new NormalBattleEventArea(scene,`プレイヤーの${this.name}!`));
             ans.push(new NormalBattleEventArea(scene,`しかしシールドはこれ以上展開できない！`));
         }else{
-            ans.push(new ShieldBattleEventArea(scene,battle.player,this.mp,this.genSheild()))
+            let imageInfo = {key:`${this.key}`,image:`${this.image}.png`};
+            ans.push(new NormalBattleEventArea(scene,`プレイヤーの${this.name}!`,imageInfo));
+            let imageInfo2 = {key:`NormalShield`,image:`assets/shield/ノーマルシールド.png`};
+            ans.push(new ShieldBattleEventArea(scene,battle.player,this.mp,this.genSheild(),imageInfo2))
         }
         return ans;
     }
@@ -568,9 +616,11 @@ export abstract class EnemyMagicalHPSuc extends Command {
         const hitShield = battle.player.Shield?.selectShield();
         const Sdamage:number = damage;
         if(hitShield){
-            ans.push(new EPAShieldBattleEventArea(scene,hitShield,Sdamage));
+            let imageInfo = {key:`NormalShield`,image:`assets/shield/ノーマルシールド.png`};
+            ans.push(new EPAShieldBattleEventArea(scene,hitShield,Sdamage,imageInfo));
             if(hitShield.HP <= Sdamage){
-                ans.push(new NormalBattleEventArea(scene,`${hitShield.name}は崩壊した`));
+                let imageInfo2 = {key:`NormalShield`,image:`assets/shield/ノーマルシールド(破壊.png`};
+                ans.push(new NormalBattleEventArea(scene,`${hitShield.name}は崩壊した`,imageInfo2));
             }
             ans.push(new EnemyHPHeelBattleEventArea(scene,battle.enemy,Sdamage));
         }else if(calHit(Estatus.SP,status.status.SP,this.mei,battle.player.isLock())){
@@ -603,9 +653,11 @@ export abstract class EnemyMagicalMPSuc extends Command {
         const hitShield = battle.player.Shield?.selectShield();
         const Sdamage:number = damage;
         if(hitShield){
-            ans.push(new EPAShieldBattleEventArea(scene,hitShield,Sdamage));
+            let imageInfo = {key:`NormalShield`,image:`assets/shield/ノーマルシールド.png`};
+            ans.push(new EPAShieldBattleEventArea(scene,hitShield,Sdamage,imageInfo));
             if(hitShield.HP <= Sdamage){
-                ans.push(new NormalBattleEventArea(scene,`${hitShield.name}は崩壊した`));
+                let imageInfo2 = {key:`NormalShield`,image:`assets/shield/ノーマルシールド(破壊.png`};
+                ans.push(new NormalBattleEventArea(scene,`${hitShield.name}は崩壊した`,imageInfo2));
             }
             ans.push(new EnemyHPHeelBattleEventArea(scene,battle.enemy,Sdamage));
         }else if(calHit(Estatus.SP,status.status.SP,this.mei,battle.player.isLock())){

@@ -930,3 +930,34 @@ export class EnemyZanbiaWords extends BattleEventArea {
         this.enemy.charge += 1;
     }
 }
+
+export class EnemyAvoid extends BattleEventArea {
+    enemy?:Enemy;
+    player?:PlayerINFO
+    mp = 0;
+    constructor(scene:BattleEventAction,player:PlayerINFO,enemy:Enemy,mp:number,{key="",image = ""} = {}){
+        const discription = `${enemy.name}は回避した！`;
+        super(scene,discription,{key:key,image:image});
+        this.enemy = enemy;
+        this.player = player;
+        this.mp = mp;
+    }
+    genSelections(): string[] {
+        return ["OK","X","X","X","X","X"];
+    }
+    opeClick(click: number): void {
+        if(!this.parents)return;
+        if(click == 0){
+            if(this.parents.AM?.isLast()){
+                this.parents.nextEventTurn();
+            }else{
+                this.parents.AM?.nextArea();
+                this.parents.changeBMText();
+            }
+        }
+    }
+    appearance(AM:BattleEventAreaManager): void {  
+        if(!this.player)return;
+        this.player.changeMP(-this.mp);
+    }
+}

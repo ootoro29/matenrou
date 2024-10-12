@@ -48,11 +48,11 @@ export class ZombiHaka extends Enemy{
         this.HP = this.HP_MAX = 90;
         this.PAT = 18;
         this.MAT = 38;
-        this.PDF = 40;
-        this.MDF = 38;
+        this.PDF = 16;
+        this.MDF = 35;
         this.SP = 10;
         this.exp = 5;
-        this.name = "ゾンビマン";
+        this.name = "墓ゾンビ";
     
         this.candidatePCommands = [
             new EnemyProbCommand([ZombiGirlCommands[0],ZombiGirlCommands[1]],{prob:[80,20]}),

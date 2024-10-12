@@ -27,6 +27,8 @@ export class TransformMagicalGirl extends Transform{
         this.name = "魔法少女に変身";
         this.mp = 1;
         this.description = "魔法少女に変身する (消費MP:1)";
+        this.key = "TransformPlayer"
+        this.path = "/assets/player/魔法少女変身";
     }
 }
 
