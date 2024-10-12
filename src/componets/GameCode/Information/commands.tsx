@@ -80,7 +80,7 @@ export abstract class EnemyPhysicalAttack extends Command {
             let imageInfo = {key:`NormalShield`,image:`assets/shield/ノーマルシールド.png`};
             ans.push(new EPAShieldBattleEventArea(scene,hitShield,Sdamage,imageInfo));
             if(hitShield.HP <= Sdamage){
-                let imageInfo2 = {key:`NormalShield`,image:`assets/shield/ノーマルシールド破壊.png`};
+                let imageInfo2 = {key:`NormalShieldBreak`,image:`assets/shield/ノーマルシールド破壊.png`};
                 ans.push(new NormalBattleEventArea(scene,`${hitShield.name}は崩壊した`,imageInfo2));
             }
         }else if(calHit(Estatus.SP,status.status.SP,this.mei,battle.player.isLock())){
@@ -306,7 +306,7 @@ export abstract class EnemyMagicalAttack extends Command {
             let imageInfo = {key:`NormalShield`,image:`assets/shield/ノーマルシールド.png`};
             ans.push(new EPAShieldBattleEventArea(scene,hitShield,Sdamage,imageInfo));
             if(hitShield.HP <= Sdamage){
-                let imageInfo2 = {key:`NormalShield`,image:`assets/shield/ノーマルシールド破壊.png`};
+                let imageInfo2 = {key:`NormalShieldBreak`,image:`assets/shield/ノーマルシールド破壊.png`};
                 ans.push(new NormalBattleEventArea(scene,`${hitShield.name}は崩壊した`,imageInfo2));
             }
         }else if(calHit(Estatus.SP,status.status.SP,this.mei,battle.player.isLock())){
@@ -619,7 +619,7 @@ export abstract class EnemyMagicalHPSuc extends Command {
             let imageInfo = {key:`NormalShield`,image:`assets/shield/ノーマルシールド.png`};
             ans.push(new EPAShieldBattleEventArea(scene,hitShield,Sdamage,imageInfo));
             if(hitShield.HP <= Sdamage){
-                let imageInfo2 = {key:`NormalShield`,image:`assets/shield/ノーマルシールド破壊.png`};
+                let imageInfo2 = {key:`NormalShieldBreak`,image:`assets/shield/ノーマルシールド破壊.png`};
                 ans.push(new NormalBattleEventArea(scene,`${hitShield.name}は崩壊した`,imageInfo2));
             }
             ans.push(new EnemyHPHeelBattleEventArea(scene,battle.enemy,Sdamage));
@@ -656,7 +656,7 @@ export abstract class EnemyMagicalMPSuc extends Command {
             let imageInfo = {key:`NormalShield`,image:`assets/shield/ノーマルシールド.png`};
             ans.push(new EPAShieldBattleEventArea(scene,hitShield,Sdamage,imageInfo));
             if(hitShield.HP <= Sdamage){
-                let imageInfo2 = {key:`NormalShield`,image:`assets/shield/ノーマルシールド破壊.png`};
+                let imageInfo2 = {key:`NormalShieldBreak`,image:`assets/shield/ノーマルシールド破壊.png`};
                 ans.push(new NormalBattleEventArea(scene,`${hitShield.name}は崩壊した`,imageInfo2));
             }
             ans.push(new EnemyHPHeelBattleEventArea(scene,battle.enemy,Sdamage));

@@ -72,6 +72,8 @@ export class ExpandNormalShield extends PlayerMagicalShield{
         this.name = this.genSheild().name;
         this.mp = 40;
         this.description = "シールドを展開する。耐久50、耐久が1でも残っていれば全ての攻撃を吸収する。";
+        this.key = "ExpandNormalShield"
+        this.path = "/assets/player/シールド";
     }
     genSheild(): Shield {
         return new NormalShield();
