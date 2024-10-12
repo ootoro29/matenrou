@@ -504,7 +504,8 @@ export abstract class PlayerMagicalShield extends Command {
             ans.push(new NormalBattleEventArea(scene,`プレイヤーの${this.name}!`));
             ans.push(new NormalBattleEventArea(scene,`しかしシールドはこれ以上展開できない！`));
         }else{
-            let imageInfo = {key:`${this.key}`,image:`${this.image}.png`};
+            let imageInfo = {key:`${this.key}`,image:`${this.path}.png`};
+            console.log(imageInfo)
             ans.push(new NormalBattleEventArea(scene,`プレイヤーの${this.name}!`,imageInfo));
             let imageInfo2 = {key:`NormalShield`,image:`assets/shield/ノーマルシールド.png`};
             ans.push(new ShieldBattleEventArea(scene,battle.player,this.mp,this.genSheild(),imageInfo2))
