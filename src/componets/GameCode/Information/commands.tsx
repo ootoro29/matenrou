@@ -1,7 +1,7 @@
 import { CommandAttribute } from "@/types/game";
 import { calDamage, calHit } from "../functions/damage";
 import { AdventureEventArea, CancelTransformAdventureEventArea, HPHeelAdventureEventArea, MPHeelAdventureEventArea, NormalAdventureEventArea, PlayerAdventureMATStageChange, PlayerAdventureMDFStageChange, PlayerAdventurePATStageChange, PlayerAdventurePDFStageChange, PlayerAdventureSPStageChange, TransformAdventureEventArea, UseItemAdventureEventArea } from "../parts/area/adventureEventArea";
-import { BattleEventArea, CancelTransformBattleEventArea, EnemyBattleMATStageChange, EnemyBattleMDFStageChange, EnemyBattlePATStageChange, EnemyBattlePDFStageChange, EnemyBattleSPStageChange, EnemyHPHeelBattleEventArea, EnemyIshisuPray, EPABattleEventArea, EPAShieldBattleEventArea, HPHeelBattleEventArea, MPHeelBattleEventArea, NormalBattleEventArea, PlayerBattleIsLock, PlayerBattleMATStageChange, PlayerBattleMDFStageChange, PlayerBattlePATStageChange, PlayerBattlePDFStageChange, PlayerBattleSPStageChange, PMABattleEventArea, PPABattleEventArea, ShieldBattleEventArea, ShieldBreakBattleEventArea, TransformBattleEventArea, UseItemBattleEventArea } from "../parts/area/battleEventArea";
+import { BattleEventArea, CancelTransformBattleEventArea, EMPABattleEventArea, EnemyBattleMATStageChange, EnemyBattleMDFStageChange, EnemyBattlePATStageChange, EnemyBattlePDFStageChange, EnemyBattleSPStageChange, EnemyHPHeelBattleEventArea, EnemyIshisuPray, EnemyZanbiaWords, EPABattleEventArea, EPAShieldBattleEventArea, HPHeelBattleEventArea, MPHeelBattleEventArea, NormalBattleEventArea, PlayerBattleIsLock, PlayerBattleMATStageChange, PlayerBattleMDFStageChange, PlayerBattlePATStageChange, PlayerBattlePDFStageChange, PlayerBattleSPStageChange, PMABattleEventArea, PPABattleEventArea, ShieldBattleEventArea, ShieldBreakBattleEventArea, TransformBattleEventArea, UseItemBattleEventArea } from "../parts/area/battleEventArea";
 import AdventureEventAction from "../scenes/actions/adventureEventAction";
 import BattleEventAction from "../scenes/actions/battleEventAction";
 import AdventureScene from "../scenes/adventure";
@@ -103,9 +103,9 @@ export abstract class PlayerMagicalAttack extends Command {
         if(!battle.enemy)return[];
         let ans:BattleEventArea[] = []
         let imageInfo = {key:`${this.key}`,image:`${this.path}.png`};
-        ans.push(new NormalBattleEventArea(scene,`プレイヤーの${this.name}!`,imageInfo));
         const status = battle.player.getBattleStatus();
         const Estatus = battle.enemy.getStatus();
+        ans.push(new NormalBattleEventArea(scene,`プレイヤーの${this.name}!`,(battle.player.isTransform())?((this.mp > status.MP)?imageInfo:undefined):undefined));
         const damage:number = calDamage(status.status.MAT,Estatus.MDF,this.power);
         if(this.mp > status.MP){
             ans.push(new NormalBattleEventArea(scene,`しかしMPが足りなかった！`));
@@ -129,8 +129,8 @@ export abstract class PlayerMagicalAndPATAttack extends Command {
         if(!battle.enemy)return[];
         let ans:BattleEventArea[] = []
         let imageInfo = {key:`${this.key}`,image:`${this.path}.png`};
-        ans.push(new NormalBattleEventArea(scene,`プレイヤーの${this.name}!`,imageInfo));
         const status = battle.player.getBattleStatus();
+        ans.push(new NormalBattleEventArea(scene,`プレイヤーの${this.name}!`,(battle.player.isTransform())?((this.mp > status.MP)?imageInfo:undefined):undefined));
         const Estatus = battle.enemy.getStatus();
         const damage:number = calDamage(status.status.MAT,Estatus.MDF,this.power);
         if(this.mp > status.MP){
@@ -156,8 +156,8 @@ export abstract class PlayerMagicalAndMATAttack extends Command {
         if(!battle.enemy)return[];
         let ans:BattleEventArea[] = []
         let imageInfo = {key:`${this.key}`,image:`${this.path}.png`};
-        ans.push(new NormalBattleEventArea(scene,`プレイヤーの${this.name}!`,imageInfo));
         const status = battle.player.getBattleStatus();
+        ans.push(new NormalBattleEventArea(scene,`プレイヤーの${this.name}!`,(battle.player.isTransform())?((this.mp > status.MP)?imageInfo:undefined):undefined));
         const Estatus = battle.enemy.getStatus();
         const damage:number = calDamage(status.status.MAT,Estatus.MDF,this.power);
         if(this.mp > status.MP){
@@ -183,8 +183,8 @@ export abstract class PlayerMagicalAndPDFAttack extends Command {
         if(!battle.enemy)return[];
         let ans:BattleEventArea[] = []
         let imageInfo = {key:`${this.key}`,image:`${this.path}.png`};
-        ans.push(new NormalBattleEventArea(scene,`プレイヤーの${this.name}!`,imageInfo));
         const status = battle.player.getBattleStatus();
+        ans.push(new NormalBattleEventArea(scene,`プレイヤーの${this.name}!`,(battle.player.isTransform())?((this.mp > status.MP)?imageInfo:undefined):undefined));
         const Estatus = battle.enemy.getStatus();
         const damage:number = calDamage(status.status.MAT,Estatus.MDF,this.power);
         if(this.mp > status.MP){
@@ -210,8 +210,8 @@ export abstract class PlayerMagicalAndMDFAttack extends Command {
         if(!battle.enemy)return[];
         let ans:BattleEventArea[] = []
         let imageInfo = {key:`${this.key}`,image:`${this.path}.png`};
-        ans.push(new NormalBattleEventArea(scene,`プレイヤーの${this.name}!`,imageInfo));
         const status = battle.player.getBattleStatus();
+        ans.push(new NormalBattleEventArea(scene,`プレイヤーの${this.name}!`,(battle.player.isTransform())?((this.mp > status.MP)?imageInfo:undefined):undefined));
         const Estatus = battle.enemy.getStatus();
         const damage:number = calDamage(status.status.MAT,Estatus.MDF,this.power);
         if(this.mp > status.MP){
@@ -237,8 +237,8 @@ export abstract class PlayerMagicalAndSPAttack extends Command {
         if(!battle.enemy)return[];
         let ans:BattleEventArea[] = []
         let imageInfo = {key:`${this.key}`,image:`${this.path}.png`};
-        ans.push(new NormalBattleEventArea(scene,`プレイヤーの${this.name}!`,imageInfo));
         const status = battle.player.getBattleStatus();
+        ans.push(new NormalBattleEventArea(scene,`プレイヤーの${this.name}!`,(battle.player.isTransform())?((this.mp > status.MP)?imageInfo:undefined):undefined));
         const Estatus = battle.enemy.getStatus();
         const damage:number = calDamage(status.status.MAT,Estatus.MDF,this.power);
         if(this.mp > status.MP){
@@ -589,6 +589,41 @@ export abstract class EnemyMagicalHPSuc extends Command {
     }
 }
 
+export abstract class EnemyMagicalMPSuc extends Command {
+    doBattleCommand(battle:BattleScene,scene:BattleEventAction): BattleEventArea[] {
+        if(!battle.player)return[];
+        if(!battle.enemy)return[];
+        let ans:BattleEventArea[] = []
+        let imageInfo = {key:`${this.key}`,image:`${this.path}.png`};
+        ans.push(new NormalBattleEventArea(scene,`${battle.enemy.name}の${this.name}!`,imageInfo));
+        const status = battle.player.getBattleStatus();
+        const Estatus = battle.enemy.getStatus();
+        const damage:number = Math.floor(battle.player.MP*0.2);
+        const hitShield = battle.player.Shield?.selectShield();
+        const Sdamage:number = damage;
+        if(hitShield){
+            ans.push(new EPAShieldBattleEventArea(scene,hitShield,Sdamage));
+            if(hitShield.HP <= Sdamage){
+                ans.push(new NormalBattleEventArea(scene,`${hitShield.name}は崩壊した`));
+            }
+            ans.push(new EnemyHPHeelBattleEventArea(scene,battle.enemy,Sdamage));
+        }else if(calHit(Estatus.SP,status.status.SP,this.mei,battle.player.isLock())){
+            let imageInfo = {key:"playerdamage",image:"/assets/player/被弾.png"};
+            if(battle.player.transform){
+                imageInfo = {key:"playerdamagetransform",image:"/assets/player/被弾(魔法少女).png"};
+            }
+            ans.push(new EMPABattleEventArea(scene,battle.player,damage,imageInfo));
+            ans.push(new EnemyHPHeelBattleEventArea(scene,battle.enemy,damage));
+        }else{
+            ans.push(new NormalBattleEventArea(scene,`プレイヤーは回避した!`));
+        }
+        return ans;
+    }
+    doAdventureCommand(battle: AdventureScene, scene: AdventureEventAction): AdventureEventArea[] {
+        return []
+    }
+}
+
 export abstract class EnemyMagicalPray extends Command {
     doBattleCommand(battle:BattleScene,scene:BattleEventAction): BattleEventArea[] {
         if(!battle.enemy)return[];
@@ -597,6 +632,21 @@ export abstract class EnemyMagicalPray extends Command {
         ans.push(new NormalBattleEventArea(scene,`${battle.enemy.name}の${this.name}!`,imageInfo));
         const Estatus = battle.enemy.getStatus();
         ans.push(new EnemyIshisuPray(scene,battle.enemy));
+        return ans;
+    }
+    doAdventureCommand(battle: AdventureScene, scene: AdventureEventAction): AdventureEventArea[] {
+        return []
+    }
+}
+
+export abstract class EnemyMagicalWord extends Command {
+    doBattleCommand(battle:BattleScene,scene:BattleEventAction): BattleEventArea[] {
+        if(!battle.enemy)return[];
+        let ans:BattleEventArea[] = []
+        let imageInfo = {key:`${this.key}`,image:`${this.path}.png`};
+        ans.push(new NormalBattleEventArea(scene,`${battle.enemy.name}の${this.name}!`,imageInfo));
+        const Estatus = battle.enemy.getStatus();
+        ans.push(new EnemyZanbiaWords(scene,battle.enemy));
         return ans;
     }
     doAdventureCommand(battle: AdventureScene, scene: AdventureEventAction): AdventureEventArea[] {
@@ -632,6 +682,47 @@ export abstract class EnemyMagicalParugoa extends Command {
             ans.push(new EPABattleEventArea(scene,battle.player,damage,imageInfo));
         }else{
             ans.push(new NormalBattleEventArea(scene,`プレイヤーは回避した!`));
+        }
+        return ans;
+    }
+    doAdventureCommand(adventure: AdventureScene, scene: AdventureEventAction): AdventureEventArea[] {
+        return [];
+    }
+}
+
+export abstract class EnemyMagicalHerugaia extends Command {
+    doBattleCommand(battle: BattleScene, scene: BattleEventAction): BattleEventArea[] {
+        if(!battle.player)return[];
+        if(!battle.enemy)return[];
+        let ans:BattleEventArea[] = []
+        let imageInfo = {key:`${this.key}`,image:`${this.path}.png`};
+        const level = Math.min(battle.enemy.charge,3);
+        console.log(level);
+        const status = battle.player.getBattleStatus();
+        const Estatus = battle.enemy.getStatus();
+        const damage:number = calDamage(Estatus.MAT,status.status.MDF,this.power);
+        const Sdamage:number = calDamage(Estatus.MAT,battle.player.transform_status.MDF,this.power);
+        if(level < 3){
+            ans.push(new NormalBattleEventArea(scene,`${battle.enemy.name}の${this.name}!`));
+            ans.push(new NormalBattleEventArea(scene,`しかし空間の緊張感が足りなかった！`));
+        }else{
+            battle.enemy.charge = 0;
+            ans.push(new NormalBattleEventArea(scene,`${battle.enemy.name}の${this.name}!`,imageInfo));
+            battle.player.Shield?.shieldList.map((s) => {
+                ans.push(new EPAShieldBattleEventArea(scene,s,Sdamage));
+                if(s.HP <= Sdamage){
+                    ans.push(new NormalBattleEventArea(scene,`${s.name}は崩壊した`));
+                }
+            })
+            if(calHit(Estatus.SP,status.status.SP,this.mei,battle.player.isLock())){
+                let imageInfo = {key:"playerdamage",image:"/assets/player/被弾.png"};
+                if(battle.player.transform){
+                    imageInfo = {key:"playerdamagetransform",image:"/assets/player/被弾(魔法少女).png"};
+                }
+                ans.push(new EPABattleEventArea(scene,battle.player,damage,imageInfo));
+            }else{
+                ans.push(new NormalBattleEventArea(scene,`プレイヤーは回避した!`));
+            }
         }
         return ans;
     }

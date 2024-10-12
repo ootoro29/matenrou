@@ -62,8 +62,8 @@ export class ZombiHaka extends Enemy{
     }
     load(scene: BattleScene): void {
         this.scene = scene;
-        //this.key = "fireSlime"
-        //this.scene.load.image(this.key,"/assets/enemy/fireSlime/戦闘.png");
+        this.key = "zombiHaka"
+        this.scene.load.image(this.key,"/assets/enemy/zombiHaka/戦闘.png");
     }
     genPComand(): ProbCommand {
         return this.candidatePCommands[Math.floor(Math.random()*this.candidatePCommands.length)];

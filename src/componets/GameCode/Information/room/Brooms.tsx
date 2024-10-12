@@ -3,7 +3,7 @@ import AdventureThinking from "../../scenes/actions/adventureThinking";
 "../../scenes/actions/adventureThinking";
 import searchAction from "../../scenes/actions/searchAction";
 import { A11Room, A12Room, A14Room, A5Room, A7Room, A9Room } from "./Arooms";
-import { C11Room, C12Room, C5Room, C6Room, C8Room } from "./Crooms";
+import { C11Room, C12Room, C13Room, C5Room, C6Room, C8Room } from "./Crooms";
 import { D7Room, D9Room } from "./Drooms";
 import * as AdvanceEvent  from "@/componets/GameCode/functions/advanceRoomEvent";
 import * as SearchEvent from "@/componets/GameCode/functions/searchEvent"
@@ -357,7 +357,7 @@ export class B13Room extends Room {
         return[];
     }
     initialize(): void {
-        this.nextRooms = [new B13Room()];
+        this.nextRooms = [new C13Room()];
         this.PRooms = [0];
     }
     genSearchEvent(scene:searchAction){

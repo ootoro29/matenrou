@@ -177,6 +177,35 @@ export class PMABattleEventArea extends BattleEventArea {
     }
 }
 
+export class EMPABattleEventArea extends BattleEventArea {
+    damage:number = 0;
+    player?:PlayerINFO;
+    constructor(scene:BattleEventAction,player:PlayerINFO,damage:number,{key="",image = ""} = {}){
+        const discription = `プレイヤーは${damage}のMPが奪われた！`;
+        super(scene,discription,{key:key,image:image});
+        this.damage = damage;
+        this.player = player;
+    }
+    genSelections(): string[] {
+        return ["OK","X","X","X","X","X"];
+    }
+    opeClick(click: number): void {
+        if(!this.parents)return;
+        if(click == 0){
+            if(this.parents.AM?.isLast()){
+                this.parents.nextEventTurn();
+            }else{
+                this.parents.AM?.nextArea();
+                this.parents.changeBMText();
+            }
+        }
+    }
+    appearance(AM:BattleEventAreaManager): void {
+        if(!this.player)return;
+        this.player.changeMP(-this.damage);
+    }
+}
+
 export class EPABattleEventArea extends BattleEventArea {
     damage:number = 0;
     player?:PlayerINFO;
@@ -870,6 +899,34 @@ export class EnemyIshisuPray extends BattleEventArea {
         if(!this.enemy)return;
         if(this.enemy.MATstage >= 6)return;
         this.enemy.MATstage += 1;
+        this.enemy.charge += 1;
+    }
+}
+export class EnemyZanbiaWords extends BattleEventArea {
+    enemy?:Enemy;
+    constructor(scene:BattleEventAction,enemy:Enemy,{key="",image = ""} = {}){
+        const discription = `${enemy.name}のPATが1段階上がり、空間に緊張感が増した。`;
+        super(scene,discription,{key:key,image:image});
+        this.enemy = enemy;
+    }
+    genSelections(): string[] {
+        return ["OK","X","X","X","X","X"];
+    }
+    opeClick(click: number): void {
+        if(!this.parents)return;
+        if(click == 0){
+            if(this.parents.AM?.isLast()){
+                this.parents.nextEventTurn();
+            }else{
+                this.parents.AM?.nextArea();
+                this.parents.changeBMText();
+            }
+        }
+    }
+    appearance(AM:BattleEventAreaManager): void {  
+        if(!this.enemy)return;
+        if(this.enemy.MATstage >= 6)return;
+        this.enemy.PATstage += 1;
         this.enemy.charge += 1;
     }
 }

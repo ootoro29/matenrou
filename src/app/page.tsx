@@ -3,6 +3,7 @@ import styles from "./page.module.css";
 import { createClient } from "@/utils/supabase/server";
 import { LogginButton, LoggoutButton } from "./buttons";
 import Link from "next/link";
+import React from "react";
 
 export default async function Home() {
   const supabase = await createClient();

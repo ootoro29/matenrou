@@ -201,7 +201,7 @@ export class D8Room extends Room {
         this.name = "D-8"
     }
     genAdvanceRoomEvent(scene: AdventureThinking): advanceRoomEventArea[] {
-        return[];
+        return AdvanceEvent.BossZanbiaEvent(scene);
     }
     initialize(): void {
         this.nextRooms = [new D9Room()];

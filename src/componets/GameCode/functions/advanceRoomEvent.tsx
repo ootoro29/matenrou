@@ -17,6 +17,7 @@ import { RockSlime } from "../Information/enemy/rockSlime";
 import { StarKnightGirl } from "../Information/enemy/StarKnightGirl";
 import { ThunderSlime } from "../Information/enemy/thunderSlime";
 import { WindSlime } from "../Information/enemy/windSlime";
+import { Zanbia } from "../Information/enemy/Zanbia";
 import { ZombiGirl } from "../Information/enemy/ZombiGirl";
 import { ZombiHaka } from "../Information/enemy/ZombiHaka";
 import { ZombiMan } from "../Information/enemy/ZombiMan";
@@ -160,5 +161,16 @@ export function BossIshisuEvent(scene:AdventureThinking){
         new AdvanceEvent.NormalAdvanceRoomArea(scene,"「ふ～ん。あなた、魔法少女になれるのね。……それも、ちょっと歪に。」"),
         new AdvanceEvent.NormalAdvanceRoomArea(scene,"「…………これ以上のことは戦ってみないと分からないなぁ。」"),
         new AdvanceEvent.BattleAdvanceRoomArea(scene,new Ishisu()),
+    ]
+}
+
+export function BossZanbiaEvent(scene:AdventureThinking){
+    return [
+        new AdvanceEvent.NormalAdvanceRoomArea(scene,"──────────その部屋からは迸る緊張感を覚えた。"),
+        new AdvanceEvent.NormalAdvanceRoomArea(scene,"辺りにはオーブが漂い、紫の霧が立ち込めている。"),
+        new AdvanceEvent.NormalAdvanceRoomArea(scene,"部屋の中央には掠れた魔法陣と空の棺桶。その奥には───"),
+        new AdvanceEvent.NormalAdvanceRoomArea(scene,"華やかな装飾。煌びやかな衣装。それでいて血の気の無い、縫い目のある少女がいた。"),
+        new AdvanceEvent.NormalAdvanceRoomArea(scene,"彼女は無言で構える。どうやら戦う運命にあるようだ。"),
+        new AdvanceEvent.BattleAdvanceRoomArea(scene,new Zanbia()),
     ]
 }

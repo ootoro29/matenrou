@@ -7,6 +7,7 @@ import main from "./main";
 export default class AdventureScene extends PartScene{
     first = true;
     player?:PlayerINFO;
+    backImage?:Phaser.GameObjects.Image;
     constructor() {
         super("adventure");
     }
@@ -23,6 +24,7 @@ export default class AdventureScene extends PartScene{
         const graphics = this.add.graphics();
         //graphics.fillStyle(0x00dd00, 1.0);
         //graphics.fillRect(0, 0,this.scale.width, this.scale.height);
+        this.backImage = this.add.image(0,300,"RoomBackImage1").setOrigin(0,0);
         const A = this.scene.launch('adventureThinking',{main:this.MAIN,adventure:this,first:this.first});
     }
     toCombat(enemy:Enemy){

@@ -62,8 +62,8 @@ export class ZombiMan extends Enemy{
     }
     load(scene: BattleScene): void {
         this.scene = scene;
-        //this.key = "fireSlime"
-        //this.scene.load.image(this.key,"/assets/enemy/fireSlime/戦闘.png");
+        this.key = "zombiMan"
+        this.scene.load.image(this.key,"/assets/enemy/zombiMan/戦闘.png");
     }
     genPComand(): ProbCommand {
         return this.candidatePCommands[Math.floor(Math.random()*this.candidatePCommands.length)];

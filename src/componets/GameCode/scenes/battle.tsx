@@ -17,6 +17,7 @@ export default class BattleScene extends PartScene{
     player?:PlayerINFO;
     Areas?:BattleEventArea[]
     battleAction?:BattleEventAction;
+    backImage?:Phaser.GameObjects.Image;
     constructor() {
         super("battle");
         
@@ -159,6 +160,7 @@ export default class BattleScene extends PartScene{
         const graphics = this.add.graphics();
         //graphics.fillStyle(0x0000dd, 1.0);
         //graphics.fillRect(0, 0,this.scale.width, this.scale.height);
+        this.backImage = this.add.image(0,300,"RoomBackImage1").setOrigin(0,0);
         const A = this.scene.launch('battleThinking',{main:this.MAIN,battle:this});
         this.enemy?.create();
     }
