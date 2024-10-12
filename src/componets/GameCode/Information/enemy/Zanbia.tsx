@@ -75,12 +75,12 @@ const IceSlimeCommands:EnemyPhysicalAttack[] = [
 
 export class Zanbia extends Enemy{
     initialize(){
-        this.HP = this.HP_MAX = 440;
-        this.PAT = 30;
-        this.MAT = 31;
-        this.PDF = 32;
-        this.MDF = 16;
-        this.SP = 43;
+        this.HP = this.HP_MAX = 535;
+        this.PAT = 37;
+        this.MAT = 32;
+        this.PDF = 38;
+        this.MDF = 21;
+        this.SP = 48;
         this.exp = 30;
         this.name = "ザンビア";
     
@@ -103,10 +103,10 @@ export class Zanbia extends Enemy{
         this.scene.load.image(this.key,"/assets/enemy/zanbia/戦闘.png");
     }
     genPComand(): ProbCommand {
-        if(this.HP/this.HP_MAX > 0.6 && this.charge < 3){
-            return this.candidatePCommands[Math.floor(Math.random()*(this.candidatePCommands.length-1))];
+        if(this.charge < 3){
+            return this.candidatePCommands[Math.floor(Math.random()*(this.candidatePCommands.length-2))];
         }else{
-            if(Math.random()*100 < 15 && this.charge >= 3){
+            if(this.HP/this.HP_MAX < 0.4 && Math.random()*100 < 25){
                 return this.candidatePCommands[9];    
             }
             return this.candidatePCommands[Math.floor(Math.random()*(this.candidatePCommands.length))];
