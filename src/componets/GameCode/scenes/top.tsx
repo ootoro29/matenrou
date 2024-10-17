@@ -33,6 +33,12 @@ export default class top extends Phaser.Scene {
   }
 
   create() {
+
+    const loadingScreen = document.getElementById('loadingScreen');
+    if (loadingScreen) {
+        loadingScreen.style.display = 'none';
+    }
+
     if (!this.player) return;
     if (!this.gameInfo) return;
     // シンプルなゲームオブジェクトを作成

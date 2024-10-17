@@ -95,6 +95,9 @@ export default function Game(data:gameInterface) {
         }
     },[gameArea,sceneArray])
     return(
-        <div ref={gameArea} className={styles.game}></div>
+        <>
+            <div id="loadingScreen">なうろーでぃんぐ</div>
+            <div ref={gameArea} className={styles.game}></div>
+        </>
     );
 }

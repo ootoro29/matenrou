@@ -16,7 +16,7 @@ export default async function Home() {
       {(user)?(
         <>
           <Image src={"/top/ログイントップ画面.jpg"} alt="ログイントップ画面" width={270} height={400} className={styles.top_page_image}></Image>
-          <Link href={"/game"}><button>ゲームスタート</button></Link>
+          <Link href={"/game"} className={styles.top_link}><button className={styles.top_button}>ゲームスタート</button></Link>
           <LoggoutButton></LoggoutButton>
         </>
       ):(

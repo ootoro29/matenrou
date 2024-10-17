@@ -21,7 +21,7 @@ export default function Game(){
       loading: () => (
         <div>
           <p>
-            ゲームを読み込み中
+            ゲームコンポーネントを読み込み中
           </p>
         </div>
       ),

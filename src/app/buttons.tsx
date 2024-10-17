@@ -1,11 +1,12 @@
 "use client"
 import { useEffect } from "react"
+import styles from "./page.module.css";
 import { GameInfoCheck, oAuthSignIn, PlayerCheck, signOut } from "./actions"
 
 export function LogginButton(){
     return(
         <>
-            <button onClick={async () => {
+            <button className={styles.top_button} onClick={async () => {
                 await oAuthSignIn().then((res) => {
                 }).catch((e) => {
                 })
@@ -19,7 +20,7 @@ export function LogginButton(){
 export function LoggoutButton(){
     return(
         <>
-            <button onClick={async () => {await signOut()}}>ログアウト</button>
+            <button className={styles.top_button} onClick={async () => {await signOut()}}>ログアウト</button>
         </>
     )
 }
