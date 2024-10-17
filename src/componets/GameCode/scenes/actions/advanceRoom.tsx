@@ -1,6 +1,7 @@
 import { AdventureActionScene } from "../../parts/scene";
 import { advanceRoom } from "../../parts/area/advanceRoom";
 import { Room } from "../../Information/room/room";
+import { loadingScene } from "../loading";
 
 export default class AdvanceRoom extends AdventureActionScene {
     statusTexts?:Phaser.GameObjects.Group;
@@ -21,6 +22,9 @@ export default class AdvanceRoom extends AdventureActionScene {
         if(!this.MAIN)return;
         if(!this.MAIN.PINF)return;
         const graphics = this.add.graphics();
+    }
+    preload() {
+        loadingScene(this);
     }
     update(time: number, delta: number): void {
         if(!this.BM)return;

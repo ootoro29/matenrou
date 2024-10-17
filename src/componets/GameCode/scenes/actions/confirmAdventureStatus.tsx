@@ -1,6 +1,7 @@
 import { BattleStatus, Status } from "@/types/game";
 import { confirmBattleStatusArea, confirmStatusArea } from "../../parts/area/confirmStatusArea";
 import {AdventureActionScene } from "../../parts/scene";
+import { loadingScene } from "../loading";
 
 export default class ConfirmAdventureStatus extends AdventureActionScene {
     statusTexts?:Phaser.GameObjects.Group;
@@ -13,6 +14,9 @@ export default class ConfirmAdventureStatus extends AdventureActionScene {
         if(!this.BM)return;
         const buttonTexts:string[] = ["OK","X","X","X","X","X"];
         this.BM.changeText(buttonTexts);
+    }
+    preload() {
+        loadingScene(this);
     }
     create(){
         if(!this.MAIN)return;

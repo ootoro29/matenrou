@@ -1,6 +1,7 @@
 import { PlayerProbCommand } from "../../Information/prob_commands";
 import { BattleItemSelectArea } from "../../parts/area/battleItemSelectArea";
 import {BattleActionScene } from "../../parts/scene";
+import { loadingScene } from "../loading";
 
 export default class BattleItemSelect extends BattleActionScene {
     battleItemSelectArea?:BattleItemSelectArea
@@ -14,6 +15,11 @@ export default class BattleItemSelect extends BattleActionScene {
         this.battleItemSelectArea = new BattleItemSelectArea(this);
         this.battleItemSelectArea.setItemList();
     }
+
+    preload() {
+        loadingScene(this);
+    }
+
     update(time: number, delta: number): void {
         if(!this.BM)return;
         if(!this.Parents)return;

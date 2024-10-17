@@ -3,6 +3,7 @@ import { searchAreaManager, searchArea } from "../../parts/area/searchArea";
 import {AdventureActionScene, BattleActionScene } from "../../parts/scene";
 import AdventureScene from "../adventure";
 import BattleScene from "../battle";
+import { loadingScene } from "../loading";
 import main from "../main";
 
 export default class BattleThinking extends BattleActionScene {
@@ -15,6 +16,7 @@ export default class BattleThinking extends BattleActionScene {
         if(!this.MAIN)return;
         if(!this.MAIN.Room)return;
         if(!this.MAIN.PINF)return;
+        loadingScene(this);
     }
     create(){
         if(!this.Parents)return;

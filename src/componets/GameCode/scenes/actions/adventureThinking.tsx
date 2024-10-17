@@ -3,6 +3,7 @@ import { advanceRoomAreaManager, advanceRoomEventArea, NormalAdvanceRoomArea } f
 import { searchAreaManager, searchArea } from "../../parts/area/searchArea";
 import {AdventureActionScene } from "../../parts/scene";
 import AdventureScene from "../adventure";
+import { loadingScene } from "../loading";
 import main from "../main";
 
 export default class AdventureThinking extends AdventureActionScene {
@@ -36,6 +37,7 @@ export default class AdventureThinking extends AdventureActionScene {
         this.Areas.map((area) => {
             area.load();
         })
+        loadingScene(this);
     }
     create(){
         if(!this.event){

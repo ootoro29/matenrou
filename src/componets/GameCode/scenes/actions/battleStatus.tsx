@@ -2,6 +2,7 @@ import { BattleStatus, Status } from "@/types/game";
 import { BattleItemSelectArea } from "../../parts/area/battleItemSelectArea";
 import { confirmBattleStatusArea, confirmStatusArea } from "../../parts/area/confirmStatusArea";
 import {BattleActionScene } from "../../parts/scene";
+import { loadingScene } from "../loading";
 
 export default class ConfirmAdventureStatus extends BattleActionScene {
     statusTexts?:Phaser.GameObjects.Group;
@@ -22,6 +23,11 @@ export default class ConfirmAdventureStatus extends BattleActionScene {
         const data:BattleStatus = this.MAIN.PINF.getBattleStatus();
         this.statusArea = new confirmBattleStatusArea(this,this.MAIN.PINF);
     }
+
+    preload() {
+        loadingScene(this);
+    }
+    
     update(time: number, delta: number): void {
         if(!this.BM)return;
         const click = this.BM.checkClick();

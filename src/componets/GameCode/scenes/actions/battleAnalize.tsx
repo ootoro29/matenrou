@@ -2,6 +2,7 @@ import { ProbCommand } from "../../Information/prob_commands";
 import { BattleAnalizeArea } from "../../parts/area/battleAnalizeArea";
 import { BattleItemSelectArea } from "../../parts/area/battleItemSelectArea";
 import {BattleActionScene } from "../../parts/scene";
+import { loadingScene } from "../loading";
 
 export default class BattleAnalizeSelect extends BattleActionScene {
     battleActionArea?:BattleAnalizeArea
@@ -27,6 +28,11 @@ export default class BattleAnalizeSelect extends BattleActionScene {
         const buttonTexts:string[] = ["OK","X","X","←","戻る","→"];
         this.BM.changeText(buttonTexts)
     }
+
+    preload() {
+        loadingScene(this);
+    }
+
     update(time: number, delta: number): void {
         if(!this.BM)return;
         if(!this.battleActionArea)return;

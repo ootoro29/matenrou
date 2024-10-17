@@ -20,6 +20,8 @@ export default class AdventureScene extends PartScene{
         this.player = this.MAIN?.PINF
         //console.log(this.scene.manager.getScenes())
     }
+    /** This function loads resources that will be used later. */
+    
     create(){
         const graphics = this.add.graphics();
         //graphics.fillStyle(0x00dd00, 1.0);

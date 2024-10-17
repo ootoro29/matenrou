@@ -1,6 +1,7 @@
 import { AdventureItemArea } from "../../parts/area/adventureItemArea";
 import {AdventureActionScene } from "../../parts/scene";
 import AdventureScene from "../adventure";
+import { loadingScene } from "../loading";
 
 export default class AdventureItem extends AdventureActionScene {
     adventureItemArea?:AdventureItemArea
@@ -12,6 +13,9 @@ export default class AdventureItem extends AdventureActionScene {
         const buttonTexts:string[] = ["やめる","↑","決定","←","↓","→"];
         this.BM.changeText(buttonTexts);
         this.adventureItemArea = new AdventureItemArea(this);
+    }
+    preload() {
+        loadingScene(this);
     }
     update(time: number, delta: number): void {
         if(!this.BM)return;
