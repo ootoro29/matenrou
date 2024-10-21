@@ -8,6 +8,7 @@ import game from "@/componets/GameCode/scenes/game";
 import top from "@/componets/GameCode/scenes/top";
 import main from "@/componets/GameCode/scenes/main";
 import UIPlugin from 'phaser3-rex-plugins/templates/ui/ui-plugin.js';
+import Image from "next/image";
 export default function Game(data:gameInterface) {
     const gameArea = useRef<HTMLDivElement>(null);
 
@@ -96,7 +97,9 @@ export default function Game(data:gameInterface) {
     },[gameArea,sceneArray])
     return(
         <>
-            <div id="loadingScreen">なうろーでぃんぐ</div>
+            <div id="loadingScreen">
+                <Image src={"/top/nowloading.jpg"} alt="ナウローディング" width={270} height={400} className={styles.nowloading_image}></Image>
+            </div>
             <div ref={gameArea} className={styles.game}></div>
         </>
     );
