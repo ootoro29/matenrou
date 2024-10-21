@@ -98,7 +98,7 @@ export default function Game(data:gameInterface) {
     return(
         <>
             <div id="loadingScreen">
-                <Image src={"/top/nowloading.jpg"} alt="ナウローディング" width={270} height={400} className={styles.nowloading_image}></Image>
+                <Image src={"/top/nowloading.png"} alt="ナウローディング" width={270} height={400} className={styles.nowloading_image}></Image>
             </div>
             <div ref={gameArea} className={styles.game}></div>
         </>
