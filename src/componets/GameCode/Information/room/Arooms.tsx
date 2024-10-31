@@ -35,7 +35,7 @@ export class A5Room extends Room {
         if(ans)return ans;
         const item = this.findItemEvent(scene,10);
         if(item)return item;
-        const curse = this.CurseEvent(scene,20);
+        const curse = this.CurseEvent(scene,5);
         if(curse)return curse;
         const rndBattle = Math.random()*100;
         if(rndBattle < 20){
@@ -66,7 +66,7 @@ export class A7Room extends Room {
         if(ans)return ans;
         const item = this.findItemEvent(scene,10);
         if(item)return item;
-        const curse = this.CurseEvent(scene,20);
+        const curse = this.CurseEvent(scene,5);
         if(curse)return curse;
         return SearchEvent.SearchNoneEvent(scene)
     }
@@ -99,7 +99,7 @@ export class A9Room extends Room {
         if(ans)return ans;
         const item = this.findItemEvent(scene,10);
         if(item)return item;
-        const curse = this.CurseEvent(scene,20);
+        const curse = this.CurseEvent(scene,5);
         if(curse)return curse;
         const rndBattle = Math.random()*100;
         if(rndBattle < 60){
@@ -136,7 +136,7 @@ export class A10Room extends Room {
         if(ans)return ans;
         const item = this.findItemEvent(scene,10);
         if(item)return item;
-        const curse = this.CurseEvent(scene,20);
+        const curse = this.CurseEvent(scene,5);
         if(curse)return curse;
         const rndBattle = Math.random()*100;
         if(rndBattle < 50){
@@ -172,7 +172,7 @@ export class A11Room extends Room {
         if(ans)return ans;
         const item = this.findItemEvent(scene,10);
         if(item)return item;
-        const curse = this.CurseEvent(scene,20);
+        const curse = this.CurseEvent(scene,5);
         if(curse)return curse;
         const rndBattle = Math.random()*100;
         if(rndBattle < 40){
@@ -208,7 +208,7 @@ export class A12Room extends Room {
         if(ans)return ans;
         const item = this.findItemEvent(scene,10);
         if(item)return item;
-        const curse = this.CurseEvent(scene,20);
+        const curse = this.CurseEvent(scene,5);
         if(curse)return curse;
         const rndBattle = Math.random()*100;
         if(rndBattle < 40){
@@ -237,7 +237,7 @@ export class A13Room extends Room {
         if(ans)return ans;
         const item = this.findItemEvent(scene,10);
         if(item)return item;
-        const curse = this.CurseEvent(scene,20);
+        const curse = this.CurseEvent(scene,5);
         if(curse)return curse;
         return SearchEvent.SearchNoneEvent(scene)
     }
@@ -259,7 +259,7 @@ export class A14Room extends Room {
         if(ans)return ans;
         const item = this.findItemEvent(scene,10);
         if(item)return item;
-        const curse = this.CurseEvent(scene,20);
+        const curse = this.CurseEvent(scene,5);
         if(curse)return curse;
         return SearchEvent.SearchNoneEvent(scene)
     }

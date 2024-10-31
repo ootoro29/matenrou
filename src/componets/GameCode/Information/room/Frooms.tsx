@@ -142,7 +142,7 @@ export class F7Room extends Room {
         if(ans)return ans;
         const item = this.findItemEvent(scene,10);
         if(item)return item;
-        const curse = this.CurseEvent(scene,20);
+        const curse = this.CurseEvent(scene,5);
         if(curse)return curse;
         const rndBattle = Math.random()*100;
         if(rndBattle < 20){

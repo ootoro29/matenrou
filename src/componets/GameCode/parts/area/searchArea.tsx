@@ -93,7 +93,7 @@ export class BattleSearchArea extends searchArea {
 export class FindItemSearchEventArea extends searchArea {
     item?:Item
     constructor(scene:searchAction,item:Item,{key="",image = ""} = {}){
-        const discription = `プレイヤーは${item.name}を使用した！`;
+        const discription = `プレイヤーは${item.name}を見つけた！`;
         super(scene,discription,{key:key,image:image});
         this.item = item;
     }

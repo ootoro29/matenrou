@@ -28,7 +28,7 @@ export class B1Room extends Room {
         if(ans)return ans;
         const item = this.findItemEvent(scene,10);
         if(item)return item;
-        const curse = this.CurseEvent(scene,20);
+        const curse = this.CurseEvent(scene,5);
         if(curse)return curse;
         return SearchEvent.SearchNoneEvent(scene)
     }
@@ -51,7 +51,7 @@ export class B2Room extends Room {
         if(ans)return ans;
         const item = this.findItemEvent(scene,10);
         if(item)return item;
-        const curse = this.CurseEvent(scene,20);
+        const curse = this.CurseEvent(scene,5);
         if(curse)return curse;
         return SearchEvent.SearchNoneEvent(scene)
     }
@@ -85,7 +85,7 @@ export class B3Room extends Room {
         if(ans)return ans;
         const item = this.findItemEvent(scene,10);
         if(item)return item;
-        const curse = this.CurseEvent(scene,20);
+        const curse = this.CurseEvent(scene,5);
         if(curse)return curse;
         const rndBattle = Math.random()*100;
         if(rndBattle < 20){
@@ -119,7 +119,7 @@ export class B4Room extends Room {
         if(ans)return ans;
         const item = this.findItemEvent(scene,10);
         if(item)return item;
-        const curse = this.CurseEvent(scene,20);
+        const curse = this.CurseEvent(scene,5);
         if(curse)return curse;
         return SearchEvent.SearchNoneEvent(scene)
     }
@@ -147,7 +147,7 @@ export class B5Room extends Room {
         if(ans)return ans;
         const item = this.findItemEvent(scene,10);
         if(item)return item;
-        const curse = this.CurseEvent(scene,20);
+        const curse = this.CurseEvent(scene,5);
         if(curse)return curse;
         let rndBattle = Math.random()*100;
         if(rndBattle < 80){
@@ -179,7 +179,7 @@ export class B6Room extends Room {
         if(ans)return ans;
         const item = this.findItemEvent(scene,10);
         if(item)return item;
-        const curse = this.CurseEvent(scene,20);
+        const curse = this.CurseEvent(scene,5);
         if(curse)return curse;
         let rndBattle = Math.random()*100;
         if(rndBattle < 80){
@@ -206,7 +206,7 @@ export class B7Room extends Room {
         if(ans)return ans;
         const item = this.findItemEvent(scene,10);
         if(item)return item;
-        const curse = this.CurseEvent(scene,20);
+        const curse = this.CurseEvent(scene,5);
         if(curse)return curse;
         return SearchEvent.BattleSlimeEvent(scene);
     }
@@ -233,7 +233,7 @@ export class B8Room extends Room {
         if(ans)return ans;
         const item = this.findItemEvent(scene,10);
         if(item)return item;
-        const curse = this.CurseEvent(scene,20);
+        const curse = this.CurseEvent(scene,5);
         if(curse)return curse;
         let rnd = Math.random()*100;
         let rndBattle = Math.random()*100;
@@ -266,7 +266,7 @@ export class B9Room extends Room {
         if(ans)return ans;
         const item = this.findItemEvent(scene,10);
         if(item)return item;
-        const curse = this.CurseEvent(scene,20);
+        const curse = this.CurseEvent(scene,5);
         if(curse)return curse;
         let rndBattle = Math.random()*100;
         if(rndBattle < 80){
@@ -300,7 +300,7 @@ export class B11Room extends Room {
         if(ans)return ans;
         const item = this.findItemEvent(scene,10);
         if(item)return item;
-        const curse = this.CurseEvent(scene,20);
+        const curse = this.CurseEvent(scene,5);
         if(curse)return curse;
         const rndBattle = Math.random()*100;
         if(rndBattle < 40){
@@ -336,7 +336,7 @@ export class B12Room extends Room {
         if(ans)return ans;
         const item = this.findItemEvent(scene,10);
         if(item)return item;
-        const curse = this.CurseEvent(scene,20);
+        const curse = this.CurseEvent(scene,5);
         if(curse)return curse;
         const rndBattle = Math.random()*100;
         if(rndBattle < 40){
@@ -365,7 +365,7 @@ export class B13Room extends Room {
         if(ans)return ans;
         const item = this.findItemEvent(scene,10);
         if(item)return item;
-        const curse = this.CurseEvent(scene,20);
+        const curse = this.CurseEvent(scene,5);
         if(curse)return curse;
         return SearchEvent.SearchNoneEvent(scene)
     }
@@ -387,7 +387,7 @@ export class B14Room extends Room {
         if(ans)return ans;
         const item = this.findItemEvent(scene,10);
         if(item)return item;
-        const curse = this.CurseEvent(scene,20);
+        const curse = this.CurseEvent(scene,5);
         if(curse)return curse;
         return SearchEvent.SearchNoneEvent(scene)
     }

@@ -26,7 +26,7 @@ export class D1Room extends Room {
         if(ans)return ans;
         const item = this.findItemEvent(scene,10);
         if(item)return item;
-        const curse = this.CurseEvent(scene,20);
+        const curse = this.CurseEvent(scene,5);
         if(curse)return curse;
         return SearchEvent.SearchNoneEvent(scene)
     }
@@ -54,7 +54,7 @@ export class D2Room extends Room {
         if(ans)return ans;
         const item = this.findItemEvent(scene,10);
         if(item)return item;
-        const curse = this.CurseEvent(scene,20);
+        const curse = this.CurseEvent(scene,5);
         if(curse)return curse;
         return SearchEvent.SearchNoneEvent(scene)
     }
@@ -82,7 +82,7 @@ export class D3Room extends Room {
         if(ans)return ans;
         const item = this.findItemEvent(scene,10);
         if(item)return item;
-        const curse = this.CurseEvent(scene,20);
+        const curse = this.CurseEvent(scene,5);
         if(curse)return curse;
         return SearchEvent.SearchNoneEvent(scene)
     }
@@ -110,7 +110,7 @@ export class D4Room extends Room {
         if(ans)return ans;
         const item = this.findItemEvent(scene,10);
         if(item)return item;
-        const curse = this.CurseEvent(scene,20);
+        const curse = this.CurseEvent(scene,5);
         if(curse)return curse;
         return SearchEvent.SearchNoneEvent(scene)
     }
@@ -145,7 +145,7 @@ export class D6Room extends Room {
         if(ans)return ans;
         const item = this.findItemEvent(scene,10);
         if(item)return item;
-        const curse = this.CurseEvent(scene,20);
+        const curse = this.CurseEvent(scene,5);
         if(curse)return curse;
         const rndBattle = Math.random()*100;
         if(rndBattle < 20){
@@ -184,7 +184,7 @@ export class D7Room extends Room {
         if(ans)return ans;
         const item = this.findItemEvent(scene,10);
         if(item)return item;
-        const curse = this.CurseEvent(scene,20);
+        const curse = this.CurseEvent(scene,5);
         if(curse)return curse;
         let rndBattle = Math.random()*100;
         if(rndBattle < 80){
@@ -212,7 +212,7 @@ export class D8Room extends Room {
         if(ans)return ans;
         const item = this.findItemEvent(scene,10);
         if(item)return item;
-        const curse = this.CurseEvent(scene,20);
+        const curse = this.CurseEvent(scene,5);
         if(curse)return curse;
         return SearchEvent.SearchNoneEvent(scene)
     }
@@ -242,7 +242,7 @@ export class D9Room extends Room {
         if(ans)return ans;
         const item = this.findItemEvent(scene,10);
         if(item)return item;
-        const curse = this.CurseEvent(scene,20);
+        const curse = this.CurseEvent(scene,5);
         if(curse)return curse;
         const rndBattle = Math.random()*100;
         if(rndBattle < 33){
@@ -277,7 +277,7 @@ export class D10Room extends Room {
         if(ans)return ans;
         const item = this.findItemEvent(scene,10);
         if(item)return item;
-        const curse = this.CurseEvent(scene,20);
+        const curse = this.CurseEvent(scene,5);
         if(curse)return curse;
         const rndBattle = Math.random()*100;
         if(rndBattle < 50){
@@ -305,7 +305,7 @@ export class D11Room extends Room {
         if(ans)return ans;
         const item = this.findItemEvent(scene,10);
         if(item)return item;
-        const curse = this.CurseEvent(scene,20);
+        const curse = this.CurseEvent(scene,5);
         if(curse)return curse;
         return SearchEvent.SearchNoneEvent(scene)
     }
@@ -328,7 +328,7 @@ export class D12Room extends Room {
         if(ans)return ans;
         const item = this.findItemEvent(scene,10);
         if(item)return item;
-        const curse = this.CurseEvent(scene,20);
+        const curse = this.CurseEvent(scene,5);
         if(curse)return curse;
         return SearchEvent.SearchNoneEvent(scene)
     }
@@ -351,7 +351,7 @@ export class D13Room extends Room {
         if(ans)return ans;
         const item = this.findItemEvent(scene,10);
         if(item)return item;
-        const curse = this.CurseEvent(scene,20);
+        const curse = this.CurseEvent(scene,5);
         if(curse)return curse;
         return SearchEvent.SearchNoneEvent(scene)
     }
