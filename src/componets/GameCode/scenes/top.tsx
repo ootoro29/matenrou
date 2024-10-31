@@ -12,6 +12,7 @@ import { calCP, calHP, calMP } from "../functions/status";
 
 export default class top extends Phaser.Scene {
   button?: Button;
+  button2?: Button;
   name?: String;
   player?: Player | null = null;
   gameInfo?: GameInfo | null = null;
@@ -57,6 +58,17 @@ export default class top extends Phaser.Scene {
     // テキストを追加
     this.add.text(20, 20, `${this.player.name}`, { fontSize: '50px', color: '#ffffff' });
     this.add.text(20, 70, `stamina:${this.gameInfo.stamina}`, { fontSize: '50px', color: '#ffffff' });
+
+    this.button2 = new Button(this, this.scale.width / 2, 600, "遊び方", {
+      width: 750,
+      height: 150,
+      onClick: () => {
+        window.open("https://youtu.be/JybWaJtFTxE",'_blank');
+      },
+    }, {
+      fontSize: 50,
+      textcolor: "#ffffff"
+    })
 
     this.button = new Button(this, this.scale.width / 2, 400, "ゲームスタート", {
       width: 750,
