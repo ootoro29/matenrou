@@ -58,7 +58,7 @@ export default class BattleEventAction extends BattleActionScene {
         }else if(this.Parents.enemy.HP <= 0){
             this.Areas = [
                 new NormalBattleEventArea(this,`${this.Parents.enemy.name}は力尽きた`),
-                new GetEXPBattleEventArea(this,this.Parents.player,this.Parents.enemy.exp),
+                new GetEXPBattleEventArea(this,this.Parents.player,this.Parents.enemy,this.Parents.enemy.exp),
                 new YOUWINBattleEventArea(this)
             ];
             for(let i = 0; i < this.Areas.length; i++){

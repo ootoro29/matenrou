@@ -5,7 +5,7 @@ import Phaser, { Math } from "phaser";
 import { Button } from "../parts/button";
 import { ButtonManager } from "../parts/buttonManager";
 import { GameInfo, gameInterface, MatchInfo, Player } from "@/types/game";
-import { calCP, calHP, calMP, calNormalMAT, calNormalMDF, calNormalPAT, calNormalPDF, calNormalSP, calStatusFromBit, calTransformMAT, calTransformMDF, calTransformPAT, calTransformPDF, calTransformSP } from "../functions/status";
+import { calCP, calHP, calMP, calNormalMAT, calNormalMDF, calNormalPAT, calNormalPDF, calNormalSP, calNumberFromBit, calTransformMAT, calTransformMDF, calTransformPAT, calTransformPDF, calTransformSP } from "../functions/status";
 import PlayerINFO from "../Information/playerInformation";
 import { Room } from "../Information/room/room";
 import * as R from "../Information/room/index";
@@ -46,6 +46,8 @@ export default class main extends Phaser.Scene {
       this.PINF = new PlayerINFO(this.gameInfo.lv,this.player.uid);
       this.PINF.lv = data.data.gameInfo.lv;
       this.PINF.exp = data.data.gameInfo.exp;
+      this.PINF.sbj = data.data.gameInfo.sbj;
+      this.PINF.sbjBoss = data.data.gameInfo.sbjBoss;
       if(data.matchInfo){
         this.PINF.HP = data.matchInfo.HP;
         this.PINF.MP = data.matchInfo.MP;
@@ -55,7 +57,7 @@ export default class main extends Phaser.Scene {
         this.PINF.PDFstage = data.matchInfo.PDFStage;
         this.PINF.MDFstage = data.matchInfo.MDFStage;
         this.PINF.SPstage = data.matchInfo.SPStage;
-        this.PINF.toStatus(calStatusFromBit(6,data.matchInfo.status));
+        this.PINF.toStatus(calNumberFromBit(6,data.matchInfo.status));
       }
     }
     this.Room = data.room;
@@ -106,7 +108,7 @@ export default class main extends Phaser.Scene {
     if(!this.gameInfo)return;
     this.scene.stop();
     deleteMatchInfo(this.player?.uid??"");
-    const newGameInfo:GameInfo = {lv:this.PINF.lv,exp:this.PINF.exp,stamina:this.gameInfo.stamina};
+    const newGameInfo:GameInfo = {lv:this.PINF.lv,exp:this.PINF.exp,stamina:this.gameInfo.stamina,sbj:this.PINF.sbj,sbjBoss:this.PINF.sbjBoss};
     const data:gameInterface = {
       player:this.player,
       gameInfo:newGameInfo

@@ -9,6 +9,8 @@ export type GameInfo = {
     lv:number;
     exp:number;
     stamina:number;
+    sbj:number;
+    sbjBoss:number;
 }
 export type MatchInfo = {
     room:string;

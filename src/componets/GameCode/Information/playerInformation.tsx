@@ -1,5 +1,5 @@
 import { BattleStatus, normalStatus, Status, transformStatus } from "@/types/game";
-import { calCP, calEXP, calHP, calMP, calNormalMAT, calNormalMDF, calNormalPAT, calNormalPDF, calNormalSP, calStage, calStatusFromStatus, calTransformMAT, calTransformMDF, calTransformPAT, calTransformPDF, calTransformSP } from "../functions/status";
+import { calCP, calEXP, calHP, calMP, calNormalMAT, calNormalMDF, calNormalPAT, calNormalPDF, calNormalSP, calStage, calBitFromNumber, calTransformMAT, calTransformMDF, calTransformPAT, calTransformPDF, calTransformSP } from "../functions/status";
 import { ItemList } from "./item/itemList";
 import { Command } from "./commands";
 import { CancelTransformMagicalGirl, TransformMagicalGirl } from "./playerActCommands";
@@ -10,6 +10,8 @@ export default class PlayerINFO {
   lv = 0;
   exp = 0;
   exp_MAX = 0;
+  sbj = 0;
+  sbjBoss = 0
   uid:string = "";
   name:string = "";
   normal_status:normalStatus = {
@@ -120,7 +122,7 @@ export default class PlayerINFO {
       (this.isBurn())?1:0,
       (this.isLock())?1:0,
     ]
-    return calStatusFromStatus(data);
+    return calBitFromNumber(data);
   }
   toStatus(status:number[]){
     if(status[0] == 1)this.transform = true;
@@ -149,7 +151,7 @@ export default class PlayerINFO {
     this.Shield?.update();
   }
 
-  getExp(plus:number):string{
+  getExp(plus:number,sbj?:number,sbjBoss?:number):string{
     this.exp += plus;
     const pre_lv = this.lv;
     while(this.exp >= this.exp_MAX){
@@ -158,7 +160,7 @@ export default class PlayerINFO {
       this.updateStatus();
       this.exp_MAX = calEXP(this.lv);
     }
-    updateGameInfoLv(this.uid,this.lv,this.exp);
+    updateGameInfoLv(this.uid,this.lv,this.exp,(sbj)?sbj:this.sbj,(sbjBoss)?sbjBoss:this.sbjBoss);
     if(pre_lv == this.lv){
       return ``;
     }else{

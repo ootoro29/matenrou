@@ -7,6 +7,9 @@ import { Enemy } from "../../Information/enemy/enemy";
 import PlayerINFO from "../../Information/playerInformation";
 import { Item } from "../../Information/item/item";
 import { Shield } from "../../Information/shield/shield";
+//import { Ishisu } from "../../Information/enemy/Ishisu";
+//import { Zanbia } from "../../Information/enemy/Zanbia";
+import { calBitOr } from "../../functions/status";
 
 export class BattleEventAreaManager extends areaManager{
     AreaList?:BattleEventArea[];
@@ -295,11 +298,13 @@ export class ShieldBreakBattleEventArea extends BattleEventArea {
 export class GetEXPBattleEventArea extends BattleEventArea {
     exp:number = 0;
     player?:PlayerINFO;
-    constructor(scene:BattleEventAction,player:PlayerINFO,exp:number,{key="",image = ""} = {}){
+    enemy?:Enemy;
+    constructor(scene:BattleEventAction,player:PlayerINFO,enemy:Enemy,exp:number,{key="",image = ""} = {}){
         const discription = `プレイヤーは${exp}の経験値を得た`;
         super(scene,discription,{key:key,image:image});
         this.exp = exp;
         this.player = player;
+        this.enemy = enemy;
     }
     genSelections(): string[] {
         return ["OK","X","X","X","X","X"];
@@ -317,7 +322,16 @@ export class GetEXPBattleEventArea extends BattleEventArea {
     }
     appearance(AM:BattleEventAreaManager): void {
         if(!this.player)return;
-        const result = this.player.getExp(this.exp);
+        if(!this.enemy)return;
+        
+        
+        if(this.enemy.name == "イシス"){
+            this.player.sbjBoss = calBitOr(0,this.player.sbjBoss);
+        }else if(this.enemy.name == "ザンビア"){
+            this.player.sbjBoss = calBitOr(1,this.player.sbjBoss);
+        }
+        this.player.sbj += 1;
+        const result = this.player.getExp(this.exp,this.player.sbj,this.player.sbjBoss);
         this.discription += result;
         if(!this.text || !this.discription)return;
         this.text?.setText(this.discription);
