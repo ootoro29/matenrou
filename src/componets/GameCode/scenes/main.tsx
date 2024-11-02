@@ -48,6 +48,7 @@ export default class main extends Phaser.Scene {
       this.PINF.exp = data.data.gameInfo.exp;
       this.PINF.sbj = data.data.gameInfo.sbj;
       this.PINF.sbjBoss = data.data.gameInfo.sbjBoss;
+      console.log(data.data.gameInfo);
       if(data.matchInfo){
         this.PINF.HP = data.matchInfo.HP;
         this.PINF.MP = data.matchInfo.MP;
